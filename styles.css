@@ -1,0 +1,38 @@
+body {
+    background-color: #1f1f1f;
+    color: #dbc3bb;
+    font-family: verdana, sans-serif;
+}
+
+a {
+    color: #cf632b;
+    text-decoration: none;
+}
+  
+a:hover {
+    color: #e7ab5f;
+}
+  
+a:active {
+    color: #e7ab5f;
+}
+
+ul.sidenav_list {
+    list-style-type: none;
+    margin-top: 0;
+  }
+
+.sidenav {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    background-color: #0f0b07;
+}
+
+.main {
+    margin-left: 300px;
+}
