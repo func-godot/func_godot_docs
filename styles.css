@@ -1,3 +1,4 @@
+/* Base Styles */
 body {
     background-color: #1f1f1f;
     color: #dbc3bb;
@@ -17,22 +18,62 @@ a:active {
     color: #e7ab5f;
 }
 
-ul.sidenav_list {
-    list-style-type: none;
-    margin-top: 0;
-  }
+/* Header Start */
+div.head {
+    height: 100px;
+    width: 100%;
+    top: 0;
+    left: 360px;
+    bottom: 100px;
+    padding-left: 10px;
+    background-color: #0f0b07;
+    position: fixed;
+    z-index: 2;
+}
 
-.sidenav {
+/* Header End */
+
+/* Sidebar Navigation Start */
+div.sidenav {
     height: 100%;
-    width: 300px;
+    width: 360px;
     position: fixed;
     z-index: 1;
     top: 0;
     left: 0;
-    overflow-x: hidden;
     background-color: #0f0b07;
+    padding-left: 10px;
+    
 }
 
-.main {
-    margin-left: 300px;
+h3.sidenav {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 10px;
+    padding-bottom: 5px;
 }
+
+p.sidenav {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+p.sidenav2 {
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/* Sidebar Navigation End */
+
+/* Main Body Start */
+.main {
+    margin-top: 100px;
+    margin-left: 380px;
+}
+
+/* Main Body End */
