@@ -20,13 +20,12 @@ a:active {
 
 /* Header Start */
 div.head {
-    height: 100px;
+    height: 50px;
     width: 100%;
     top: 0;
-    left: 360px;
-    bottom: 100px;
+    left: 370px;
     padding-left: 10px;
-    background-color: #0f0b07;
+    background-color: #070700;
     position: fixed;
     z-index: 2;
 }
@@ -72,7 +71,7 @@ p.sidenav2 {
 
 /* Main Body Start */
 .main {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: 380px;
 }
 
