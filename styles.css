@@ -1,4 +1,4 @@
-/* Base Styles */
+/* Base Styles Start */
 body {
     background-color: #1f1f1f;
     color: #dbc3bb;
@@ -17,38 +17,43 @@ a:hover {
 a:active {
     color: #e7ab5f;
 }
+/* Base Styles End */
 
 /* Header Start */
 div.head {
     height: 50px;
     width: 100%;
     top: 0;
-    left: 370px;
+    left: 0;
     padding-left: 10px;
     background-color: #070700;
     position: fixed;
     z-index: 2;
 }
-
 /* Header End */
 
 /* Sidebar Navigation Start */
 div.sidenav {
-    height: 100%;
-    width: 360px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
+    top: 50px;
     left: 0;
-    background-color: #0f0b07;
+    bottom: 0;
+    width: 360px;
+    height: calc(100% - 70px);
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+    padding-top: 10px;
     padding-left: 10px;
+    padding-bottom: 10px;
+    background-color: #0f0b07;
     
 }
 
 h3.sidenav {
     margin-top: 0;
     margin-bottom: 0;
-    padding-top: 10px;
+    padding-top: 5px;
     padding-bottom: 5px;
 }
 
@@ -66,7 +71,6 @@ p.sidenav2 {
     padding-top: 0px;
     padding-bottom: 0px;
 }
-
 /* Sidebar Navigation End */
 
 /* Main Body Start */
@@ -74,5 +78,4 @@ p.sidenav2 {
     margin-top: 50px;
     margin-left: 380px;
 }
-
 /* Main Body End */
