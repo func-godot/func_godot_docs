@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Header Begin -->
+    <div class="head"><img src="../images/godot_ranger.svg" height="50px"><img src="../images/logo_white.png" height="40px"></div>
+    <!-- Header End -->
+
+    <!-- Sidebar Navigation Begin -->
+<div class="sidenav">
+    <a href="../index.html">What <i>IS</i> FuncGodot?</a><br>
+    <h3 class="sidenav">Getting Started</h3>
+    <p class="sidenav">
+        <a href="setup_install.html">Installing FuncGodot</a><br>
+        <a href="setup_project_config.html">Project Configuration</a><br>
+        <a href="setup_fgd.html">Forge Game Data</a><br>
+        <a href="setup_textures.html">Textures</a><br>
+    </p>
+    <p class="sidenav2">
+        <a href="setup_textures.html#DefaultMaterial">Default Material</a><br>
+        <a href="setup_textures.html#ClipAndSkip">Clip and Skip</a><br>
+        <a href="setup_textures.html#WADFiles">WAD Files</a><br>
+    </p>
+    <p class="sidenav"><a href="setup_map_editor_config.html">Map Editor Configuration</a><br></p>
+    <p class="sidenav2">
+        <a href="setup_map_editor_config.html#TrenchBroom">TrenchBroom</a><br>
+        <a href="setup_map_editor_config.html#JACK">J.A.C.K.</a><br>
+        <a href="setup_map_editor_config.html#NetRadiantCustom">NetRadiant Custom</a><br>
+    </p>
+    <p class="sidenav"><a href="setup_building_maps.html">Building Maps</a></p>
+
+    <h3 class="sidenav">Class Reference</h3>
+    <p class="sidenav">
+        <a href="ref_project_config.html">FuncGodot Project Config</a><br>
+        <a href="ref_fgd_resources.html">FuncGodot FGD Resources</a>
+    </p>
+    <p class="sidenav2">
+        <a href="ref_fgd_resources.html#File">FuncGodot FGD File</a><br>
+        <a href="ref_fgd_resources.html#Entity">FuncGodot FGD Entity Class</a><br>
+        <a href="ref_fgd_resources.html#Base">FuncGodot FGD Base Class</a><br>
+        <a href="ref_fgd_resources.html#Solid">FuncGodot FGD Solid Class</a><br>
+        <a href="ref_fgd_resources.html#Point">FuncGodot FGD Point Class</a>
+    </p>
+
+    <p class="sidenav"><a href="ref_trenchbroom_resources.html">TrenchBroom Resources</a></p>
+    <p class="sidenav2">
+        <a href="ref_trenchbroom_resources.html#GameConfig">TrenchBroom Game Config</a><br>
+        <a href="ref_trenchbroom_resources.html#Tag">TrenchBroom Tag</a><br>
+        <a href="ref_trenchbroom_resources.html#ModelPoint">TrenchBroom FGD Model Point Class</a>
+    </p>
+    
+    <p class="sidenav"><a href="ref_func_godot_map.html">FuncGodot Map</a></p>
+    <p class="sidenav2">
+        <a href="ref_func_godot_map.html#MapSettings">FuncGodot Map Settings</a>
+    </p>
+    <h3 class="sidenav">Core</h3>
+    <p class="sidenav">
+        <a href="core_func_godot.html">FuncGodot</a><br>
+        <a href="core_map_data.html">Map Data</a><br>
+        <a href="core_map_parser.html">Map Parser</a><br>
+        <a href="core_geo_generator.html">Geo Generator</a><br>
+        <a href="core_surface_gatherer.html">Surface Gatherer</a>
+    </p>
+    <h3 class="sidenav">Additional Learning</h3>
+    <p class="sidenav"><a href="helpful_links.html">Helpful Links</a></p>
+    <p class="sidenav2">
+        <a href="helpful_links.html#Godot">Godot and FuncGodot</a><br>
+        <a href="helpful_links.html#TrenchBroom">TrenchBroom and Quake</a><br>
+        <a href="helpful_links.html#JACK">J.A.C.K. and Half-Life</a><br>
+        <a href="helpful_links.html#Tools">Useful Tools</a><br>
+    </p>
+    <p class="sidenav">
+        <a href="faq.html">Frequently Asked Questions</a></br>
+    </p><br>
+    <a href="#"><b>Join the FuncGodot Discord!</b></a>
+</div>
+<!-- Sidebar Navigation End -->
+
+    <div class="main">
+        <h1>Configuring Your Project</h1>
+
+        <h3>FuncGodot Project Config</h3>
+        <p>
+            FuncGodot has the option of using a <a href="ref_project_config.html"><b>FuncGodotProjectConfig</b></a> resource to create local project wide 
+            settings for your other FuncGodot resources. These settings are applied only to your machine, in order to better facilitate working with a team that 
+            may not have the same drive or directory setup or even the same map editor as you yourself use.
+        </p>
+        <p>
+            You won't create the FuncGodotProjectConfig resource for your project, as this resource doesn't actually save anything to itself directly. 
+            Instead you will use the pre-made <i>func_godot_projet_config.tres</i> resource found in the <i>addons/func_godot/</i> folder.
+        </p>
+        <p align="center"><img src="../images/setup_project_config_res_loc.png" height="500" alt="Location of func_godot_project_config.tres in the Godot project File System."></p>
+        
+        <h3>Project Config Properties</h3>
+
+        <p>
+            Viewing this resource's properties in the inspector, you'll be greeted with some options. We'll ignore the <i>Export Func Godot Settings</i> property for now.
+        </p>
+        <p align="center"><img src="../images/ref_project_config.png" height="400" alt="FuncGodotProjectConfig resource inspector."></p>
+        <p>
+            For the <b>Map Editor Game Config Folder</b>, you'll want to locate your map editor's game configuration or installation folder and then create a sub folder for 
+            your game's configuration. This might look something like <i>C:/GameDev/TrenchBroom/Games/MyGame/</i> or <i>C:/GameDev/J.A.C.K/MyGame/</i>. 
+            This tells FuncGodot where the default location to save generated configuration and FGD files.
+        </p>
+        <p>
+            The <b>Map Editor Game Path</b> refers to what your Map Editor considers the location of your project. This might look something like <i>C:/GameDev/MyGodotProject/</i> 
+            or <i>C:/GameDev/MyGodotProject/trenchbroom/</i>. The intended use for this is to streamline certain FGD resource paths, like the 
+            <a href="ref_trenchbroom_resources.html#ModelPoint"><b>TrenchBroomFGDModelPointClass</b></a>'s model export location.
+        </p>
+        <p>
+            The <b>Game Path Models Folder</b> is the default folder path relative to your Map Editor Game Path that tells FuncGodot where to save generated model files to. For example, 
+            with a Map Editor Game Path value of <i>C:/GameDev/MyGodotProject/trenchbroom/</i> and a Game Path Models Folder value of <i>models</i>, the generated model file will 
+            be saved to <i>C:/GameDev/MyGodotProject/trenchbroom/models/</i>. Currently only used by <a href="ref_trenchbroom_resources.html#ModelPoint"><b>TrenchBroomFGDModelPointClass</b></a>.
+        </p>
+
+        <h3>Exporting the Project Config</h3>
+        <p>
+            Remember that <i>Export Func Godot Settings</i> property I told you to ignore earlier? Once you have your settings in place, go ahead and click it. 
+            It will automatically generate a <i>MyGameFuncGodotConfig.json</i> file in your 
+            <a href="https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html#accessing-persistent-user-data-user" target="_blank">Godot project's user data folder</a>. 
+        </p>
+        <p>
+            This is how we keep local settings local. Upon opening your project, FuncGodot will automatically update <i>func_godot_project_config.tres</i> to load the data from 
+            the generated JSON file found in your user data folder, and setting the resource's <i>Export</i> property to true will overwrite that file with the new settings. 
+            These settings are not saved to source control, allowing teams to work together more easily and more flexibly.
+        </p>
+        <p>
+            Now that our map editor directories are set up, <a href="setup_fgd.html"><b>it's time to take our first look at FGD files >>></b></a>
+        </p>
+        <br><br><br>
+    </div>
+</body>
+</html>

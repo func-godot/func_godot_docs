@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Header Begin -->
+    <div class="head"><img src="../images/godot_ranger.svg" height="50px"><img src="../images/logo_white.png" height="40px"></div>
+    <!-- Header End -->
+
+    <!-- Sidebar Navigation Begin -->
+    <div class="sidenav">
+        <a href="../index.html">What <i>IS</i> FuncGodot?</a><br>
+        <h3 class="sidenav">Getting Started</h3>
+        <p class="sidenav">
+            <a href="setup_install.html">Installing FuncGodot</a><br>
+            <a href="setup_project_config.html">Project Configuration</a><br>
+            <a href="setup_fgd.html">Forge Game Data</a><br>
+            <a href="setup_textures.html">Textures</a><br>
+        </p>
+        <p class="sidenav2">
+            <a href="setup_textures.html#DefaultMaterial">Default Material</a><br>
+            <a href="setup_textures.html#ClipAndSkip">Clip and Skip</a><br>
+            <a href="setup_textures.html#WADFiles">WAD Files</a><br>
+        </p>
+        <p class="sidenav"><a href="setup_map_editor_config.html">Map Editor Configuration</a><br></p>
+        <p class="sidenav2">
+            <a href="setup_map_editor_config.html#TrenchBroom">TrenchBroom</a><br>
+            <a href="setup_map_editor_config.html#JACK">J.A.C.K.</a><br>
+            <a href="setup_map_editor_config.html#NetRadiantCustom">NetRadiant Custom</a><br>
+        </p>
+        <p class="sidenav"><a href="setup_building_maps.html">Building Maps</a></p>
+
+        <h3 class="sidenav">Class Reference</h3>
+        <p class="sidenav">
+            <a href="ref_project_config.html">FuncGodot Project Config</a><br>
+            <a href="ref_fgd_resources.html">FuncGodot FGD Resources</a>
+        </p>
+        <p class="sidenav2">
+            <a href="ref_fgd_resources.html#File">FuncGodot FGD File</a><br>
+            <a href="ref_fgd_resources.html#Entity">FuncGodot FGD Entity Class</a><br>
+            <a href="ref_fgd_resources.html#Base">FuncGodot FGD Base Class</a><br>
+            <a href="ref_fgd_resources.html#Solid">FuncGodot FGD Solid Class</a><br>
+            <a href="ref_fgd_resources.html#Point">FuncGodot FGD Point Class</a>
+        </p>
+
+        <p class="sidenav"><a href="ref_trenchbroom_resources.html">TrenchBroom Resources</a></p>
+        <p class="sidenav2">
+            <a href="ref_trenchbroom_resources.html#GameConfig">TrenchBroom Game Config</a><br>
+            <a href="ref_trenchbroom_resources.html#Tag">TrenchBroom Tag</a><br>
+            <a href="ref_trenchbroom_resources.html#ModelPoint">TrenchBroom FGD Model Point Class</a>
+        </p>
+        
+        <p class="sidenav"><a href="ref_func_godot_map.html">FuncGodot Map</a></p>
+        <p class="sidenav2">
+            <a href="ref_func_godot_map.html#MapSettings">FuncGodot Map Settings</a>
+        </p>
+        <h3 class="sidenav">Core</h3>
+        <p class="sidenav">
+            <a href="core_func_godot.html">FuncGodot</a><br>
+            <a href="core_map_data.html">Map Data</a><br>
+            <a href="core_map_parser.html">Map Parser</a><br>
+            <a href="core_geo_generator.html">Geo Generator</a><br>
+            <a href="core_surface_gatherer.html">Surface Gatherer</a>
+        </p>
+        <h3 class="sidenav">Additional Learning</h3>
+        <p class="sidenav"><a href="helpful_links.html">Helpful Links</a></p>
+        <p class="sidenav2">
+            <a href="helpful_links.html#Godot">Godot and FuncGodot</a><br>
+            <a href="helpful_links.html#TrenchBroom">TrenchBroom and Quake</a><br>
+            <a href="helpful_links.html#JACK">J.A.C.K. and Half-Life</a><br>
+            <a href="helpful_links.html#Tools">Useful Tools</a><br>
+        </p>
+        <p class="sidenav">
+            <a href="faq.html">Frequently Asked Questions</a></br>
+        </p><br>
+        <a href="#"><b>Join the FuncGodot Discord!</b></a>
+    </div>
+    <!-- Sidebar Navigation End -->
+
+    <div class="main">
+        <h1>Installing FuncGodot</h1>
+
+        <h3>Preliminary Requirements</h3>
+
+        <p>
+            FuncGodot's official requirement is currently Godot 4.2. We will always aim to keep FuncGodot compatible with the latest Godot 4.x release. 
+            If you manage to make it work on an older release of Godot 4, awesome! But you're on your own if you run into issues.
+        </p>
+        <p>
+            FuncGodot is written in pure GDScript and as such has no other dependencies.
+        </p>
+        <p>
+            This manual assumes you have an intermediate level of knowledge with Godot and your chosen map editor. 
+        </p>
+
+        <h3>Downloading the Plugin</h3>
+
+        <p>
+            There are 3 places to download FuncGodot. The first two places are both found on the <a href="https://github.com/func-godot/func_godot_plugin" target="_blank"><b>FuncGodot GitHub Repository</b></a>. 
+            The first location is the Code Download, and it is always the most up to date version of the plugin. It includes all merges, including both feature updates and bug fixes.
+            Sometimes this version can be significantly up to date, but may also contain less refined features than the other options below.
+        </p>
+        <p align="center"><img src="../images/setup_install_github_code.png" height="400" alt="An image displaying where to find the GitHub Code Download. It shows a green button that says 'Code' with an open menu. At the bottom of the menu is a button that says 'Download Zip'."></p>
+        <p>
+            The second location is the GitHub repository's Releases. This is the second most up to date download and is considered the official "Stable Release" of the plugin.
+        </p>
+        <p align="center"><img src="../images/setup_install_github_releases.png" height="400" alt="An image displaying where to find the GitHub Stable Release. It shows a circled location on the right side of the GitHub repository page that says 'Releases'."></p>
+        <p>
+            The final location is the Godot Asset Library. While the intent is to keep the Asset Library release in line with the GitHub Stable Release, 
+            sometimes these releases can be "desynced" for one reason or another. We're a small team of volunteers here, so please be patient with us!
+        </p>
+        <p>
+            Our intent is to keep the Stable Releases as reliable as possible, so typically only critical fixes will be pushed with some urgency while new features or 
+            quality of life improvements tend to simmer a bit more in the code base.
+        </p>
+        <p>
+            In any case, pick the download option that suits you best. If you downloaded the plugin from GitHub, extract the <i>func_godot</i> folder to your Godot project's <i>addons</i> folder.
+            If you downloaded from the Asset Library, it should do this for you automatically. Once the plugin is copied to your project, remember to enable the plugin in your Project Settings.
+        </p>
+        <p align="center"><img src="../images/setup_install_enable_plugin.png" height="300" alt="Godot Project Settings window, Plugins tab. FuncGodot is listed and enabled."></p>
+        <p>
+            Now that the plugin is installed, we can move onto <a href="setup_project_config.html"><b>configuring FuncGodot for your project >>></b></a>
+        </p>
+        <br><br><br>
+    </div>
+</body>
+</html>

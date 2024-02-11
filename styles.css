@@ -17,6 +17,11 @@ a:hover {
 a:active {
     color: #e7ab5f;
 }
+
+blockquote {
+    background-color: #0f0b07;
+}
+
 /* Base Styles End */
 
 /* Header Start */

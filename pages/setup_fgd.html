@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <!-- Header Begin -->
+    <div class="head"><img src="../images/godot_ranger.svg" height="50px"><img src="../images/logo_white.png" height="40px"></div>
+    <!-- Header End -->
+
+    <!-- Sidebar Navigation Begin -->
+<div class="sidenav">
+    <a href="../index.html">What <i>IS</i> FuncGodot?</a><br>
+    <h3 class="sidenav">Getting Started</h3>
+    <p class="sidenav">
+        <a href="setup_install.html">Installing FuncGodot</a><br>
+        <a href="setup_project_config.html">Project Configuration</a><br>
+        <a href="setup_fgd.html">Forge Game Data</a><br>
+        <a href="setup_textures.html">Textures</a><br>
+    </p>
+    <p class="sidenav2">
+        <a href="setup_textures.html#DefaultMaterial">Default Material</a><br>
+        <a href="setup_textures.html#ClipAndSkip">Clip and Skip</a><br>
+        <a href="setup_textures.html#WADFiles">WAD Files</a><br>
+    </p>
+    <p class="sidenav"><a href="setup_map_editor_config.html">Map Editor Configuration</a><br></p>
+    <p class="sidenav2">
+        <a href="setup_map_editor_config.html#TrenchBroom">TrenchBroom</a><br>
+        <a href="setup_map_editor_config.html#JACK">J.A.C.K.</a><br>
+        <a href="setup_map_editor_config.html#NetRadiantCustom">NetRadiant Custom</a><br>
+    </p>
+    <p class="sidenav"><a href="setup_building_maps.html">Building Maps</a></p>
+
+    <h3 class="sidenav">Class Reference</h3>
+    <p class="sidenav">
+        <a href="ref_project_config.html">FuncGodot Project Config</a><br>
+        <a href="ref_fgd_resources.html">FuncGodot FGD Resources</a>
+    </p>
+    <p class="sidenav2">
+        <a href="ref_fgd_resources.html#File">FuncGodot FGD File</a><br>
+        <a href="ref_fgd_resources.html#Entity">FuncGodot FGD Entity Class</a><br>
+        <a href="ref_fgd_resources.html#Base">FuncGodot FGD Base Class</a><br>
+        <a href="ref_fgd_resources.html#Solid">FuncGodot FGD Solid Class</a><br>
+        <a href="ref_fgd_resources.html#Point">FuncGodot FGD Point Class</a>
+    </p>
+
+    <p class="sidenav"><a href="ref_trenchbroom_resources.html">TrenchBroom Resources</a></p>
+    <p class="sidenav2">
+        <a href="ref_trenchbroom_resources.html#GameConfig">TrenchBroom Game Config</a><br>
+        <a href="ref_trenchbroom_resources.html#Tag">TrenchBroom Tag</a><br>
+        <a href="ref_trenchbroom_resources.html#ModelPoint">TrenchBroom FGD Model Point Class</a>
+    </p>
+    
+    <p class="sidenav"><a href="ref_func_godot_map.html">FuncGodot Map</a></p>
+    <p class="sidenav2">
+        <a href="ref_func_godot_map.html#MapSettings">FuncGodot Map Settings</a>
+    </p>
+    <h3 class="sidenav">Core</h3>
+    <p class="sidenav">
+        <a href="core_func_godot.html">FuncGodot</a><br>
+        <a href="core_map_data.html">Map Data</a><br>
+        <a href="core_map_parser.html">Map Parser</a><br>
+        <a href="core_geo_generator.html">Geo Generator</a><br>
+        <a href="core_surface_gatherer.html">Surface Gatherer</a>
+    </p>
+    <h3 class="sidenav">Additional Learning</h3>
+    <p class="sidenav"><a href="helpful_links.html">Helpful Links</a></p>
+    <p class="sidenav2">
+        <a href="helpful_links.html#Godot">Godot and FuncGodot</a><br>
+        <a href="helpful_links.html#TrenchBroom">TrenchBroom and Quake</a><br>
+        <a href="helpful_links.html#JACK">J.A.C.K. and Half-Life</a><br>
+        <a href="helpful_links.html#Tools">Useful Tools</a><br>
+    </p>
+    <p class="sidenav">
+        <a href="faq.html">Frequently Asked Questions</a></br>
+    </p><br>
+    <a href="#"><b>Join the FuncGodot Discord!</b></a>
+</div>
+<!-- Sidebar Navigation End -->
+
+    <div class="main">
+        <h1>Forge Game Data</h1>
+
+        <blockquote cite="https://book.leveldesignbook.com/appendix/resources/formats/fgd#history">
+            <p>FGD stands for "Forge Game Data", leftover from when the Half-Life 2 level editor Hammer used to be the Half-Life 1 editor Worldcraft, and before that when it was a Quake tool called Forge.</p>
+            <footer><cite><a href="https://book.leveldesignbook.com/appendix/resources/formats/fgd#history" target="_blank"><b>The Level Design Book</b></a></cite></footer>
+        </blockquote>
+        <p>
+            FuncGodot utilizes <a href="ref_fgd_resources.html"><b>FuncGodotFGD Resources</b></a> to act as a translation guide for the map build process. These resources are 
+            largely separated into two different types: the <b>FuncGodotFGDFile</b> and the <b>FuncGodotFGDEntityClass</b>. Think of the FGD File as a dictionary, 
+            and the FGD Entity Classes as the entries.
+        </p>
+
+        <p align="center"><img src="../images/setup_fgd_res_list.png" height="400" alt="FuncGodot FGD Resource List."></p>
+
+        <h3>FuncGodotFGDFile</h3>
+
+        <p>
+            Some of you may only want to build map geometry with some control over collision and occlusion, and prefer to add all of your lights, actors, scripting, etc... in Godot directly. 
+            To that end there is a basic default <i>func_godot_fgd.tres</i> included with FuncGodot. You can find it under <i>addons/func_godot/fgd/func_godot_fgd.tres</i>.
+        </p>
+        <p align="center"><img src="../images/setup_fgd_res_loc.png" height="500" alt="func_godot_fgd.tres location."></p>
+        <p>
+            This is the default FGD file set in the <a href="ref_func_godot_map.html#MapSettings"><b>FuncGodotMapSettings</b></a> resource. The basic entity definitions included with it are 
+            <i>Worldspawn</i>, <i>func_detail</i>, <i>func_detail_illusionary</i>, <i>func_illusionary</i>, and <i>Phong</i>. We'll go over what each of these entity types are a little farther below.
+        </p>
+
+        <p>
+            But what if you want to add your own custom entity types? It's always best practice to create your own FGD File resource and <b><i>NEVER</i></b> a good idea 
+            to just modify the pre-existing default FGD File. Any time FuncGodot is updated, it will overwrite the <i>func_godot_fgd.tres</i> that comes with it and erase any changes 
+            you've made to that resource. While the goal is to keep the default FGD File as basic as possible, we cannot guarantee it won't be changed at some point in the future.
+        </p>
+        <p>
+            That said, it is possible to include the default FuncGodot FGD File into your own as a Base FGD. Create a new <i>FuncGodotFGDFile</i> resource and examine it in 
+            the inspector.
+        </p>
+        <p align="center"><img src="../images/ref_fgd_file.png" height="500" alt="FuncGodotFGDFile resource properties."></p>
+        <p>
+            The <b>Export File</b> property does exactly what you might think: it generates and saves your FGD file to the <b>Map Editor Game Config Folder</b> set by the 
+            <a href="ref_project_config.html">FuncGodot Project Config</a>. Use this whenever you need to update your FGD.
+        </p>
+        <p>
+            The next property, <b>Model Key Word Supported</b>, is dependent upon which map editor you use. Point class entities in map editors can have display models assigned to them 
+            according to their FGD definitions. Most map editors seem to use the "studio" key word to define the model path, but TrenchBroom instead optionally allows the "model" key word 
+            while also including additional display options and expressions. When set to <i>false</i>, FuncGodot will omit entity definition meta properties using the "model" key word, in 
+            order to prevent errors in your chosen map editor. When exporting the FGD File through a <a href="ref_trenchbroom_resources.html#GameConfig">TrenchBroom Game Config</a> resource 
+            the setting will be overridden to <i>true</i>. See the <a href="https://developer.valvesoftware.com/wiki/FGD#Class_Types_and_Properties" target="_blank">Valve Developer Wiki</a> for more information.
+        </p>
+        <p>
+            <b>Fgd Name</b> should be self evident: this will be your exported FGD's filename, minus the file extension. Best practice would be to set this to either your game's name or its acronym.
+        </p>
+        <p>
+            <b>Base Fgd Files</b> is an array of <b>FuncGodotFGDFile</b> resources that will be prepended to our final FGD file output. It is not necessary to export these base FGD Files; only the 
+            FGD File they are added to needs to be exported and the rest will be built by and merged into what you could consider your "Master FGD File".<br>
+            <blockquote><i>NOTE: This is not where you would put your <b>FuncGodotFGDBaseClass</b> resources! Those are not the same as FuncGodotFGDFile resources and are considered entities! More information on FuncGodotFGDBaseClass found below.</i></blockquote>
+        </p>
+        <p>
+            To add the <i>func_godot_fgd.tres</i> as a base FGD file to your custom FGD file, all you need to do is locate <i>func_godot_fgd.tres</i> and drag and drop it onto the <b>Base Fgd Files</b> array in the inspector.
+        </p>
+        <p align="center"><img src="../images/setup_fgd_base_fgd.png" height="550" alt="FuncGodotFGDFile base FGD example."></p>
+        <p>
+            The last property is <b>Entity Definitions</b>. This is where you'll drop all of your custom entity resources to be built or instanced by FuncGodot. Let's take a look at what a populated one looks like 
+            by viewing the default <i>func_godot_fgd.tres</i> in the inspector.
+        </p>
+        <p align="center"><img src="../images/setup_fgd_func_godot_fgd.png" height="600" alt="FuncGodotFGDFile default FGD."></p>
+
+        <h3>FuncGodotFGDEntityClass</h3>
+
+        <p>
+            In terms of how to map with the Quake Map File > FuncGodot > Godot pipeline, it's best to think of the entities in Quake design terms. That is to say, <i>everything</i> is an entity: 
+            the player, the enemies, the ambient sounds, the doors, the lifts, the trigger volumes, the map geometry itself... all of these should be thought of as <b>entities</b>.
+
+            All map editors and FuncGodot support at least 2 different kinds of entities: Solid (Brush) Entities and Point Entities. Using FuncGodotFGDSolidClass and FuncGodotFGDPointClass resources, 
+            you can generate any type of Godot node and apply any script to it. See the chapter on the <a href="ref_fgd_resources.html#Entity"><b>FuncGodotFGDEntityClass</b></a><br> resources 
+            for more information. For now we'll just briefly go over what the different default entities do.
+        </p>
+        <p>
+            All default FuncGodot entities, except for <i>Phong</i>, are FuncGodotFGDSolidClass entities. All of the SolidClass entities are very similar, mostly differing in occlusion and collision.
+        </p>
+        <ul>
+            <li>
+                <b>worldspawn : </b> A geometry class that mimics the Worldspawn entity found in Quake and Half-Life. In the FuncGodot implementation, Worldspawn generates a single <a href="https://docs.godotengine.org/en/stable/classes/class_staticbody3d.html" target="_blank">StaticBody3D</a> 
+                with a child <a href="https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html" target="_blank">MeshInstance3D</a> and multiple convex <a href="https://docs.godotengine.org/en/stable/classes/class_collisionshape3d.html" target="_blank">CollisionShape3D</a> 
+                children. It also generates an <a href="https://docs.godotengine.org/en/stable/classes/class_occluderinstance3d.html" target="_blank">OccluderInstance3D</a> with an <a href="https://docs.godotengine.org/en/stable/classes/class_arrayoccluder3d.html" target="_blank">ArrayOccluder3D</a>.
+                <br>
+                Under normal circumstances, there can only ever be one Worldspawn entity in a map file. While there technically are ways to create multiple Worldspawn entities this manual will not explore that possibility.
+            </li><br>
+            <li><b>func_detail : </b> Almost identical to Worldspawn, with the exceptions being that you can (and should) create multiple func_details and they do not generate OccluderInstance3D children.</li><br>
+            <li><b>func_illusionary : </b> Geometry that has no collision. It generates a <a href="https://docs.godotengine.org/en/stable/classes/class_node3d.html" target="_blank">Node3D</a>, a MeshInstance3D child, and an OccluderInstance3D child.</li><br>
+            <li><b>func_detail_illusionary : </b> Identical to func_illusionary, except that it does not generate an OccluderInstance3D child.</li><br>
+            <li><b>Phong : </b> A FuncGodotFGDBaseClass that provides <i>_phong</i> and <i>_phong_angle</i> properties to the above entities. See the <a href="https://en.wikipedia.org/wiki/Phong_shading" target="_blank">Wikipedia article on Phong Shading</a> for quick primer.</li><br>
+        </ul>
+        <p>
+            Up next we'll take a look into <a href="setup_textures.html"><b>how to handle Textures >>></b></a>
+        </p>
+        <br><br><br>
+    </div>
+</body>
+</html>
