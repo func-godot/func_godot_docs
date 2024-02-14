@@ -6,80 +6,6 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <!-- Header Begin -->
-    <div class="head"><img src="../images/godot_ranger.svg" height="50px"><img src="../images/logo_white.png" height="40px"></div>
-    <!-- Header End -->
-
-    <!-- Sidebar Navigation Begin -->
-<div class="sidenav">
-    <a href="../index.html">What <i>IS</i> FuncGodot?</a><br>
-    <h3 class="sidenav">Getting Started</h3>
-    <p class="sidenav">
-        <a href="setup_install.html">Installing FuncGodot</a><br>
-        <a href="setup_project_config.html">Project Configuration</a><br>
-        <a href="setup_fgd.html">Forge Game Data</a><br>
-        <a href="setup_textures.html">Textures</a><br>
-    </p>
-    <p class="sidenav2">
-        <a href="setup_textures.html#DefaultMaterial">Default Material</a><br>
-        <a href="setup_textures.html#ClipAndSkip">Clip and Skip</a><br>
-        <a href="setup_textures.html#WADFiles">WAD Files</a><br>
-    </p>
-    <p class="sidenav"><a href="setup_map_editor_config.html">Map Editor Configuration</a><br></p>
-    <p class="sidenav2">
-        <a href="setup_map_editor_config.html#TrenchBroom">TrenchBroom</a><br>
-        <a href="setup_map_editor_config.html#JACK">J.A.C.K.</a><br>
-        <a href="setup_map_editor_config.html#NetRadiantCustom">NetRadiant Custom</a><br>
-    </p>
-    <p class="sidenav"><a href="setup_building_maps.html">Building Maps</a></p>
-
-    <h3 class="sidenav">Class Reference</h3>
-    <p class="sidenav">
-        <a href="ref_project_config.html">FuncGodot Project Config</a><br>
-        <a href="ref_fgd_resources.html">FuncGodot FGD Resources</a>
-    </p>
-    <p class="sidenav2">
-        <a href="ref_fgd_resources.html#File">FuncGodot FGD File</a><br>
-        <a href="ref_fgd_resources.html#Entity">FuncGodot FGD Entity Class</a><br>
-        <a href="ref_fgd_resources.html#Base">FuncGodot FGD Base Class</a><br>
-        <a href="ref_fgd_resources.html#Solid">FuncGodot FGD Solid Class</a><br>
-        <a href="ref_fgd_resources.html#Point">FuncGodot FGD Point Class</a>
-    </p>
-
-    <p class="sidenav"><a href="ref_trenchbroom_resources.html">TrenchBroom Resources</a></p>
-    <p class="sidenav2">
-        <a href="ref_trenchbroom_resources.html#GameConfig">TrenchBroom Game Config</a><br>
-        <a href="ref_trenchbroom_resources.html#Tag">TrenchBroom Tag</a><br>
-        <a href="ref_trenchbroom_resources.html#ModelPoint">TrenchBroom FGD Model Point Class</a>
-    </p>
-    
-    <p class="sidenav"><a href="ref_func_godot_map.html">FuncGodot Map</a></p>
-    <p class="sidenav2">
-        <a href="ref_func_godot_map.html#MapSettings">FuncGodot Map Settings</a>
-    </p>
-    <h3 class="sidenav">Core</h3>
-    <p class="sidenav">
-        <a href="core_func_godot.html">FuncGodot</a><br>
-        <a href="core_map_data.html">Map Data</a><br>
-        <a href="core_map_parser.html">Map Parser</a><br>
-        <a href="core_geo_generator.html">Geo Generator</a><br>
-        <a href="core_surface_gatherer.html">Surface Gatherer</a>
-    </p>
-    <h3 class="sidenav">Additional Learning</h3>
-    <p class="sidenav"><a href="helpful_links.html">Helpful Links</a></p>
-    <p class="sidenav2">
-        <a href="helpful_links.html#Godot">Godot and FuncGodot</a><br>
-        <a href="helpful_links.html#TrenchBroom">TrenchBroom and Quake</a><br>
-        <a href="helpful_links.html#JACK">J.A.C.K. and Half-Life</a><br>
-        <a href="helpful_links.html#Tools">Useful Tools</a><br>
-    </p>
-    <p class="sidenav">
-        <a href="faq.html">Frequently Asked Questions</a></br>
-    </p><br>
-    <a href="#"><b>Join the FuncGodot Discord!</b></a>
-</div>
-<!-- Sidebar Navigation End -->
-
     <div class="main">
         <h1>Forge Game Data</h1>
 
@@ -93,7 +19,7 @@
             and the FGD Entity Classes as the entries.
         </p>
 
-        <p align="center"><img src="../images/setup_fgd_res_list.png" height="400" alt="FuncGodot FGD Resource List."></p>
+        <p align="center"><img src="../images/setup_fgd_res_list.png" alt="FuncGodot FGD Resource List."></p>
 
         <h3>FuncGodotFGDFile</h3>
 
@@ -101,7 +27,7 @@
             Some of you may only want to build map geometry with some control over collision and occlusion, and prefer to add all of your lights, actors, scripting, etc... in Godot directly. 
             To that end there is a basic default <i>func_godot_fgd.tres</i> included with FuncGodot. You can find it under <i>addons/func_godot/fgd/func_godot_fgd.tres</i>.
         </p>
-        <p align="center"><img src="../images/setup_fgd_res_loc.png" height="500" alt="func_godot_fgd.tres location."></p>
+        <p align="center"><img src="../images/setup_fgd_res_loc.png" alt="func_godot_fgd.tres location."></p>
         <p>
             This is the default FGD file set in the <a href="ref_func_godot_map.html#MapSettings"><b>FuncGodotMapSettings</b></a> resource. The basic entity definitions included with it are 
             <i>Worldspawn</i>, <i>func_detail</i>, <i>func_detail_illusionary</i>, <i>func_illusionary</i>, and <i>Phong</i>. We'll go over what each of these entity types are a little farther below.
@@ -116,7 +42,7 @@
             That said, it is possible to include the default FuncGodot FGD File into your own as a Base FGD. Create a new <i>FuncGodotFGDFile</i> resource and examine it in 
             the inspector.
         </p>
-        <p align="center"><img src="../images/ref_fgd_file.png" height="500" alt="FuncGodotFGDFile resource properties."></p>
+        <p align="center"><img src="../images/ref_fgd_file.png" alt="FuncGodotFGDFile resource properties."></p>
         <p>
             The <b>Export File</b> property does exactly what you might think: it generates and saves your FGD file to the <b>Map Editor Game Config Folder</b> set by the 
             <a href="ref_project_config.html">FuncGodot Project Config</a>. Use this whenever you need to update your FGD.
@@ -139,12 +65,12 @@
         <p>
             To add the <i>func_godot_fgd.tres</i> as a base FGD file to your custom FGD file, all you need to do is locate <i>func_godot_fgd.tres</i> and drag and drop it onto the <b>Base Fgd Files</b> array in the inspector.
         </p>
-        <p align="center"><img src="../images/setup_fgd_base_fgd.png" height="550" alt="FuncGodotFGDFile base FGD example."></p>
+        <p align="center"><img src="../images/setup_fgd_base_fgd.png" alt="FuncGodotFGDFile base FGD example."></p>
         <p>
             The last property is <b>Entity Definitions</b>. This is where you'll drop all of your custom entity resources to be built or instanced by FuncGodot. Let's take a look at what a populated one looks like 
             by viewing the default <i>func_godot_fgd.tres</i> in the inspector.
         </p>
-        <p align="center"><img src="../images/setup_fgd_func_godot_fgd.png" height="600" alt="FuncGodotFGDFile default FGD."></p>
+        <p align="center"><img src="../images/setup_fgd_func_godot_fgd.png" alt="FuncGodotFGDFile default FGD."></p>
 
         <h3>FuncGodotFGDEntityClass</h3>
 
@@ -172,9 +98,7 @@
             <li><b>func_detail_illusionary : </b> Identical to func_illusionary, except that it does not generate an OccluderInstance3D child.</li><br>
             <li><b>Phong : </b> A FuncGodotFGDBaseClass that provides <i>_phong</i> and <i>_phong_angle</i> properties to the above entities. See the <a href="https://en.wikipedia.org/wiki/Phong_shading" target="_blank">Wikipedia article on Phong Shading</a> for quick primer.</li><br>
         </ul>
-        <p>
-            Up next we'll take a look into <a href="setup_textures.html"><b>how to handle Textures >>></b></a>
-        </p>
+        
         <br><br><br>
     </div>
 </body>

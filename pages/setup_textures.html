@@ -6,82 +6,135 @@
     <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
-    <!-- Header Begin -->
-    <div class="head"><img src="../images/godot_ranger.svg" height="50px"><img src="../images/logo_white.png" height="40px"></div>
-    <!-- Header End -->
-
-    <!-- Sidebar Navigation Begin -->
-<div class="sidenav">
-    <a href="../index.html">What <i>IS</i> FuncGodot?</a><br>
-    <h3 class="sidenav">Getting Started</h3>
-    <p class="sidenav">
-        <a href="setup_install.html">Installing FuncGodot</a><br>
-        <a href="setup_project_config.html">Project Configuration</a><br>
-        <a href="setup_fgd.html">Forge Game Data</a><br>
-        <a href="setup_textures.html">Textures</a><br>
-    </p>
-    <p class="sidenav2">
-        <a href="setup_textures.html#DefaultMaterial">Default Material</a><br>
-        <a href="setup_textures.html#ClipAndSkip">Clip and Skip</a><br>
-        <a href="setup_textures.html#WADFiles">WAD Files</a><br>
-    </p>
-    <p class="sidenav"><a href="setup_map_editor_config.html">Map Editor Configuration</a><br></p>
-    <p class="sidenav2">
-        <a href="setup_map_editor_config.html#TrenchBroom">TrenchBroom</a><br>
-        <a href="setup_map_editor_config.html#JACK">J.A.C.K.</a><br>
-        <a href="setup_map_editor_config.html#NetRadiantCustom">NetRadiant Custom</a><br>
-    </p>
-    <p class="sidenav"><a href="setup_building_maps.html">Building Maps</a></p>
-
-    <h3 class="sidenav">Class Reference</h3>
-    <p class="sidenav">
-        <a href="ref_project_config.html">FuncGodot Project Config</a><br>
-        <a href="ref_fgd_resources.html">FuncGodot FGD Resources</a>
-    </p>
-    <p class="sidenav2">
-        <a href="ref_fgd_resources.html#File">FuncGodot FGD File</a><br>
-        <a href="ref_fgd_resources.html#Entity">FuncGodot FGD Entity Class</a><br>
-        <a href="ref_fgd_resources.html#Base">FuncGodot FGD Base Class</a><br>
-        <a href="ref_fgd_resources.html#Solid">FuncGodot FGD Solid Class</a><br>
-        <a href="ref_fgd_resources.html#Point">FuncGodot FGD Point Class</a>
-    </p>
-
-    <p class="sidenav"><a href="ref_trenchbroom_resources.html">TrenchBroom Resources</a></p>
-    <p class="sidenav2">
-        <a href="ref_trenchbroom_resources.html#GameConfig">TrenchBroom Game Config</a><br>
-        <a href="ref_trenchbroom_resources.html#Tag">TrenchBroom Tag</a><br>
-        <a href="ref_trenchbroom_resources.html#ModelPoint">TrenchBroom FGD Model Point Class</a>
-    </p>
-    
-    <p class="sidenav"><a href="ref_func_godot_map.html">FuncGodot Map</a></p>
-    <p class="sidenav2">
-        <a href="ref_func_godot_map.html#MapSettings">FuncGodot Map Settings</a>
-    </p>
-    <h3 class="sidenav">Core</h3>
-    <p class="sidenav">
-        <a href="core_func_godot.html">FuncGodot</a><br>
-        <a href="core_map_data.html">Map Data</a><br>
-        <a href="core_map_parser.html">Map Parser</a><br>
-        <a href="core_geo_generator.html">Geo Generator</a><br>
-        <a href="core_surface_gatherer.html">Surface Gatherer</a>
-    </p>
-    <h3 class="sidenav">Additional Learning</h3>
-    <p class="sidenav"><a href="helpful_links.html">Helpful Links</a></p>
-    <p class="sidenav2">
-        <a href="helpful_links.html#Godot">Godot and FuncGodot</a><br>
-        <a href="helpful_links.html#TrenchBroom">TrenchBroom and Quake</a><br>
-        <a href="helpful_links.html#JACK">J.A.C.K. and Half-Life</a><br>
-        <a href="helpful_links.html#Tools">Useful Tools</a><br>
-    </p>
-    <p class="sidenav">
-        <a href="faq.html">Frequently Asked Questions</a></br>
-    </p><br>
-    <a href="#"><b>Join the FuncGodot Discord!</b></a>
-</div>
-<!-- Sidebar Navigation End -->
-
     <div class="main">
         <h1>Textures</h1>
+
+        <h2>How Textures Work In FuncGodot</h2>
+        <p>
+            If you take a look at a <i>.map</i> file, you'll see that it's just a text file describing the makeup of your map and doesn't actually store any other data, 
+            including texture images. Let's look at this example of a <i>Solid Entity</i> in a map file:
+        </p>
+        <p align="center"><img src="../images/setup_tex_solident.png" alt="Solid Entity Example" height="250px"></p>
+        <blockquote>
+            <code>
+                // entity 1<br>
+                {<br>
+                "classname" "func_detail"<br>
+                // brush 0<br>
+                {<br>
+                ( -32 -64 -16 ) ( -32 -63 -16 ) ( -32 -64 -15 ) __TB_empty [ 0 -1 0 0 ] [ 0 0 -1 0 ] 0 1 1<br>
+                ( -64 -32 -16 ) ( -64 -32 -15 ) ( -63 -32 -16 ) __TB_empty [ 1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1<br>
+                ( -64 -64 -32 ) ( -63 -64 -32 ) ( -64 -63 -32 ) special/clip [ -1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1<br>
+                ( 64 64 32 ) ( 64 65 32 ) ( 65 64 32 ) __TB_empty [ 1 0 0 0 ] [ 0 -1 0 0 ] 0 1 1<br>
+                ( 64 32 16 ) ( 65 32 16 ) ( 64 32 17 ) special/clip [ -1 0 0 0 ] [ 0 0 -1 0 ] 0 1 1<br>
+                ( 32 64 16 ) ( 32 64 17 ) ( 32 65 16 ) special/clip [ 0 1 0 0 ] [ 0 0 -1 0 ] 0 1 1<br>
+                }<br>
+                }<br>
+            </code>
+        </blockquote>
+        <p>
+            This is a <i>func_detail</i> entity from the default <i>FuncGodot.fgd</i>. As you can see, the map file structure is pretty straight-forward. 
+            This particular map uses the Valve 220 format, having additional options for UV mapping. Each line in a brush definition describes a face on the brush, 
+            and within that you can see that our texture is defined as just its location relative to the game's texture folder or map's WAD file.
+        </p>
+        
+        <p><i>But if that's the case, how does FuncGodot know what file to use?</i></p>
+        <p>
+            <a href="ref_func_godot_map.html#MapSettings">FuncGodot Map Settings</a> have several properties that help define and apply textures to your meshes on build:
+        </p>
+        <ul>
+            <li><b>Base Texture Dir :</b> Root folder where your Godot map textures are located</li><br>
+            <li><b>Texture File Extensions` :</b> The extensions to search for if no matching material is found</li><br>
+            <li><b>Texture Wads` :</b> Array of WAD resources to search through</li><br>
+            <li><b>Material File Extension` :</b> Format for custom texture materials, can be <i>.tres</i>, <i>.res</i> or <i>.material</i></li><br>
+            <li><b>Default Material :</b> The default material that FuncGodot builds your map's materials from</li><br>
+            <li>
+                <b>Default Material Albedo Uniform :</b> If the default material is a 
+                <a href="https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html" target="_blank">ShaderMaterial</a> rather than 
+                <a href="https://docs.godotengine.org/en/stable/classes/class_standardmaterial3d.html" target="_blank">StandardMaterial3D</a>, 
+                this is the shader uniform that provides the albedo texture
+            </li><br>
+        </ul>
+        <p align="center"><img src="../images/ref_func_godot_map_settings.png" alt="FuncGodotMapSettings properties"></p>
+        <p>
+            FuncGodot's first step is to search the <i>Base Texture Dir</i> for a prebuilt material as defined by the brush face's texture name in the format defined by 
+            <i>Material File Extension</i>. 
+        </p>
+        <p>
+            If it does not find this prebuilt material, it will search the <i>Base Texture Dir</i> for the <i>Texture2D</i> resource 
+            by the brush face's texture name using any one of the extensions defined by <i>Texture File Extensions</i>. If it finds the Texture2D, it will create a copy 
+            of the <i>Default Material</i> and apply the Texture2D as the duplicated material's albedo.
+        </p>
+
+        <h2 id="ClipAndSkip">Clip and Skip Textures</h2>
+
+        <h3>Mapping for <del>Quake</del> Godot</h3>
+        <p>
+            We started off this manual with the point that <a href="../index.html#FuncGodotIsNotABspCompiler">FuncGodot is <i>not</i> a BSP compiler</a>. 
+            If we map like we do in traditional Quake mapping...
+        </p>
+        <p align=center><img src="../images/setup_tex_bsp1.png" width=45%> <img src="../images/setup_tex_notbsp1.png" width=45%></p>
+        <p>... we don't get the same result.</p>            
+        <p align=center><img src="../images/setup_tex_bsp2.jpg" width=45%> <img src="../images/setup_tex_notbsp2.png" width=45%></p>
+        <p>Instead we need to change our approach.</p>
+
+        <p>
+            For those not familiar with traditional Quake mapping, the finished MAP gets compiled into a BSP file to be read by the engine. 
+            The compiling process calculates visibility between all of the rooms of your map and removes all faces that won't be viewed due to 
+            being outside the map. That means maps must be sealed completely, but you're also allowed to be lazy with brush texturing since if a 
+            face is "outside" the map it will get culled.
+        </p>
+        <p>
+            With Godot we need to think of these brushes as what they'll become in-engine: composited 
+            <a href="https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html" target="_blank">MeshInstance3Ds</a> and 
+            <a href="https://docs.godotengine.org/en/stable/classes/class_collisionshape3d.html" target="_blank">CollisionShape3Ds</a>. 
+            If we want to achieve the culled result on the left, we'll need to change the way we do things on the right.
+        </p>
+
+        <h3>Skip It</h3>
+        <p align="center"><img src="../images/clip.png" alt="Clip texture" height="200"> <img src="../images/skip.png" alt="Skip texture" height="200"></p>
+        <p>
+            The <b>Clip</b> and <b>Skip</b> textures are arguably our most important textures when mapping for Godot. You can assign any texture's name to the Clip and Skip 
+            properties of the FuncGodotMapSettings resource. But what do they do?
+        </p> 
+        <p>
+            The Clip texture will remove any face textured with it from the generated <i>MeshInstance3D</i>. The Skip texture behaves the same way if the Solid Entity's 
+            Collision Type is set to <i>Convex</i>. However, if the Solid Entity's Collision Type is set to <i>Concave</i>, this also removes the Skip textured faces from 
+            the generated <a href="https://docs.godotengine.org/en/stable/classes/class_collisionpolygon3d.html" target="_blank">CollisionPolygonShape3D</a>.
+        </p>
+
+        <p>Just keep in mind the general rule of thumb: if you want your entities to collide with the brush, use Clip...</p>
+        <p align=center><img src="../images/setup_tex_clip_example.png" height="512px"> <img src="../images/setup_tex_clip_example2.png" height="512px"></p>
+        <p>... and if you want them to pass through, use Skip <sub>(with Concave collision)</sub>.</p>            
+        <p align=center><img src="../images/setup_tex_skip_example.png" height="512px"> <img src="../images/setup_tex_skip_example2.png" height="512px"></p>
+
+        <h2 id="WADFiles">WAD Files</h2>
+        <p>
+            FuncGodot provides the option to use <a href="https://quakewiki.org/wiki/Texture_Wad" target="_blank">Texture WAD files</a> for your map materials. 
+            It's generally not recommended if it can be helped, but support for loose texture images varies from map editor to map editor.
+        </p>
+        <p>
+            To use a WAD file with your <a href="ref_func_godot_map.html">FuncGodotMap</a> just add your imported WAD resource to the map node's <i>Texture Wads</i> array.
+        </p>
+
+        <p>
+            The neat thing about how FuncGodot handles map textures is that we can technically use a completely different folder in TrenchBroom and even 
+            different image formats than the location and formats we keep them in Godot. This can be useful for advanced users, but you may want to just keep 
+            all of your textures unified.
+        </p>
+
+        <h2 id="WhyAreMyTexturesBlurry"><i>Why Are My Textures Blurry!?</i></h2>
+        <p>You may be encountering at least one of two issues: texture compression and / or material sampling settings.</p>
+        <p>
+            Make sure your texture resource is set to either <i>Lossless</i> or <i>VRAM uncompressed</i>. Please refer to the Godot documentation on 
+            <a href="https://docs.godotengine.org/en/stable/tutorials/assets_pipeline/importing_images.html#compress-mode" target="_blank">texture compression</a>. 
+        </p>
+        <p>
+            If you had created your own materials for your map, check that the material's or texture's <i>Sampling Filter</i> is set to <b><i>Nearest Mipmap</i></b>. Please refer to the Godot documentation on 
+            <a href="https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html#enum-basematerial3d-texturefilter" target="_blank">texture filtering</a>.
+        </p>
+        
+        <br><br><br>
     </div>
 </body>
 </html>
