@@ -60,7 +60,7 @@
         <p>
             <b>Base Fgd Files</b> is an array of <b>FuncGodotFGDFile</b> resources that will be prepended to our final FGD file output. It is not necessary to export these base FGD Files; only the 
             FGD File they are added to needs to be exported and the rest will be built by and merged into what you could consider your "Master FGD File".<br>
-            <blockquote><i>NOTE: This is not where you would put your <b>FuncGodotFGDBaseClass</b> resources! Those are not the same as FuncGodotFGDFile resources and are considered entities! More information on FuncGodotFGDBaseClass found below.</i></blockquote>
+            <blockquote><i>NOTE: This is <b>not</b> where you would put your <b>FuncGodotFGDBaseClass</b> resources! Those are not the same as FuncGodotFGDFile resources and are considered entities! More information on FuncGodotFGDBaseClass found below.</i></blockquote>
         </p>
         <p>
             To add the <i>func_godot_fgd.tres</i> as a base FGD file to your custom FGD file, all you need to do is locate <i>func_godot_fgd.tres</i> and drag and drop it onto the <b>Base Fgd Files</b> array in the inspector.
@@ -87,6 +87,16 @@
         </p>
         <ul>
             <li>
+                <b>Phong : </b> A FuncGodotFGDBaseClass that provides <i>_phong</i> and <i>_phong_angle</i> properties to most of the entities below. 
+                See the <a href="https://en.wikipedia.org/wiki/Phong_shading" target="_blank">Wikipedia article on Phong Shading</a> for quick primer.<br>
+            </li>
+            <blockquote>
+                <i>
+                    NOTE: Some map editors are strict about entity definition order! To stay safe, make sure that any entity classes that inherit from a base class come <b>after</b> that base class.
+                    This includes other base classes! Otherwise you may run into issues where properties are not properly inherited.
+                </i>
+            </blockquote>
+            <li>
                 <b>worldspawn : </b> A geometry class that mimics the Worldspawn entity found in Quake and Half-Life. In the FuncGodot implementation, Worldspawn generates a single <a href="https://docs.godotengine.org/en/stable/classes/class_staticbody3d.html" target="_blank">StaticBody3D</a> 
                 with a child <a href="https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html" target="_blank">MeshInstance3D</a> and multiple convex <a href="https://docs.godotengine.org/en/stable/classes/class_collisionshape3d.html" target="_blank">CollisionShape3D</a> 
                 children. It also generates an <a href="https://docs.godotengine.org/en/stable/classes/class_occluderinstance3d.html" target="_blank">OccluderInstance3D</a> with an <a href="https://docs.godotengine.org/en/stable/classes/class_arrayoccluder3d.html" target="_blank">ArrayOccluder3D</a>.
@@ -96,7 +106,6 @@
             <li><b>func_detail : </b> Almost identical to Worldspawn, with the exceptions being that you can (and should) create multiple func_details and they do not generate OccluderInstance3D children.</li><br>
             <li><b>func_illusionary : </b> Geometry that has no collision. It generates a <a href="https://docs.godotengine.org/en/stable/classes/class_node3d.html" target="_blank">Node3D</a>, a MeshInstance3D child, and an OccluderInstance3D child.</li><br>
             <li><b>func_detail_illusionary : </b> Identical to func_illusionary, except that it does not generate an OccluderInstance3D child.</li><br>
-            <li><b>Phong : </b> A FuncGodotFGDBaseClass that provides <i>_phong</i> and <i>_phong_angle</i> properties to the above entities. See the <a href="https://en.wikipedia.org/wiki/Phong_shading" target="_blank">Wikipedia article on Phong Shading</a> for quick primer.</li><br>
         </ul>
         
         <br><br><br>

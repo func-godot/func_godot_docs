@@ -46,7 +46,7 @@
             <li><b>Base Texture Dir :</b> Root folder where your Godot map textures are located</li><br>
             <li><b>Texture File Extensions` :</b> The extensions to search for if no matching material is found</li><br>
             <li><b>Texture Wads` :</b> Array of WAD resources to search through</li><br>
-            <li><b>Material File Extension` :</b> Format for custom texture materials, can be <i>.tres</i>, <i>.res</i> or <i>.material</i></li><br>
+            <li><b>Material File Extension :</b> Format for custom texture materials, can be <i>.tres</i>, <i>.res</i> or <i>.material</i></li><br>
             <li><b>Default Material :</b> The default material that FuncGodot builds your map's materials from</li><br>
             <li>
                 <b>Default Material Albedo Uniform :</b> If the default material is a 
@@ -54,6 +54,7 @@
                 <a href="https://docs.godotengine.org/en/stable/classes/class_standardmaterial3d.html" target="_blank">StandardMaterial3D</a>, 
                 this is the shader uniform that provides the albedo texture
             </li><br>
+            <li><b>Save Generated Materials :</b> Save automatically generated materials to disk, allowing reuse across multiple FuncGodot maps.</li>
         </ul>
         <p align="center"><img src="../images/ref_func_godot_map_settings.png" alt="FuncGodotMapSettings properties"></p>
         <p>
@@ -64,6 +65,24 @@
             If it does not find this prebuilt material, it will search the <i>Base Texture Dir</i> for the <i>Texture2D</i> resource 
             by the brush face's texture name using any one of the extensions defined by <i>Texture File Extensions</i>. If it finds the Texture2D, it will create a copy 
             of the <i>Default Material</i> and apply the Texture2D as the duplicated material's albedo.
+        </p>
+        <p>
+            Once the material generation is completed, you can optionally have FuncGodot save generated materials so they can be reused by multiple FuncGodotMaps. 
+            Otherwise each FuncGodotMap will have its own unique material for each texture used in the map.
+        </p>
+
+        <h2 id="AutomaticPBRGeneration">Automatic PBR Generation</h2>
+        <p>
+            You may have noticed that we skipped over a few settings before, all of them with the suffic "Map Pattern". FuncGodot has the ability to 
+            automatically generate PBR materials on build. Each of the "Map Pattern" properties tell FuncGodot's Texture Loader how to find each PBR map for our texture. 
+        </p>
+        <p><i>What's with all the %s everywhere?</i></p>
+        <p>
+            It's a placeholder token that gets replaced during texture loading. Each pattern requires two <i>%s</i> tokens. The first token is for the texture's name as 
+            it appears in the map file. The second token is for the file extension; this is replaced as the Texture Loader cycles through the Map Settings' Texture File Extensions 
+            searching for your texture. So if Texture Loader is looking for the normal map of a texture with the name "rock" and our Map Settings' Normal Map Pattern is "%s_normal.%s" 
+            and it is currently checking for the "png" Texture File Extension, then it will be looking to see if the texture resource "rock_normal.png" exists, and if so it will 
+            be applied to the Map Settings' Default Material if it is a StandardMaterial3D.
         </p>
 
         <h2 id="ClipAndSkip">Clip and Skip Textures</h2>
