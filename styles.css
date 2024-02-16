@@ -1,3 +1,9 @@
+/* Constants */
+:root {
+    --header_height: 70px;
+    --sidenav_width: 380px;
+}
+
 /* Base Styles Start */
 body {
     color: #dbc3bb;
@@ -25,7 +31,7 @@ blockquote {
 
 /* Header Start */
 iframe.header {
-    height: 70px;
+    height: var(--header_height);
     width: 100%;
     top: 0;
     left: 0;
@@ -42,11 +48,11 @@ div.head {
 
 /* Sidebar Navigation Start */
 iframe.sidenav {
-    top: 70px;
+    top: var(--header_height);
     left: 0;
     bottom: 0;
-    width: 360px;
-    height: calc(100% - 70px);
+    width: var(--sidenav_width);
+    height: calc(100% - var(--header_height));
     position: fixed;
     overflow-x: hidden;
     overflow-y: auto;
@@ -85,12 +91,12 @@ p.sidenav2 {
 
 /* Main Body Start */
 iframe.main {
-    top: 70px;
-    left: 360px;
+    top: var(--header_height);
+    left: var(--sidenav_width);
     bottom: 0;
     right: 0;
-    width: calc(100% - 380px);
-    height: calc(100% - 70px);
+    width: calc(100% - var(--sidenav_width) - 20px);
+    height: calc(100% - var(--header_height));
     position: fixed;
     overflow-x: hidden;
     overflow-y: auto;

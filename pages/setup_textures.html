@@ -44,8 +44,8 @@
         </p>
         <ul>
             <li><b>Base Texture Dir :</b> Root folder where your Godot map textures are located</li><br>
-            <li><b>Texture File Extensions` :</b> The extensions to search for if no matching material is found</li><br>
-            <li><b>Texture Wads` :</b> Array of WAD resources to search through</li><br>
+            <li><b>Texture File Extensions :</b> The extensions to search for if no matching material is found</li><br>
+            <li><b>Texture Wads :</b> Array of WAD resources to search through</li><br>
             <li><b>Material File Extension :</b> Format for custom texture materials, can be <i>.tres</i>, <i>.res</i> or <i>.material</i></li><br>
             <li><b>Default Material :</b> The default material that FuncGodot builds your map's materials from</li><br>
             <li>
@@ -54,7 +54,12 @@
                 <a href="https://docs.godotengine.org/en/stable/classes/class_standardmaterial3d.html" target="_blank">StandardMaterial3D</a>, 
                 this is the shader uniform that provides the albedo texture
             </li><br>
-            <li><b>Save Generated Materials :</b> Save automatically generated materials to disk, allowing reuse across multiple FuncGodot maps.</li>
+            <li>
+                <b>Save Generated Materials :</b> Save automatically generated materials to disk, allowing reuse across multiple FuncGodot maps. 
+                FuncGodot will skip saving materials using clip, skip, or missing textures.<br>
+                <i>NOTE: once saved, materials will no longer inherit from the </i>Default Material<i>. If you want to make any changes to their 
+                    settings you will have to either do so manually or delete the materials and allow FuncGodot to rebuild and resave them.</i>
+            </li>
         </ul>
         <p align="center"><img src="../images/ref_func_godot_map_settings.png" alt="FuncGodotMapSettings properties"></p>
         <p>

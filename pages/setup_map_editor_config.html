@@ -17,7 +17,7 @@
         <p align="center"><img src="../images/me_tb.png" alt="TrenchBroom logo" height="128px"></p>
         <p>
             TrenchBroom is the most commonly recommended editor for FuncGodot, with <a href="ref_trenchbroom_resources.html" target="_self">multiple resources</a> dedicated to configuring it. 
-            The primary resource is the <i>TrenchBroomGameConfig</i>, with the <i>TrenchBroomTag</i> providing additional quality of life options in the editor.
+            The primary configuration resource is the <i>TrenchBroomGameConfig</i>, with the <i>TrenchBroomTag</i> providing additional quality of life options in the editor.
         </p>
         <p>
             You'll need a TrenchBroom Game Config resource in order to build and export a game configuration file for TrenchBroom. Let's take a look at the resource properties:
@@ -32,7 +32,7 @@
             along with a few other features. FuncGodot comes with a few pre-made common tags. Feel free to use them in your own GameConfig resources.
         </p>
         <p>
-            Exporting the Game Config will use the directory set in your <a href="setup_project_config.html" target="_self">Project Configuration's <i>Map Editor Game Config Folder</i></a>. 
+            Exporting the Game Config will use the directory set in your <a href="setup_project_config.html" target="_self">Project Configuration's <i>Trenchbroom Game Config Folder</i></a>. 
             Consult the <a href="https://trenchbroom.github.io/manual/latest/#game_configuration_files" target="_blank">TrenchBroom Manual's Game Configuration documentation</a> for 
             more information. Once you've exported your Game Config, open up TrenchBroom and click <i>New Map</i>. You should now see your project in the games list.
         </p>
@@ -50,7 +50,7 @@
         <p align="center"><img src="../images/me_jack.png" alt="J.A.C.K. logo" height="128px"></p>
         <p>Due to how games are configured in J.A.C.K., FuncGodot does not have any dedicated resources for it but the process is still fairly simple.</p>
         <p>
-            Make sure your Project Configuration's <i>Map Editor Game Config Folder</i> is pointing to your game's folder in the J.A.C.K.'s game configuration folder. 
+            Make sure your Project Configuration's <i>FGD Output Folder</i> is pointing to your game's folder in the J.A.C.K.'s game configuration folder. 
             When you export an FGD file, FuncGodot will print in the Godot Output where it was saved to.
         </p>
         <p align="center"><img src="../images/setup_me_jack_0.png" alt="J.A.C.K. Config 1"></p>
@@ -71,8 +71,61 @@
         <h2 id="NetRadiantCustom" align="center"><a href="https://github.com/Garux/netradiant-custom" target="_blank">NetRadiant Custom</a></h2>
         <p align="center"><img src="../images/me_nrc.png" alt="NetRadiant Custom logo" height="128px"></p>
         <p>
-            
+            NetRadiant Custom receives FuncGodot support through both project configuration and <a href="ref_netradiant_custom_resources.html" target="main">dedicated resources</a>. 
+            The primary configuration resource is the <i>NetRadiantCustomGamepackConfig</i>. The <i>NetRadiantCustomShader</i> resource offers additional options for texture display in 
+            the editor. It is highly recommended that you familiarize yourself with NetRadiant Custom before attempting to use it with FuncGodot.
         </p>
+        <p>
+            You'll need a NetRadiant Custom Gamepack Config resource in order to build and export a gamepack configuration for NetRadiant Custom. 
+            Let's take a look at the resource properties:
+        </p>
+        <p align="center"><img src="../images/ref_nrc_gamepackconfig.png" alt="NetRadiantCustomGamepackConfig properties"></p>
+        <p>
+            The <b>Gamepack Name</b> is the most important one to get right. This will be the name of your gamepack folder, your base game folder, and your gamepack file. 
+            The <i>Gamepack Name <b>MUST</b></i> be all lower case with <i><b>NO</b></i> special characters. Bad things can happen otherwise!
+        </p>
+        <p>
+            The <b>Game Name</b> and <b>Fgd File</b> properties should be fairly obvious. Make sure that the FGD file you choose is the master FGD that contains 
+            all of your other base FGDs and entities.
+        </p>
+        <p>
+            The <b>Base Game Path</b> is the folder containing your maps and textures, relative to your project directory without <i>res://</i>. Leave this blank to use your 
+            project's root directory. If you do use a separate mapping folder within your project make sure that you follow the same formatting as the <i>Gamepack Name</i>: 
+            all lower case and no special characters.
+        </p>
+        <p>
+            The <b>Netradiant Custom Shaders</b> array is a resource array for... 
+            <a href="ref_netradiant_custom_resources.html#Shader" target="main">NetRadiantCustomShader</a> resources! 
+            These will be compiled into a <i>.shader</i> file included with the rest of your gamepack configuration. Simply empty the array 
+            if you don't wish to use any special shaders. This only affects NetRadiant Custom and has no effect on your Godot shaders and materials.
+        </p>
+        <p>
+            The <b>Texture Types</b>, <b>Model Types</b>, and <b>Sound Types</b> arrays are the lists of compatible file types that NetRadiant Custom will attempt to look for. 
+            It's generally fine to leave this as is and is offered for the sake of more advanced users.
+        </p>
+        <p>
+            The <b>Default Scale</b> sets the default texture scale.
+        </p>
+        <p>
+            Exporting the Gamepack Config will use the directory set in your 
+            <a href="setup_project_config.html" target="_self">Project Configuration's <i>NetRadiant Custom Gamepacks Folder</i></a>. 
+            After you've built the gamepack, open up NetRadiant Custom.
+        </p>
+        <p>
+            Once open, you'll want to go to <b><i>Edit > Preferences > Global > Game</i></b>. If you did everything correctly so far you should find your game in the list. 
+            Select it and then select <b>Okay</b>. NetRadiant Custom will need to restart.
+        </p>
+        <p align="center"><img src="../images/setup_me_nrc_1.png" alt="NetRadiant Custom setup 1"></p>
+        <p>
+            You'll be prompted to find your game's engine path. Use your Godot project's root folder.
+        </p>
+        <p align="center"><img src="../images/setup_me_nrc_2.png" alt="NetRadiant Custom setup 2"></p>
+        <p>
+            Now you should be ready to start mapping for Godot with NetRadiant Custom!
+        </p>
+        <p align="center"><img src="../images/setup_me_nrc_3.png" alt="NetRadiant Custom setup 3"></p>
     </div>
+
+    <br><br><br>
 </body>
 </html>
