@@ -8,6 +8,301 @@
 <body>
     <div class="main">
         <h1>FuncGodot FGD Resources</h1>
+
+        <h2 id="File">FuncGodotFGDFile</h2>
+        <p><img src="../images/ref_fgd_file.png"></p>
+        <p>
+            Resource file used to express a set of <i>FuncGodotFGDEntity</i> definitions. Can be exported as an FGD file for use with a Quake map editor. 
+            Used in conjunction with a <a href="ref_func_godot_map.html#MapSettings" target="main">FuncGodotMapSettings</a> resource to generate nodes 
+            in a <a href="ref_func_godot_map.html" target="main">FuncGodotMap</a> node.
+        </p>
+        <br>
+        <table>
+            <tr class="header">
+                <td>Property</td>
+                <td>Type</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>Export File</td>
+                <td>Bool</td>
+                <td>Used as a button to build and export the FGD file. Automatically sets to off after exporting.</td>
+            </tr>
+
+            <tr class="header"><td>Map Editor</td><td></td><td></td></tr>
+            <tr>
+                <td>Model Key Word Supported</td>
+                <td>Bool</td>
+                <td>
+                    Some map editors do not support the "model" key word and require the "studio" key word instead. 
+                    If you get errors in your map editor, try changing this setting. 
+                    This setting is overridden when the FGD is built via the Game Config resource.
+                </td>
+            </tr>
+            
+            <tr class="header"><td>FGD</td><td></td><td></td></tr>
+            <tr>
+                <td>Fgd Name</td>
+                <td>String</td>
+                <td>FGD output filename without the extension.</td>
+            </tr>
+            <tr>
+                <td>Base Fgd Files</td>
+                <td>Array[Resource]</td>
+                <td>
+                    Array of <i>FuncGodotFGDFile</i> resources to include in FGD file output. All of the entities included with these FuncGodotFGDFile resources will be 
+                    prepended to the outputted FGD file.
+                </td>
+            </tr>
+            <tr>
+                <td>Entity Definitions</td>
+                <td>Array[Resource]</td>
+                <td>
+                    Array of resources that inherit from <i>FuncGodotFGDEntityClass</i>. This array defines the entities that will be added to the exported FGD file 
+                    and the nodes that will be generated in a <i>FuncGodotMap</i>.
+                </td>
+            </tr>
+        </table>
+
+        <br><hr>
+
+        <h2 id="Entity">FuncGodotFGDEntityClass</h2>
+        <p><img src="../images/ref_fgd_entity.png"></p>
+        <p>Base entity definition class. Not to be used directly, use <i>FuncGodotFGDBaseClass</i>, <i>FuncGodotFGDSolidClass</i>, or <i>FuncGodotFGDPointClass</i> instead.</p>
+        <br>
+        <table>
+            <tr class="header">
+                <td>Property</td>
+                <td>Type</td>
+                <td>Description</td>
+            </tr>
+            <tr class="header"><td>Entity Definition</td><td></td><td></td></tr>
+            <tr>
+                <td>Classname</td>
+                <td>String</td>
+                <td>Entity classname. <b><i>This is a required field in all entity types</i></b> as it is parsed by both the map editor and by FuncGodot on map build.</td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td>String</td>
+                <td>Entity description that appears in the map editor. Not required.</td>
+            </tr>
+            <tr>
+                <td>Func Godot Internal</td>
+                <td>Bool</td>
+                <td>Entity does not get written to the exported FGD. Entity is only used for <i>FuncGodotMap</i> build process.</td>
+            </tr>
+            <tr>
+                <td>Base Classes</td>
+                <td>Array[Resource]</td>
+                <td>Array of <i>FuncGodotFGDBaseClass</i> resources to inherit <i>Class Properties</i> and <i>Class Descriptions</i> from.</td>
+            </tr>
+            <tr>
+                <td>Class Properties</td>
+                <td>Dictionary</td>
+                <td>
+                    Key value pair properties that will appear in the map editor. After building the FuncGodotMap in Godot, these properties will be 
+                    added to a <i>func_godot_properties</i> Dictionary that gets applied to the generated node, as long as that node is a <i>@tool</i> script 
+                    with an exported <i>func_godot_properties</i> Dictionary. See <a href="ref_key_value_pairs.html" target="main">Entity Key Value Pairs</a> 
+                    for more information.
+                </td>
+            </tr>
+            <tr>
+                <td>Class Property Descriptions</td>
+                <td>Dictionary</td>
+                <td>Map editor descriptions for the previously defined key value pair properties. Not required for added properties but recommended.</td>
+            </tr>
+            <tr>
+                <td>Meta Properties</td>
+                <td>Dictionary</td>
+                <td>
+                    Appearance properties for the map editor, eg: size, color, studio, model, etc...<br>
+                    See the <a href="https://developer.valvesoftware.com/wiki/FGD#Entity_Description" target="_blank">Valve Developer FGD</a> 
+                    and <a href="https://trenchbroom.github.io/manual/latest/#display-models-for-entities" target="_blank">TrenchBroom</a> documentation for more information.
+                </td>
+            </tr>
+
+            <tr class="header"><td>Node Generation</td><td></td><td></td></tr>
+            <tr>
+                <td>Node Class</td>
+                <td>String</td>
+                <td>
+                    Node to generate on map build. This can be a built-in Godot class or a GDExtension class.
+                    <br><br>
+                    For GDScript classes use the built-in Godot class they extend from (eg: <i>MyCustom2 > MyCustom1 > Node3D</i> would be "Node3D"). 
+                    Use the <i>Script Class</i> property found in <i>Solid Class</i> and <i>Point Class</i> to apply your custom GDScript classes to generated nodes.
+                    <br><br>
+                    For Point Class entities that use Scene File instantiation leave this blank.
+                    <br><br>
+                    There is no restriction on what Node Classes can be generated.
+                </td>
+            </tr>
+        </table>
+        
+        <br><hr>
+
+        <h2 id="Base">FuncGodotFGDBaseClass</h2>
+        <p>
+            Special inheritance class for <i>Solid Class</i> and <i>Point Class</i> entity definitions. Useful for adding shared or common properties and descriptions. 
+            Does not have any unique properties on its own but is defined separately to facilitate FGD building and lookup.
+        </p>
+
+        <br><hr>
+
+        <h2 id="Solid">FuncGodotFGDSolidClass</h2>
+        <p><img src="../images/ref_fgd_solid.png"></p>
+        <p>
+            FGD SolidClass entity definition, used to define brush entities. A <i>MeshInstance3D</i> will be generated by <i>FuncGodotMap</i> according to this definition's 
+            Visual Build settings. If FuncGodotFGDSolidClass <i>Node Class</i> inherits <i>CollisionObject3D</i> then one or more <i>CollisionShape3D</i> nodes will be generated 
+            according to Collision Build settings.    
+        </p>
+        <br>
+        <table>
+            <tr class="header">
+                <td>Property</td>
+                <td>Type</td>
+                <td>Description</td>
+            </tr>
+            <tr class="header"><td>Spawn</td><td></td><td></td></tr>
+            <tr>
+                <td>Spawn Type</td>
+                <td>SpawnType</td>
+                <td>Controls whether a given Solid Class is the worldspawn, is combined with the worldspawn, or is spawned as its own free-standing entity.</td>
+            </tr>
+
+            <tr class="header"><td>Visual Build</td><td></td><td></td></tr>
+            <tr>
+                <td>Build Visuals</td>
+                <td>Bool</td>
+                <td>Controls whether a MeshInstance3D is built for this Solid Class.</td>
+            </tr>
+            <tr>
+                <td>Use In Baked Light</td>
+                <td>Bool</td>
+                <td>Sets generated MeshInstance3D to be available for UV2 unwrapping after FuncGodotMap build. Utilized in baked lightmapping.</td>
+            </tr>
+            <tr>
+                <td>Shadow Casting Setting</td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_geometryinstance3d.html#enum-geometryinstance3d-shadowcastingsetting" target="_blank">ShadowCastingSetting</a></td>
+                <td>
+                    Shadow casting setting allows for further lightmapping customization. See the 
+                    <a href="https://docs.godotengine.org/en/stable/classes/class_geometryinstance3d.html#enum-geometryinstance3d-shadowcastingsetting" target="_blank">Godot documentation</a> 
+                    for more information.
+                </td>
+            </tr>
+            <tr>
+                <td>Build Occlusion</td>
+                <td>Bool</td>
+                <td>
+                    Automatically build <a href="https://docs.godotengine.org/en/stable/classes/class_occluderinstance3d.html" target="_blank">OccluderInstance3D nodes</a> for this entity. 
+                    See the <a href="https://docs.godotengine.org/en/stable/tutorials/3d/occlusion_culling.html" target="_blank">Godot documentation on Occlusion Culling</a> for more information.
+                </td>
+            </tr>
+            <tr>
+                <td>Render Layers</td>
+                <td>Int, 3D Render Flags</td>
+                <td>This Solid Class' MeshInstance3D will only be visible for Camera3Ds whose cull mask includes any of these render layers.</td>
+            </tr>
+
+            <tr class="header"><td>Collision Build</td><td></td><td></td></tr>
+            <tr>
+                <td>Collision Shape Type</td>
+                <td>CollisionShapeType</td>
+                <td>
+                    Controls how collisions are built for this Solid Class.<br>
+                    <ul>
+                        <li><b>None : </b> No collision shape is built. Useful for decorative geometry like vines, hanging wires, grass, etc...</li>
+                        <li>
+                            <b><a href="https://docs.godotengine.org/en/stable/tutorials/physics/collision_shapes_3d.html#convex-collision-shapes" target="_blank">Convex</a> : </b> 
+                            Will build a Convex CollisionShape3D for each brush used to make this Solid Class. Required for non-StaticBody3D nodes like Area3D and RigidBody3D.
+                        </li>
+                        <li>
+                            <b><a href="https://docs.godotengine.org/en/stable/tutorials/physics/collision_shapes_3d.html#concave-or-trimesh-collision-shapes" target="_blank">Concave</a> : </b> 
+                            Will build a single Concave CollisionShape3D from the entire set of brushes. Skips brush faces textured with the FuncGodotMapSettings' <i>Skip Texture</i>.
+                        </li>
+                    </ul><br>
+                            Will build a single Concave CollisionShape3D from the entire set of brushes. Skips brush faces textured with the </i>
+                    See <a href="https://docs.godotengine.org/en/stable/tutorials/physics/collision_shapes_3d.html#performance-caveats" target="_blank">the Godot documentation</a> 
+                    to make an informed decision on what collision type would work best for this entity for your game's needs.
+                </td>
+            </tr>
+            <tr>
+                <td>Collision Layer</td>
+                <td>Int, 3D Physics Flags</td>
+                <td>The physics layers this Solid Class can be detected in.</td>
+            </tr>
+            <tr>
+                <td>Collision Mask</td>
+                <td>Int, 3D Physics Flags</td>
+                <td>The physics layers this Solid Class scans.</td>
+            </tr>
+            <tr>
+                <td>Collision Priority</td>
+                <td>Float</td>
+                <td>
+                    The priority used to solve colliding when penetration occurs. The higher the priority is, the lower the penetration into the SolidClass will be. 
+                    This can for example be used to prevent the player from breaking through the boundaries of a level.
+                </td>
+            </tr>
+            <tr>
+                <td>Collision Shape Margin</td>
+                <td>Float</td>
+                <td>
+                    The collision margin for the Solid Class' collision shapes. Not used in Godot Physics. 
+                    See <a href="https://docs.godotengine.org/en/stable/classes/class_shape3d.html#class-shape3d-property-margin" target="_blank">Shape3D documentation</a> 
+                    for details.
+                </td>
+            </tr>
+
+            <tr class="header"><td>Scripting</td><td></td><td></td></tr>
+            <tr>
+                <td>Script Class</td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_script.html" target="_blank">Script</a></td>
+                <td>An optional script file to attach to the node generated on map build.</td>
+            </tr>
+        </table>
+
+        <br><hr>
+
+        <h2 id="Point">FuncGodotFGDPointClass</h2>
+        <p><img src="../images/ref_fgd_point.png"></p>
+        <p>
+            FGD Point Class entity definition, used to define point entities. PointClass entities can use either the <i>Node Class</i> or the 
+            <i>Scene File</i> property to tell a <i>FuncGodotMap</i> what to generate on map build.
+        </p>
+        <br>
+        <table>
+            <tr class="header">
+                <td>Property</td>
+                <td>Type</td>
+                <td>Description</td>
+            </tr>
+
+            <tr class="header"><td>Scene</td><td></td><td></td></tr>
+            <tr>
+                <td>Scen File</td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_packedscene.html" target="_blank">PackedScene</a></td>
+                <td>An optional scene file to instantiate on map build. Overrides <i>Node Class</i> and <i>Script Class</i>.</td>
+            </tr>
+
+            <tr class="header"><td>Scripting</td><td></td><td></td></tr>
+            <tr>
+                <td>Script Class</td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_script.html" target="_blank">Script</a></td>
+                <td>An optional script file to attach to the node generated on map build.</td>
+            </tr>
+
+            <tr class="header"><td>Build</td><td></td><td></td></tr>
+            <tr>
+                <td>Apply Rotation On Map Build</td>
+                <td>Bool</td>
+                <td>
+                    Toggles whether entity will use <i>angles</i>, <i>mangle</i>, or <i>angle</i> to determine rotations on FuncGodotMap build, 
+                    prioritizing the key value pairs in that order. Set to <i>false</i> if you would like to define how the generated node is rotated yourself.
+                </td>
+            </tr>
+        </table>
     </div>
+    <br><br><br>
 </body>
 </html>

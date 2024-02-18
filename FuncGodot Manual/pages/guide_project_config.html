@@ -9,6 +9,28 @@
     <div class="main">
         <h1>Configuring Your Project</h1>
 
+        <h3>Directory Structure</h3>
+        <p>
+            Designing a directory structure for your game is its own art, and the layout of your project files can depend greatly on the kind of game you're making. 
+            That said, it is generally recommended you create an organization that splits off your <b>TrenchBroom resources</b> from the rest of your <b>Godot assets</b>.
+        </p>
+        <p>
+            If you're using TrenchBroom, you may already be aware it has a handy backup feature where it creates an autosave folder to periodically save backups of your map file. 
+            Less useful is the tendency for Godot to import these backups as well.
+        </p>
+        <p>
+            However, Godot has its own handy feature to combat this. Any directory with a <b>.gdignore</b> file will not be scanned and imported by Godot. 
+            To save yourself some headache later, open the <i>autosave</i> sub-directory in your operating system's file explorer. If using Windows, make sure 
+            you have <i>File Name Extensions</i> enabled under the <i>View</i> tab. Create a new text document in the sub-directory and rename it <i>.gdignore</i>, 
+            exactly like that with the <i>.txt</i> extension removed.
+        </p>
+        <p align="center"><img src="../images/guide_project_config_gdignore.png"></p>
+        <p>
+            And just like that, we won't have to deal with Godot constantly importing hundreds of backup map files from our project! 
+            You can do this for any directory that you don't want Godot to import files from, such as the folder that contains all of your display models intended to be 
+            used only with your map editor.
+        </p>
+
         <h3>FuncGodot Project Config</h3>
         <p>
             FuncGodot has the option of using a <a href="ref_project_config.html"><b>FuncGodotProjectConfig</b></a> resource to create local project wide 
@@ -19,7 +41,7 @@
             You won't create the FuncGodotProjectConfig resource for your project, as this resource doesn't actually save anything to itself directly. 
             Instead you will use the pre-made <i>func_godot_projet_config.tres</i> resource found in the <i>addons/func_godot/</i> folder.
         </p>
-        <p align="center"><img src="../images/setup_project_config_res_loc.png" alt="Location of func_godot_project_config.tres in the Godot project File System."></p>
+        <p align="center"><img src="../images/guide_project_config_res_loc.png" alt="Location of func_godot_project_config.tres in the Godot project File System."></p>
         
         <h3>Project Config Properties</h3>
 

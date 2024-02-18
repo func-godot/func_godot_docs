@@ -14,7 +14,7 @@
             If you take a look at a <i>.map</i> file, you'll see that it's just a text file describing the makeup of your map and doesn't actually store any other data, 
             including texture images. Let's look at this example of a <i>Solid Entity</i> in a map file:
         </p>
-        <p align="center"><img src="../images/setup_tex_solident.png" alt="Solid Entity Example" height="250px"></p>
+        <p align="center"><img src="../images/guide_tex_solident.png" alt="Solid Entity Example" height="250px"></p>
         <blockquote>
             <code>
                 // entity 1<br>
@@ -101,9 +101,9 @@
             We started off this manual with the point that <a href="../index.html#FuncGodotIsNotABspCompiler">FuncGodot is <i>not</i> a BSP compiler</a>. 
             If we map like we do in traditional Quake mapping...
         </p>
-        <p align=center><img src="../images/setup_tex_bsp1.png" width=45%> <img src="../images/setup_tex_notbsp1.png" width=45%></p>
+        <p align=center><img src="../images/guide_tex_bsp1.png" width=45%> <img src="../images/guide_tex_notbsp1.png" width=45%></p>
         <p>... we don't get the same result.</p>            
-        <p align=center><img src="../images/setup_tex_bsp2.jpg" width=45%> <img src="../images/setup_tex_notbsp2.png" width=45%></p>
+        <p align=center><img src="../images/guide_tex_bsp2.jpg" width=45%> <img src="../images/guide_tex_notbsp2.png" width=45%></p>
         <p>Instead we need to change our approach.</p>
 
         <p>
@@ -132,9 +132,9 @@
         </p>
 
         <p>Just keep in mind the general rule of thumb: if you want your entities to collide with the brush, use Clip...</p>
-        <p align=center><img src="../images/setup_tex_clip_example.png" height="512px"> <img src="../images/setup_tex_clip_example2.png" height="512px"></p>
+        <p align=center><img src="../images/guide_tex_clip_example.png" height="512px"> <img src="../images/guide_tex_clip_example2.png" height="512px"></p>
         <p>... and if you want them to pass through, use Skip <sub>(with Concave collision)</sub>.</p>            
-        <p align=center><img src="../images/setup_tex_skip_example.png" height="512px"> <img src="../images/setup_tex_skip_example2.png" height="512px"></p>
+        <p align=center><img src="../images/guide_tex_skip_example.png" height="512px"> <img src="../images/guide_tex_skip_example2.png" height="512px"></p>
 
         <h2 id="WADFiles">WAD Files</h2>
         <p>

@@ -19,15 +19,14 @@
             and the FGD Entity Classes as the entries.
         </p>
 
-        <p align="center"><img src="../images/setup_fgd_res_list.png" alt="FuncGodot FGD Resource List."></p>
+        <p align="center"><img src="../images/guide_fgd_res_list.png" alt="FuncGodot FGD Resource List."></p>
 
-        <h3>FuncGodotFGDFile</h3>
-
+        <h3 id="FGDFile">FGD File Resource</h3>
         <p>
             Some of you may only want to build map geometry with some control over collision and occlusion, and prefer to add all of your lights, actors, scripting, etc... in Godot directly. 
             To that end there is a basic default <i>func_godot_fgd.tres</i> included with FuncGodot. You can find it under <i>addons/func_godot/fgd/func_godot_fgd.tres</i>.
         </p>
-        <p align="center"><img src="../images/setup_fgd_res_loc.png" alt="func_godot_fgd.tres location."></p>
+        <p align="center"><img src="../images/guide_fgd_res_loc.png" alt="func_godot_fgd.tres location."></p>
         <p>
             This is the default FGD file set in the <a href="ref_func_godot_map.html#MapSettings"><b>FuncGodotMapSettings</b></a> resource. The basic entity definitions included with it are 
             <i>Worldspawn</i>, <i>func_detail</i>, <i>func_detail_illusionary</i>, <i>func_illusionary</i>, and <i>Phong</i>. We'll go over what each of these entity types are a little farther below.
@@ -65,25 +64,66 @@
         <p>
             To add the <i>func_godot_fgd.tres</i> as a base FGD file to your custom FGD file, all you need to do is locate <i>func_godot_fgd.tres</i> and drag and drop it onto the <b>Base Fgd Files</b> array in the inspector.
         </p>
-        <p align="center"><img src="../images/setup_fgd_base_fgd.png" alt="FuncGodotFGDFile base FGD example."></p>
+        <p align="center"><img src="../images/guide_fgd_base_fgd.png" alt="FuncGodotFGDFile base FGD example."></p>
         <p>
             The last property is <b>Entity Definitions</b>. This is where you'll drop all of your custom entity resources to be built or instanced by FuncGodot. Let's take a look at what a populated one looks like 
             by viewing the default <i>func_godot_fgd.tres</i> in the inspector.
         </p>
-        <p align="center"><img src="../images/setup_fgd_func_godot_fgd.png" alt="FuncGodotFGDFile default FGD."></p>
+        <p align="center"><img src="../images/guide_fgd_func_godot_fgd.png" alt="FuncGodotFGDFile default FGD."></p>
 
-        <h3>FuncGodotFGDEntityClass</h3>
-
+        <h3 id="EntityClass">Entity Class Definitions</h3>
         <p>
-            In terms of how to map with the Quake Map File > FuncGodot > Godot pipeline, it's best to think of the entities in Quake design terms. That is to say, <i>everything</i> is an entity: 
-            the player, the enemies, the ambient sounds, the doors, the lifts, the trigger volumes, the map geometry itself... all of these should be thought of as <b>entities</b>.
+            In terms of how to map with the Quake Map File > FuncGodot > Godot pipeline, it's best to think of the entities in Quake design terms. That is to say, 
+            <i>everything</i> is an entity: the player, the enemies, the ambient sounds, the doors, the lifts, the trigger volumes, the map geometry itself... 
+            all of these should be thought of as <b>entities</b>.
 
-            All map editors and FuncGodot support at least 2 different kinds of entities: Solid (Brush) Entities and Point Entities. Using FuncGodotFGDSolidClass and FuncGodotFGDPointClass resources, 
-            you can generate any type of Godot node and apply any script to it. See the chapter on the <a href="ref_fgd_resources.html#Entity"><b>FuncGodotFGDEntityClass</b></a><br> resources 
-            for more information. For now we'll just briefly go over what the different default entities do.
+            All map editors and FuncGodot support at least 2 different kinds of entities: <b>Solid (Brush) Entities</b> and <b>Point Entities</b>. 
+            Using <i>FuncGodotFGDSolidClass</i> and <i>FuncGodotFGDPointClass</i> resources, you can generate any type of Godot node and apply any script to it. 
         </p>
         <p>
-            All default FuncGodot entities, except for <i>Phong</i>, are FuncGodotFGDSolidClass entities. All of the SolidClass entities are very similar, mostly differing in occlusion and collision.
+            In a map file, all entities are comprised of <b>Key Value Pairs</b>. Each entity will <i>always</i> have a <b>classname</b>; 
+            this classname is what FuncGodot uses to determine what node or packed scene is generated and how upon building the <i>FuncGodotMap</i>. 
+            Also upon building, all of the entity's key value pairs will be added to the generated node's <b>func_godot_properties Dictionary</b> 
+            (provided that the entity is using a <a href="https://docs.godotengine.org/en/stable/tutorials/plugins/running_code_in_the_editor.html" target="_blanke">tool script</a>
+            with <i>func_godot_properties</i> as an exported variant).
+        </p>
+        <p>
+            We'll examine this <i>FuncGeo</i> class as a demonstration of the relationships between the FuncGodotFGDBaseClass, the FuncGodotFGDSolidClass, the func_geo brush entity 
+            in the map editor, and the final generated Godot FuncGeo StaticBody3D node.
+        </p>
+        <p>
+            The image on the left depicts a <i>Base Class</i> resource that contains other base classes to accumulate <i>Class Properties</i>. 
+            The image on the right is a <i>Solid Class</i> resource containing that Base Class and defines our FuncGeo entity.</i>
+        </p>
+        <p align="center"><img src="../images/guide_fgd_funcgeo0.png" alt="Func Base Class" height="700px"> <img src="../images/guide_fgd_funcgeo1.png" alt="FuncGeo Solid Class" height="700px"></p>
+        <p align="center">This is our FuncGeo entity's properties as they appear in TrenchBroom.</p>
+        <p align="center"><img src="../images/guide_fgd_funcgeo2.png" alt="func_geo brush entity properties in TrenchBroom"></p>
+        <p>
+            This is the <i>@tool</i> script that FuncGodot applies to our generated FuncGeo node upon map build. 
+            Notice how the exported <i>func_godot_properties</i> has a <i>setter</i> method that modifies our node any time that Dictionary is updated. 
+            Also notice how we prevent much of that code from running at Runtime through the use of <b>if !Engine.is_editor_hint(): return</b>.
+        </p>
+        <blockquote>
+            <i>NOTE: You cannot reliably reference other nodes in the map tree at this point, as they may not yet be generated. 
+            Try using </i><b>call_deferred</b><i> when needing to reference another node.</i>
+        </blockquote>
+        <p align="center"><img src="../images/guide_fgd_funcgeo3.png" alt="FuncGeo GDScript"></p>
+        <p align="center">The generated FuncGeo node's properties in the inspector. See how our <i>Func Godot Properties</i> Dictionary matches our Class Properties from our map editor.</p>
+        <p align="center"><img src="../images/guide_fgd_funcgeo4.png" alt="Generated FuncGeo node in Godot"></p>
+        <p>
+            With FuncGodot, your entity does not necessarily need a tool script. And even if you provide it a tool script, it does not need a <i>func_godot_properties</i> dictionary. 
+            FuncGodot will still generate and instantiate these entities without providing any properties. 
+            However, to take full advantage of FuncGodot's power it is highly recommended that you provide your nodes with both.
+        </p>
+        <p>
+            See the chapters on <a href="ref_fgd_resources.html#Entity"><b>FuncGodotFGDEntityClass</b></a> resources and 
+            <a href="ref_key_value_pairs.html" target="main">Entity Key Value Pairs</a> for more information.
+        </p>
+
+        <h3 id="DefaultEntities">Default Entities</h3>
+        <p>
+            All default FuncGodot entities, except for <i>Phong</i>, are FuncGodotFGDSolidClass entities. All of the SolidClass entities are very similar, 
+            mostly differing in occlusion and collision.
         </p>
         <ul>
             <li>
