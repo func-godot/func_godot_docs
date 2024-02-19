@@ -34,6 +34,10 @@ table {
     margin-right: auto;
 }
 
+tr {
+    background-color: #0f0b07;
+}
+
 tr.header {
     background-color: #070700;
 }
