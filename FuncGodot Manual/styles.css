@@ -10,6 +10,10 @@ body {
     font-family: verdana, sans-serif;
 }
 
+p {
+    line-height: 25px;
+}
+
 a {
     color: #cf632b;
     text-decoration: none;
@@ -62,6 +66,12 @@ td {
     border-style: solid;
     border-width: 2px;
     padding: 10px;
+}
+
+b.code {
+    font-style: italic;
+    background-color: #0f0b07;
+    padding: 2px;
 }
 
 b.faq {

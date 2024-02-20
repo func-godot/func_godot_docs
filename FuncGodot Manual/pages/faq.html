@@ -10,39 +10,50 @@
         <h1>Frequently Asked Questions</h1>
 
         <p>
+            <a href="#WhyBlurryTex">Why are my textures blurry?!</a><br>
+            <a href="#CanIDo">Can I do...</a><br>
+            <a href="#EntitiesNotBuilding">Why are my new entities not building? Why can't I find them in my map editor?</a><br>
+            <a href="#NodesDisappeared">Help! I manually added some nodes to my FuncGodotMap and when I hit build again they all disappeared!</a><br>
+            <a href="#SplitMap">How do I split up my map? It only comes out as one big mesh</a><br>
+            <a href="#Overdraw">I'm getting a lot of overdraw, why doesn't FuncGodot get rid of unseen faces?</a><br>
+            <a href="#WhyBlurryTex2">Why are my textures blurry?!</a>
+        </p>
+        <hr>
+
+        <p id="WhyBlurryTex">
             <b class="faq">Why are my textures blurry?!</b><br>
             <a href="guide_textures.html#WhyAreMyTexturesBlurry" target="main"><b>Please don't skim the manual.</b></a>
         </p>
 
-        <p>
+        <p id="CanIDo">
             <b class="faq">Can I do...</b><br>
             Yes.
         </p>
 
-        <p>
+        <p id="EntitiesNotBuilding">
             <b class="faq">Why are my new entities not building? Why can't I find them in my map editor?</b><br>
             Double check to make sure you set a <a href="ref_fgd_resources.html#Entity" target="main">Classname</a> in the entity resource before you exported the FGD. 
             If this doesn't exist, FuncGodot will skip adding it to the FGD file and will only generate a <i>Node3D</i>.
         </p>
 
-        <p>
+        <p id="NodesDisappeared">
             <b class="faq">Help! I manually added some nodes to my FuncGodotMap and when I hit build again they all disappeared!</b><br>
             FuncGodotMap nodes will always erase every child they have when rebuilt. There's no practical way for FuncGodot to confidently differentiate what it built, 
             what was programmatically built as a result of its build, and what was hand placed by the user. 
             If you feel the need to manually place nodes you should do so outside of the FuncGodotMap node in order to not lose any work.
         </p>
 
-        <p>
+        <p id="SplitMap">
            <b class="faq">How do I split up my map? It only comes out as one big mesh</b><br>
            You're still mapping like you're compiling for the Quake engine. <a href="tips_worldspawn.html" target="main">You need to map like your target is the Godot Engine.</a>
         </p>
 
-        <p>
-            <b class="faq">I'm getting a lot of overdraw, why doesn't Qodot get rid of unseen faces?</b><br>
-            You're still mapping like you're compiling for the Quake engine. <a href="tips_worldspawn.html" target="main">You need to map like your target is the Godot Engine.</a>
+        <p id="Overdraw">
+            <b class="faq">I'm getting a lot of overdraw, why doesn't FuncGodot get rid of unseen faces?</b><br>
+            You're still mapping like you're compiling for the Quake engine. <a href="tips_worldspawn.html#OcclusionCulling" target="main">You need to map like your target is the Godot Engine.</a>
         </p>
 
-        <p>
+        <p id="WhyBlurryTex2">
             <b class="faq">Why are my textures blurry?!</b><br>
             ...
         </p>
