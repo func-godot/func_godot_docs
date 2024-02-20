@@ -76,15 +76,24 @@
             In terms of how to map with the Quake Map File > FuncGodot > Godot pipeline, it's best to think of the entities in Quake design terms. That is to say, 
             <i>everything</i> is an entity: the player, the enemies, the ambient sounds, the doors, the lifts, the trigger volumes, the map geometry itself... 
             all of these should be thought of as <b>entities</b>.
-
+        </p>
+        <p>
             All map editors and FuncGodot support at least 2 different kinds of entities: <b>Solid (Brush) Entities</b> and <b>Point Entities</b>. 
             Using <i>FuncGodotFGDSolidClass</i> and <i>FuncGodotFGDPointClass</i> resources, you can generate any type of Godot node and apply any script to it. 
         </p>
         <p>
-            In a map file, all entities are comprised of <b>Key Value Pairs</b>. Each entity will <i>always</i> have a <b>classname</b>; 
-            this classname is what FuncGodot uses to determine what node or packed scene is generated and how upon building the <i>FuncGodotMap</i>. 
-            Also upon building, all of the entity's key value pairs will be added to the generated node's <b>func_godot_properties Dictionary</b> 
-            (provided that the entity is using a <a href="https://docs.godotengine.org/en/stable/tutorials/plugins/running_code_in_the_editor.html" target="_blanke">tool script</a>
+            Every entity is comprised of 2 things: <b>Metadata</b> and <b>Key Value Pairs</b>.
+        </p>
+        <p>
+            <i>Metadata</i> tells the map editor how to display your entity, things like bounding box color or display models for Point Entities, 
+            but have no effect in Godot.
+        </p>
+        <p>
+            <i>Key Value Pairs</i> on the other hand can be thought of as your entity's properties. In a map file, all entities are comprised of 
+            <b>Key Value Pairs</b>. Each entity will <i>always</i> have a <b>classname</b>; this classname is what FuncGodot uses to determine what node 
+            or packed scene is generated and how upon building the <i>FuncGodotMap</i>. Also upon building, all of the entity's key value pairs will be added 
+            to the generated node's <b>func_godot_properties Dictionary</b> (provided that the entity is using a 
+            <a href="https://docs.godotengine.org/en/stable/tutorials/plugins/running_code_in_the_editor.html" target="_blanke">tool script</a>
             with <i>func_godot_properties</i> as an exported variant).
         </p>
         <p>

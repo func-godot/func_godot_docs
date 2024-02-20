@@ -167,7 +167,24 @@
             <tr>
                 <td>Spawn Type</td>
                 <td>SpawnType</td>
-                <td>Controls whether a given Solid Class is the worldspawn, is combined with the worldspawn, or is spawned as its own free-standing entity.</td>
+                <td>
+                    Determines how FuncGodot generates both the mesh and the collision in regards to vertice positioning and combining.<br>
+                    <ul>
+                        <li>
+                            <b>WORLDSPAWN : </b>Builds the geometry of this entity without regard to its center position. Upon build completion all geometry will be 
+                            offset by this entity's true position. Recommend only use with <i>worldspawn</i> entity.
+                        </li>
+                        <li>
+                            <b>MERGE WORLDSPAWN : </b>This entity's geometry is merged with the <i>worldspawn</i> entity and this entity is removed. 
+                            Behavior mimics <i>func_group</i> in modern Quake compilers.
+                        </li>
+                        <li>
+                            <b>ENTITY : </b>This entity is built as its own object. It finds the center of the entity by averaging the positions of all vertices, 
+                            using the global result of this as its position.<br>
+                            <i>NOTE: This is not always the center of the mesh's AABB.</i>
+                        </li>
+                    </ul>
+                </td>
             </tr>
 
             <tr class="header"><td>Visual Build</td><td></td><td></td></tr>

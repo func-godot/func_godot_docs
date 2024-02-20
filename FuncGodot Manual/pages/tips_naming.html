@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="main">
+        <h1>Naming Patterns</h1>
+        <p>
+            Recall that every entity has a <b>classname</b> that we define in our Entity Definition resource. One important consideration to make 
+            is that <i>naming conventions matter</i>. The first word of an entity's name up until the first underscore will be provided its own group 
+            in the map editor. Taking advantage of this can help keep your entities organized in a few spots and in some editors provide convenient filtering options.
+        </p>
+        <p align="center"><img src="../images/tips_naming_1.png" width="30%"> <img src="../images/tips_naming_2.png" width="30%"></p>
+        <p>
+            When combined with <a href="ref_trenchbroom_resources.html#Tag" target="main">brush tags</a> in TrenchBroom configurations, this feature gains additional powers 
+            like in-editor transparency and keyboard shortcuts.
+        </p>
+        <p align="center"><img src="../images/tips_naming_3.png" width="40%"> <img src="../images/tips_naming_4.png" width="40%"></p>
+        <p>
+            FuncGodot has a pair of prebuilt TrenchBroomTag resources for <b>func*</b> and <b>trigger*</b> brush classes. Feel free to use these either directly or as a base for 
+            your own brush tags.
+        </p>
+        <p>
+            Additionally, your map editor will also handle Point Class orientation through the key value pairs <b>angle</b> and <b>mangle</b> differently 
+            depending upon the classname. Setting the mangle for an entity type in the "light_*" group or with the "info_intermission" classname will have altered orientation 
+            behavior. To see the differences, try to parse the code block in <a href="ref_func_godot_map.html">FuncGodotMap</a> that handles translating Quake angles 
+            into Godot rotations:
+        </p>
+        <p align="center"><img src="../images/tips_naming_angles.png" alt="Image showing how node rotation is calculated by the FuncGodotMap."></p>
+        <p>
+            Anyway, just make sure to give a little bit more thought to your naming conventions.
+        </p>
+    </div>
+    <br><br><br>
+</body>
+</html>
