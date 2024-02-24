@@ -8,13 +8,18 @@
 <body>
     <div class="main">
         <h1>FuncGodotProjectConfig</h1>
-        <p><img src="../images/ref_project_config.png"></p><br>
+        <p><img src="../images/ref_project_config.png"></p>
 
         <p>Local machine project wide settings. Can define global defaults for some FuncGodot properties.</p>
         <h3>DO NOT CREATE A NEW RESOURCE!</h3>
         <p>
-            This resource works by saving a configuration file to your game's <i>user://</i> folder and pulling the properties from that config file rather than this resource. 
-            Use the premade <b><i>addons/func_godot/project_config.tres</i></b> instead.
+            This resource works by saving a <i>MyGameFuncGodotConfig.json</i> configuration file to your game's 
+            <a href="https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html#accessing-persistent-user-data-user" target="_blank"><b><i>user://</i></b></a> 
+            folder and pulling the properties from that config file rather than this resource. Use the premade <i>addons/func_godot/project_config.tres</i> instead.
+        </p>
+        <p>
+            Handling project configuration settings in this way means they need to be set individually on every machine you load your project onto. These settings are <i>not</i> 
+            saved to source control. The benefit is that this allows teams to more easily work together even with drastically different tool installation paths.
         </p>
         <br>
 
@@ -23,6 +28,11 @@
                 <td>Property</td>
                 <td>Type</td>
                 <td>Description</td>
+            </tr>
+            <tr>
+                <td>Export Func Godot Settings</td>
+                <td>Bool</td>
+                <td>Button to save the local machine project configuration settings in your game's <i>user://</i> folder.</td>
             </tr>
             <tr>
                 <td>Fgd Output Folder</td>

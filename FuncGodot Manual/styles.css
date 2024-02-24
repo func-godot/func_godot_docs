@@ -33,8 +33,12 @@ pre {
 }
 
 code {
+    font-size: 16px;
+    color: #abe7ff;
+}
+
+code.highlight {
     background-color: #0f0b07;
-    padding: 5px;
 }
 
 blockquote {
@@ -70,7 +74,6 @@ td {
 
 b.code {
     font-style: italic;
-    background-color: #0f0b07;
     padding: 2px;
 }
 
