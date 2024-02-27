@@ -163,7 +163,6 @@
                 <td>Type</td>
                 <td>Description</td>
             </tr>
-            <tr class="header"><td>Spawn</td><td></td><td></td></tr>
             <tr>
                 <td>Spawn Type</td>
                 <td>SpawnType</td>
@@ -182,6 +181,24 @@
                             <b>ENTITY : </b>This entity is built as its own object. It finds the center of the entity by averaging the positions of all vertices, 
                             using the global result of this as its position.<br>
                             <i>NOTE: This is not always the center of the mesh's AABB.</i>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Origin Type</td>
+                <td>OriginType</td>
+                <td>
+                    Determines how this Solid Class utilizes the <code>"origin"</code> key value pair to find its position. Only valid if <i>Spawn Type</i> is set to ENTITY.<br>
+                    <ul>
+                        <li>
+                            <b>IGNORE : </b>Ignore origin property and only use averaged brush vertices for positioning. Standard Quake 1 / Half-Life behavior.
+                        </li>
+                        <li>
+                            <b>ABSOLUTE : </b>Use origin property for position center, ignoring brush vertice positions.
+                        </li>
+                        <li>
+                            <b>RELATIVE : </b>Use origin relative to averaged brush vertice positions. Use this setting if brush entity vertices have coordinates local to the origin.
                         </li>
                     </ul>
                 </td>
@@ -297,7 +314,7 @@
 
             <tr class="header"><td>Scene</td><td></td><td></td></tr>
             <tr>
-                <td>Scen File</td>
+                <td>Scene File</td>
                 <td><a href="https://docs.godotengine.org/en/stable/classes/class_packedscene.html" target="_blank">PackedScene</a></td>
                 <td>An optional scene file to instantiate on map build. Overrides <i>Node Class</i> and <i>Script Class</i>.</td>
             </tr>
@@ -316,6 +333,65 @@
                 <td>
                     Toggles whether entity will use <i>angles</i>, <i>mangle</i>, or <i>angle</i> to determine rotations on FuncGodotMap build, 
                     prioritizing the key value pairs in that order. Set to <i>false</i> if you would like to define how the generated node is rotated yourself.
+                </td>
+            </tr>
+        </table>
+
+        <br><hr>
+
+        <h2 id="ModelPoint">FuncGodotFGDModelPointClass</h2>
+        <p><img src="../images/ref_fgd_modelpoint.png"></p>
+        <p>
+            A special type of <a href="ref_fgd_resources.html#Point" target="main">FuncGodotFGDPointClass</a> entity that can automatically generate 
+            a special simplified, scaled, and reoriented GLB model file for the map editor display. Not supported by editors without GLB / GLTF support.
+        </p><br>
+        <table class="props">
+            <tr class="header">
+                <td>Property</td>
+                <td>Type</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>Target Map Editor</td>
+                <td>TargetMapEditor</td>
+                <td>
+                    Modifies whether the entity definition uses the <code>studio</code> or <code>model</code> keyword, and how it applies display model scaling. 
+                    Options are <i>GENERIC</i> or <i>TRENCHBROOM</i>.
+                </td>
+            </tr>
+            <tr>
+                <td>Models Sub Folder</td>
+                <td>String</td>
+                <td>
+                    Optional display model export sub folder relative to the game path and models folder set in <a href="ref_local_config.html">FuncGodotLocalConfig</a>.
+                </td>
+            </tr>
+            <tr>
+                <td>Scale Expression</td>
+                <td>String</td>
+                <td>
+                    Scale expression applied to model. Only used by TrenchBroom. See the 
+                    <a href="https://trenchbroom.github.io/manual/latest/#display-models-for-entities" target="_blank">TrenchBroom Documentation</a> 
+                    for more information.<br>
+                    To set the scale for other editors, set the <i>Default Inverse Scale</i> setting in <a href="ref_local_config.html">FuncGodotLocalConfig</a>.
+                </td>
+            </tr>
+            <tr>
+                <td>Generate Size Property</td>
+                <td>Bool</td>
+                <td>
+                    Model Point Class can override the <i>size</i> meta property by auto-generating a value from the meshes' 
+                    <a href="https://docs.godotengine.org/en/stable/classes/class_aabb.html" target="_blank">AABB</a>. 
+                    Proper generation requires <i>scale_expression</i> set to a float or Vector3.<br>
+                    <b>WARNING:</b> Generated size property unlikely to align cleanly to grid!
+                </td>
+            </tr>
+            <tr>
+                <td>Generate GD Ignore File</td>
+                <td>Bool</td>
+                <td>
+                    Creates a .gdignore file in the model export folder to prevent Godot importing the display models. 
+                    Only needs to be generated once.
                 </td>
             </tr>
         </table>

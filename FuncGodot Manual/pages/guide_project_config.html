@@ -30,24 +30,24 @@
             used only with your map editor.
         </p>
 
-        <h3>FuncGodot Project Config</h3>
+        <h3>FuncGodot Local Config</h3>
         <p>
-            FuncGodot has the option of using a <a href="ref_project_config.html"><b>FuncGodotProjectConfig</b></a> resource to create local project wide 
+            FuncGodot has the option of using a <a href="ref_local_config.html"><b>FuncGodotLocalConfig</b></a> resource to create local project wide 
             settings for your other FuncGodot resources. These settings are applied only to your machine, in order to better facilitate working with a team that 
             may not have the same drive or directory setup or even the same map editor as you yourself use.
         </p>
         <p>
-            You won't create the FuncGodotProjectConfig resource for your project, as this resource doesn't actually save anything to itself directly. 
-            Instead you will use the pre-made <i>func_godot_project_config.tres</i> resource found in the <i>addons/func_godot/</i> folder.
+            You won't create the FuncGodotLocalConfig resource for your project, as this resource doesn't actually save anything to itself directly. 
+            Instead you will use the pre-made <i>func_godot_local_config.tres</i> resource found in the <i>addons/func_godot/</i> folder.
         </p>
-        <p align="center"><img src="../images/guide_project_config_res_loc.png" alt="Location of func_godot_project_config.tres in the Godot project File System."></p>
+        <p align="center"><img src="../images/guide_project_config_res_loc.png" alt="Location of func_godot_local_config.tres in the Godot project File System."></p>
         
-        <h3>Project Config Properties</h3>
+        <h3>Local Config Properties</h3>
 
         <p>
             Viewing this resource's properties in the inspector, you'll be greeted with some options. We'll ignore the <i>Export Func Godot Settings</i> property for now.
         </p>
-        <p align="center"><img src="../images/ref_project_config.png" alt="FuncGodotProjectConfig resource inspector."></p>
+        <p align="center"><img src="../images/ref_local_config.png" alt="FuncGodotLocalConfig resource inspector."></p>
         <p>
             For the <b>FGD Output Folder</b>, you'll want to locate your map editor's game configuration folder or installation folder. Create a sub folder for your game's
             configuration and set the <b>FGD Output Folder</b> to that sub-folder. This might look something like <i>C:/GameDev/TrenchBroom/Games/MyGame/</i> or <i>C:/GameDev/J.A.C.K/MyGame/</i>. 
@@ -67,12 +67,16 @@
         <p>
             The <b>Map Editor Game Path</b> refers to what your Map Editor considers the location of your project. This might look something like <i>C:/GameDev/MyGodotProject/</i> 
             or <i>C:/GameDev/MyGodotProject/trenchbroom/</i>. The intended use for this is to streamline certain FGD resource paths, like the 
-            <a href="ref_trenchbroom_resources.html#ModelPoint"><b>TrenchBroomFGDModelPointClass</b></a>'s model export location.
+            <a href="ref_fgd_resources.html#ModelPoint"><b>FuncGodotFGDModelPointClass</b></a>'s model export location.
         </p>
         <p>
             The <b>Game Path Models Folder</b> is the default folder path relative to your Map Editor Game Path that tells FuncGodot where to save generated model files to. For example, 
             with a Map Editor Game Path value of <i>C:/GameDev/MyGodotProject/trenchbroom/</i> and a Game Path Models Folder value of <i>models</i>, the generated model file will 
-            be saved to <i>C:/GameDev/MyGodotProject/trenchbroom/models/</i>. Currently only used by <a href="ref_trenchbroom_resources.html#ModelPoint"><b>TrenchBroomFGDModelPointClass</b></a>.
+            be saved to <i>C:/GameDev/MyGodotProject/trenchbroom/models/</i>. Currently only used by <i>FuncGodotFGDModelPointClass</i>.
+        </p>
+        <p>
+            The <b>Default Inverse Scale Factor</b> setting doesn't affect <i>FuncGodotMapSettings</i> resources or how the map builds. It currently only affects scaling display models 
+            for <i>FuncGodotFGDModelPointClass</i> definitions in map editors other than TrenchBroom.
         </p>
 
         <h3>Exporting the Project Config</h3>
@@ -82,7 +86,7 @@
             <a href="https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html#accessing-persistent-user-data-user" target="_blank">Godot project's user data folder</a>. 
         </p>
         <p>
-            This is how we keep local settings local. Upon opening your project, FuncGodot will automatically update <i>func_godot_project_config.tres</i> to load the data from 
+            This is how we keep local settings local. Upon opening your project, FuncGodot will automatically update <i>func_godot_local_config.tres</i> to load the data from 
             the generated JSON file found in your user data folder, and setting the resource's <i>Export</i> property to true will overwrite that file with the new settings. 
             These settings are not saved to source control, allowing teams to work together more easily and more flexibly.
         </p>

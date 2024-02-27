@@ -11,7 +11,7 @@
         <p>
             TrenchBroom has the strongest support from FuncGodot, and as such is the recommended map editor for use with the plugin. 
             FuncGodot has optional support for TrenchBroom Layers and Groups, and TrenchBroom supports multiple bit flag key value pairs. 
-            To aid with TrenchBroom support, FuncGodot offers three different resources.
+            To aid with TrenchBroom support, FuncGodot offers two different resources.
         </p>
 
         <h2 id="GameConfig"></h2>
@@ -136,57 +136,6 @@
                 <td>Texture Name</td>
                 <td>String</td>
                 <td>A string that filters which textures recieve these attributes. Only used with a TagMatchType of <i>Texture</i>.</td>
-            </tr>
-        </table>
-
-        <br><hr>
-
-        <h2 id="ModelPoint">TrenchBroomModelPointClass</h2>
-        <p><img src="../images/ref_tb_modelpoint.png"></p>
-        <p>
-            A special type of <a href="ref_fgd_resources.html#Point" target="main">FuncGodotFGDPointClass</a> entity that can automatically generate 
-            a special simplified and reoriented GLB model file for the map editor display. Only supported by TrenchBroom.
-        </p><br>
-        <table class="props">
-            <tr class="header">
-                <td>Property</td>
-                <td>Type</td>
-                <td>Description</td>
-            </tr>
-            <tr>
-                <td>Game Path Models Folder</td>
-                <td>String</td>
-                <td>
-                    Display model export folder relative to the game path set in <a href="ref_project_config.html">FuncGodotProjectConfig</a>. 
-                    Optional - if empty, this entity will use the <i>Game Path Models Folder</i> set by the project configuration.
-                </td>
-            </tr>
-            <tr>
-                <td>Scale Expression</td>
-                <td>String</td>
-                <td>
-                    Scale expression applied to model. See the 
-                    <a href="https://trenchbroom.github.io/manual/latest/#display-models-for-entities" target="_blank">TrenchBroom Documentation</a> 
-                    for more information.
-                </td>
-            </tr>
-            <tr>
-                <td>Generate Size Property</td>
-                <td>Bool</td>
-                <td>
-                    Model Point Class can override the <i>size</i> meta property by auto-generating a value from the meshes' 
-                    <a href="https://docs.godotengine.org/en/stable/classes/class_aabb.html" target="_blank">AABB</a>. 
-                    Proper generation requires <i>scale_expression</i> set to a float or Vector3.<br>
-                    <b>WARNING:</b> Generated size property unlikely to align cleanly to grid!
-                </td>
-            </tr>
-            <tr>
-                <td>Generate GD Ignore File</td>
-                <td>Bool</td>
-                <td>
-                    Will auto-generate a .gdignore file in the model export folder to prevent Godot from importing the display models. 
-                    Only needs to be generated once.
-                </td>
             </tr>
         </table>
     </div>

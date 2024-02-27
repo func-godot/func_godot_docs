@@ -7,18 +7,18 @@
 </head>
 <body>
     <div class="main">
-        <h1>FuncGodotProjectConfig</h1>
-        <p><img src="../images/ref_project_config.png"></p>
+        <h1>FuncGodotLocalConfig</h1>
+        <p><img src="../images/ref_local_config.png"></p>
 
         <p>Local machine project wide settings. Can define global defaults for some FuncGodot properties.</p>
         <h3>DO NOT CREATE A NEW RESOURCE!</h3>
         <p>
             This resource works by saving a <i>MyGameFuncGodotConfig.json</i> configuration file to your game's 
             <a href="https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html#accessing-persistent-user-data-user" target="_blank"><b><i>user://</i></b></a> 
-            folder and pulling the properties from that config file rather than this resource. Use the premade <i>addons/func_godot/project_config.tres</i> instead.
+            folder and pulling the properties from that config file rather than this resource. Use the premade <i>addons/func_godot/func_godot_local_config.tres</i> instead.
         </p>
         <p>
-            Handling project configuration settings in this way means they need to be set individually on every machine you load your project onto. These settings are <i>not</i> 
+            Handling local project configuration settings in this way means they need to be set individually on every machine you load your project onto. These settings are <i>not</i> 
             saved to source control. The benefit is that this allows teams to more easily work together even with drastically different tool installation paths.
         </p>
         <br>
@@ -70,7 +70,16 @@
                 <td>String</td>
                 <td>
                     Relative directory path from your Map Editor Game Path to a subfolder containing any display models you might use for your map editor. 
-                    Currently only used by <a href="ref_trenchbroom_resources.html#ModelPoint" target="main">TrenchBroom FGD Model Point Class</a>.
+                    Currently only used by <a href="ref_fgd_resources.html#ModelPoint" target="main">FuncGodot FGD Model Point Class</a>.
+                </td>
+            </tr>
+            <tr>
+                <td>Default Inverse Scale Factor</td>
+                <td>Float</td>
+                <td>
+                    <a href="guide_building_maps.html#InverseScaleFactor" target="main">Scale factor</a> that affects how <a href="ref_fgd_resources.html#ModelPoint" target="main">FuncGodot FGD Model Point Class</a> 
+                    entities scale their map editor display models. Not used with TrenchBroom, use <a href="ref_trenchbroom_resources.html#GameConfig" target="main">TrenchBroom Game Config</a><br>'s <i>Entity Scale</i> 
+                    expression instead.
                 </td>
             </tr>
         </table>

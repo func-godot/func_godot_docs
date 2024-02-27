@@ -98,23 +98,19 @@
         <h2 id="Building">Building</h2>
         <p>
             You have your map file selected. You have your map settings ready. You've decided on an inverse scale factor and, if you're using TrenchBroom, 
-            you've decided whether you want a flat or multi-level scene tree hierarchy. It's time to press the <b>Build</b> button. But which one?
+            you've decided whether you want a flat or multi-level scene tree hierarchy. It's time to build the map. With your <i>FuncGodotMap</i> node selected 
+            the toolbar at the top of the editor should change.
         </p>
         <p align="center"><img src="../images/ref_func_godot_map2.png" alt="FuncGodotMap buttons"></p>
         <p>
-            The <b>Quick Build</b> button will build the map scene without applying ownership to the nodes. This means that these nodes will not persist even if 
-            the Scene file is saved, but can be faster to "preview" a map build.
+            The <b>Build</b> button will build the map scene and apply all the appropriate ownership and settings to the map scene.
         </p>
         <p>
-            The <b>Full Build</b> button will build the map scene and apply all the appropriate ownership and settings to the map scene. This data <i>will</i> persist 
-            after saving the Scene file.
-        </p>
-        <p>
-            <b>Unwrap UV2</b> is used after the build process; it cycles through every Solid Entity with the <i>Use In Baked Light</i> property enabled in their definition 
+            <b>Unwrap UV2</b> can be used after the build process; it cycles through every Solid Entity with the <i>Use In Baked Light</i> property enabled in their definition 
             and unwraps the UV2 of their MeshInstance3D children. If you're using baked lightmaps you'll need to press this button after every build but before every lightmap 
             bake.
         </p>
-        <p>Go ahead and perform a <i>Full Build</i> and marvel in your master level craftsmanship.</p>
+        <p>Go ahead and perform a <i>Build</i> and marvel in your master level craftsmanship.</p>
         <p align="center"><img src="../images/guide_build_3.png"></p>
         <p align="center">Congratulations! You've built your first FuncGodot Map!</p>
     </div>
