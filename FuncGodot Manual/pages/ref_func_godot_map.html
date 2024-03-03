@@ -175,6 +175,7 @@
                     is a <a href="https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html" target="_blank">ShaderMaterial</a>.
                 </td>
             </tr>
+
             <tr>
                 <td>Normal Map Pattern</td>
                 <td>String</td>
@@ -230,7 +231,9 @@
                 <td>Bool</td>
                 <td>
                     If true, will organize Scene Tree using Trenchbroom Layers and Groups. Layers and Groups will be generated as <i>Node3Ds</i>. 
-                    All structural brushes will be moved out of the Layers and Groups and merged into the Worldspawn entity.
+                    All structural brushes will be moved out of the Layers and Groups and merged into the Worldspawn entity. Additionally, 
+                    any Layers toggled to be omitted from export in TrenchBroom will be freed on map build before the Layers' children can apply 
+                    <code>func_godot_properties</code> or call <code>_func_godot_apply_properties()</code> and <code>_func_godot_build_complete()</code>.
                 </td>
             </tr>
         </table>
