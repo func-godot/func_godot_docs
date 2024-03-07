@@ -17,6 +17,10 @@
             <a href="https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html#accessing-persistent-user-data-user" target="_blank"><b><i>user://</i></b></a> 
             folder and pulling the properties from that config file rather than this resource. Use the premade <i>addons/func_godot/func_godot_local_config.tres</i> instead.
         </p>
+        <blockquote>
+            <i>NOTE: You need to run your project at least once before attempting to export settings, so that the </i>user:// <i>folder can be created by Godot! 
+            Otherwise you will run into an error and the config file will not export!</i>
+        </blockquote>
         <p>
             Handling local project configuration settings in this way means they need to be set individually on every machine you load your project onto. These settings are <i>not</i> 
             saved to source control. The benefit is that this allows teams to more easily work together even with drastically different tool installation paths.

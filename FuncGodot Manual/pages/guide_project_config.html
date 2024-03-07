@@ -85,6 +85,10 @@
             It will automatically generate a <i>MyGameFuncGodotConfig.json</i> file in your 
             <a href="https://docs.godotengine.org/en/stable/tutorials/io/data_paths.html#accessing-persistent-user-data-user" target="_blank">Godot project's user data folder</a>. 
         </p>
+        <blockquote>
+            <i>NOTE: You need to run your project at least once before attempting to export settings, so that the </i>user:// <i>folder can be created by Godot! 
+            Otherwise you will run into an error and the config file will not export!</i>
+        </blockquote>
         <p>
             This is how we keep local settings local. Upon opening your project, FuncGodot will automatically update <i>func_godot_local_config.tres</i> to load the data from 
             the generated JSON file found in your user data folder, and setting the resource's <i>Export</i> property to true will overwrite that file with the new settings. 
