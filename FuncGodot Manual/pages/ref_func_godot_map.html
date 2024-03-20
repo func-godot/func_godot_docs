@@ -109,6 +109,17 @@
                 <td><a href="ref_fgd_resources.html#File" target="main">FuncGodotFGDFile</a></td>
                 <td>Resource file that translates map file classnames into Godot nodes and packed scenes.</td>
             </tr>
+            <tr>
+                <td>Entity Name Property</td>
+                <td>String</td>
+                <td>
+                    Default class property to use in naming generated nodes. This setting is overridden by <code>name_property</code> in 
+                    <a href="ref_fgd_resources.html#Entity" target="main">FuncGodotFGDEntityClass</a>. 
+                    Naming occurs before adding to the <i>SceneTree</i> and applying properties. 
+                    Nodes will be named <code>"entity_" + name_property</code>.<br><br>
+                    <i>NOTE: Node names should be unique, otherwise you may run into unexpected behavior!</i>
+                </td>
+            </tr>
 
             <tr class="header"><td>Textures</td><td></td><td></td></tr>
             <tr>
