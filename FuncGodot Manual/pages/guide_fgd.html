@@ -101,6 +101,10 @@
         <h2 id="ModifyOnMapBuild">Modifying Entities on Map Build</h2>
         <p align="center"><img src="../images/guide_fgd_apply_props.png" alt="FuncGodotMap GDScript method showing application of 'func_godot_properties' and callback of '_func_godot_apply_properties' and '_func_godot_build_complete'."></p>
         <p>
+            If you decide you want to make modifications to your generated entities on map build using any of the following methods, you'll need to make sure that your entity's 
+            script is set as a <a href="https://docs.godotengine.org/en/stable/tutorials/plugins/running_code_in_the_editor.html" target="_blank"></a><code>@tool</code> script</a>.
+        </p>
+        <p>
             The first method call is to <code>_func_godot_apply_properties(entity_properties: Dictionary)</code>. Because <code>_func_godot_apply_properties</code> passes the entity properties 
             in the function, you do not need to declare a <i>func_godot_properties</i> dictionary in your node script; instead, just apply your properties as needed in this callback.
         </p>
@@ -111,8 +115,7 @@
         </p>
         <p>
             Additionally upon building, all of the entity's key value pairs will be added to the generated node's <code>func_godot_properties</code> Dictionary 
-            (provided that the entity is using a <a href="https://docs.godotengine.org/en/stable/tutorials/plugins/running_code_in_the_editor.html" target="_blanke">tool script</a>
-            with <code>func_godot_properties</code> as an exported variant).
+            (provided that the property is set as an exported variant).
         </p>
         <p>
             We'll examine this <i>FuncGeo</i> class as a demonstration of the relationships between the FuncGodotFGDBaseClass, the FuncGodotFGDSolidClass, the func_geo brush entity 
@@ -160,7 +163,8 @@
                 <br>
                 Under normal circumstances, there can only ever be one Worldspawn entity in a map file. While there technically are ways to create multiple Worldspawn entities this manual will not explore that possibility.
             </li><br>
-            <li><b>func_detail : </b> Almost identical to Worldspawn, with the exceptions being that you can (and should) create multiple func_details and they do not generate OccluderInstance3D children.</li><br>
+            <li><b>func_geo : </b> Identical to Worldspawn, with the exception being that you can (and should) create multiple func_geos. See <a href="tips_worldspawn.html" target="main">Why Not Worldspawn?</a> for more information.</li><br>
+            <li><b>func_detail : </b> Almost identical to <i>func_geo</i>, with the exception that they do not generate OccluderInstance3D children.</li><br>
             <li><b>func_illusionary : </b> Geometry that has no collision. It generates a <a href="https://docs.godotengine.org/en/stable/classes/class_node3d.html" target="_blank">Node3D</a>, a MeshInstance3D child, and an OccluderInstance3D child.</li><br>
             <li><b>func_detail_illusionary : </b> Identical to func_illusionary, except that it does not generate an OccluderInstance3D child.</li><br>
         </ul>
