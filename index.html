@@ -1,9 +1,40 @@
+---
+---
 <!DOCTYPE html>
-<html lang="en-US">
-    <head>
-        <title>FuncGodot Manual</title>
-        <link rel="icon" type="image/x-icon" href="FuncGodot Manual/images/godot_ranger.svg">
-        <link rel="stylesheet" href="FuncGodot Manual/styles.css">
-        <meta http-equiv="refresh" content="0; FuncGodot Manual/FuncGodot Manual.html"/>
-    </head>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="images/godot_ranger.svg">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+
+  <body>
+    {% include sidenav.html %}
+
+    <div class="content">
+      {% include start.html %}
+
+      {% include guide_install.html %}
+      {% include guide_project_config.html %}
+      {% include guide_fgd.html %}
+      {% include guide_textures.html %}
+      {% include guide_map_editor_config.html %}
+      {% include guide_building_maps.html %}
+
+      {% include ref_local_config.html %}
+      {% include ref_fgd_resources.html %}
+      {% include ref_key_value_pairs.html %}
+      {% include ref_trenchbroom_resources.html %}
+      {% include ref_netradiant_custom_resources.html %}
+      {% include ref_func_godot_map.html %}
+
+      {% include tips_naming.html %}
+      {% include tips_worldspawn.html %}
+      {% include tips_multiple_models.html %}
+
+      {% include helpful_links.html %}
+      {% include faq.html %}
+    </div>
+  </body>
 </html>

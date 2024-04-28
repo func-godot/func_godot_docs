@@ -1,17 +1,23 @@
 /* Constants */
 :root {
-    --header_height: 70px;
-    --sidenav_width: 380px;
+    --header_height: 55px;
 }
 
 /* Base Styles Start */
 body {
     color: #dbc3bb;
     font-family: verdana, sans-serif;
+    margin: 0;
+    display: grid;
 }
 
-p {
+p,
+li {
     line-height: 25px;
+}
+
+ul {
+    list-style-type: none;
 }
 
 a {
@@ -19,10 +25,7 @@ a {
     text-decoration: none;
 }
   
-a:hover {
-    color: #e7ab5f;
-}
-  
+a:hover,
 a:active {
     color: #e7ab5f;
 }
@@ -83,82 +86,52 @@ b.faq {
     font-style: italic;
 }
 
+/* Highlight when following anchors in the FAQ, since we are at the bottom of the file people cant tell what happens on click */
+#FAQ p[id]:target {
+   background-color: #353535;
+}
 /* Base Styles End */
 
 /* Header Start */
-iframe.header {
+header {
+    background-color: #000;
+    text-align: center;
     height: var(--header_height);
-    width: 100%;
-    top: 0;
-    left: 0;
-    padding-left: 10px;
-    background-color: #070700;
-    position: fixed;
-    border: none;
-}
-
-div.head {
-    background-color: #070700;
 }
 /* Header End */
 
 /* Sidebar Navigation Start */
-iframe.sidenav {
-    top: var(--header_height);
-    left: 0;
-    bottom: 0;
-    width: var(--sidenav_width);
-    height: calc(100% - var(--header_height));
-    position: fixed;
-    overflow-x: hidden;
-    overflow-y: auto;
-    border: none;
-    background-color: #0f0b07;
-    padding-left: 10px;
-    padding-bottom: 10px;
-}
-
 div.sidenav {
     background-color: #0f0b07;
 }
 
-h3.sidenav {
-    margin-top: 0;
-    margin-bottom: 0;
+div.sidenav > ul {
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    height: calc(100vh - var(--header_height));
+    grid-column: 1;
+}
+
+div.sidenav h3 {
+    margin: 0;
     padding-top: 5px;
     padding-bottom: 5px;
 }
 
-p.sidenav {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0px;
-    padding-bottom: 0px;
-}
-
-p.sidenav2 {
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 30px;
-    padding-top: 0px;
-    padding-bottom: 0px;
+li.discord {
+    padding-top: 15px;
 }
 /* Sidebar Navigation End */
 
 /* Main Body Start */
-iframe.main {
-    top: var(--header_height);
-    left: var(--sidenav_width);
-    bottom: 0;
-    right: 0;
-    width: calc(100% - var(--sidenav_width) - 20px);
-    height: calc(100% - var(--header_height));
-    position: fixed;
-    overflow-x: hidden;
-    overflow-y: auto;
+div.content {
     background-color: #1f1f1f;
-    border: none;
     padding-left: 10px;
     padding-right: 10px;
+    grid-column: 2;
+    overflow-y: scroll;
+    height: 100vh;
 }
 /* Main Body End */

@@ -1,0 +1,67 @@
+<div id="FAQ">
+    <h1>Frequently Asked Questions</h1>
+
+    <p>
+        <a href="#WhyBlurryTex">Why are my textures blurry?!</a><br>
+        <a href="#CanIDo">Can I do...</a><br>
+        <a href="#SourceControl">How does FuncGodot handle source control?</a><br>
+        <a href="#LocalConfigWontExport">Why am I getting an error trying to export my Local Configuration?</a><br>
+        <a href="#EntitiesNotBuilding">Why are my new entities not building? Why can't I find them in my map editor?</a><br>
+        <a href="#NodesDisappeared">Help! I manually added some nodes to my FuncGodotMap and when I hit build again they all disappeared!</a><br>
+        <a href="#SplitMap">How do I split up my map? It only comes out as one big mesh</a><br>
+        <a href="#Overdraw">I'm getting a lot of overdraw, why doesn't FuncGodot get rid of unseen faces?</a><br>
+        <a href="#WhyBlurryTex2">Why are my textures blurry?!</a>
+    </p>
+    <hr>
+
+    <p id="WhyBlurryTex">
+        <b class="faq">Why are my textures blurry?!</b><br>
+        <a href="#WhyAreMyTexturesBlurry"><b>Please don't skim the manual.</b></a>
+    </p>
+
+    <p id="CanIDo">
+        <b class="faq">Can I do...</b><br>
+        Yes.
+    </p>
+
+    <p id="SourceControl">
+        <b class="faq">How does FuncGodot handle source control?</b><br>
+        All resources that need to access or reference global paths go through the <a href="#LocalConfig"><b>FuncGodot Local Config</b></a> 
+        settings that are local to each machine. The various tool and project paths do need to be set per machine. Additionally, the FuncGodotMap has the option for using 
+        a local path to map files.
+    </p>
+
+    <p id="LocalConfigWontExport">
+        <b class="faq">Why am I getting an error trying to export my Local Configuration?</b><br>
+        You need to run your project at least once so that Godot can create the <b>user://</b> folder. This can be any scene. After the first run, you'll be able to 
+        export your Local Config.
+    </p>
+
+    <p id="EntitiesNotBuilding">
+        <b class="faq">Why are my new entities not building? Why can't I find them in my map editor?</b><br>
+        Double check to make sure you set a <a href="#Entity">Classname</a> in the entity resource before you exported the FGD. 
+        If this doesn't exist, FuncGodot will skip adding it to the FGD file and will only generate a <i>Node3D</i>.
+    </p>
+
+    <p id="NodesDisappeared">
+        <b class="faq">Help! I manually added some nodes to my FuncGodotMap and when I hit build again they all disappeared!</b><br>
+        FuncGodotMap nodes will always erase every child they have when rebuilt. There's no practical way for FuncGodot to confidently differentiate what it built, 
+        what was programmatically built as a result of its build, and what was hand placed by the user. 
+        If you feel the need to manually place nodes you should do so outside of the FuncGodotMap node in order to not lose any work.
+    </p>
+
+    <p id="SplitMap">
+       <b class="faq">How do I split up my map? It only comes out as one big mesh</b><br>
+       You're still mapping like you're compiling for the Quake engine. <a href="#Worldspawn">You need to map like your target is the Godot Engine.</a>
+    </p>
+
+    <p id="Overdraw">
+        <b class="faq">I'm getting a lot of overdraw, why doesn't FuncGodot get rid of unseen faces?</b><br>
+        You're still mapping like you're compiling for the Quake engine. <a href="#OcclusionCulling">You need to map like your target is the Godot Engine.</a>
+    </p>
+
+    <p id="WhyBlurryTex2">
+        <b class="faq">Why are my textures blurry?!</b><br>
+        ...
+    </p>
+</div>
