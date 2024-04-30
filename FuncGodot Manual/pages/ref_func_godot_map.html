@@ -41,6 +41,24 @@
                 <td>Emitted when the UV2 unwrapping is completed.</td>
             </tr>
         </table>
+        <h3>Functions</h3>
+        <table class="props">
+            <tr class=""header>
+                <td>Function</td>
+                <td>Parameters</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>verify_and_build()</td>
+                <td>0</td>
+                <td>Builds a map based on the local map file field it is currently using.<br>Emits: <code>build_complete</code>, <code>build_progress</code>, <code>build_failed</code> signals.</td>
+            </tr>
+            <tr>
+                <td>unwrap_uv2()</td>
+                <td>0 - 1. Node</td>
+                <td>Unwraps the UV2 for this map.<br>Recursively unwraps the uv2 for all children of this node or the node passed as a parameter.<br>Emits <code>unwrap_uv2_complete</code> signal.</td>
+            </tr>
+        </table>
 
         <h3>Properties</h3>
         <table class="props">
