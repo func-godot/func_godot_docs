@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="main">
+        <h1>Building from Map Editors</h1>
+        <p>
+            Much like idTech engine games, it's possible to build and launch directly into a map from NetRadiant Custom and TrenchBroom alike.
+            This can be quite a helpful tool for mappers to quickly try out their creations without a lengthy startup or debug menu process.
+        </p>
+        
+        <h2>Godot project setup</h2>
+
+        <p>
+            Regardless of which map editor you use, you'll need to check for any 
+            <a href="https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-get-cmdline-user-args">command line arguments.</a>
+
+            <p align=center><img src="../images/tips_editorbuild_1.png"><br></p>
+            
+            A basic example might look something like this:
+            <p align=center><img src="../images/tips_editorbuild_2.png"><br></p>
+
+        </p>
+
+        <h2>NetRadiant Custom</h2>
+
+        <p>
+            NetRadiant itself provides some basic scripting for this process, defined in the gamepack folder.
+            For example, in Sinewave's game SLAMFIRE, the path is <code class="highlight">&ltpath_to_radiant>\gamepacks\sfbase.game\default_build.xml</code>.
+        </p>
+        <p>
+
+        </p>
+            In Radiant, navigate to <code class="highlight">Build > Customize...</code>; here, we can see some build variables available:
+            <p align=center><img src="../images/tips_editorbuild_radiant1.png"><br></p>
+
+            To create an entry, open up the default build profile (mentioned above). You can issue a command to execute depending on the currently running platform like so:
+        </p>
+
+        <code><pre>
+            &lt?xml version="1.0"?>
+            &ltproject version="2.0">
+            &ltvar name="game">"[EnginePath]sf.[ExecutableType]"&lt/var>
+            &ltbuild name="Test map in engine">
+            &ltcommand>[game] -- launch_debug::"[MapFile]"&lt/command>
+            &lt/build>
+        </code></pre>
+
+        <p>
+            Restart NetRadiant, and you should see a new option in the build menu.
+            <p align=center><img src="../images/tips_editorbuild_radiant2.png"><br></p>
+        
+            <p align=center><img src="../images/tips_editorbuild_radiant3.png"><br></p>
+            
+            Selecting your new option will run the executable you defined above!
+            
+            <p align=center><img src="../images/tips_editorbuild_radiant4.png"><br></p>
+        </p>
+
+        
+    </div>
+    <br><br><br>
+</body>
+</html>
