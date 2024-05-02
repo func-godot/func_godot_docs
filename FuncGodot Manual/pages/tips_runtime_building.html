@@ -8,7 +8,7 @@
 <body>
     <div class="main">
         <h1>Runtime map building</h1>
-        <p>Runtime map building is where you build a map in the middle of a running game. This can be used for a number or purposes such as: procedural generation of maps, loading maps from the .map file instead of scenes, and to support user-made custom maps. Runtime map building can also be combined with map editor launch configurations to provide a seamless experience making a map and seeing it in-game.</p>
+        <p>Runtime map building is where you build a map in the middle of a running game. This can be used for a number of purposes such as: procedural generation of maps, loading maps from the .map file instead of scenes, and to support user-made custom maps. Runtime map building can also be combined with map editor launch configurations to provide a seamless experience making a map and seeing it in-game.</p>
         <h2>Setting up Runtime map building in Godot</h2>
         <p>Runtime map building involves using the method <code>verify_and_build()</code> available under the <a href="ref_func_godot_map.html" target="main">FuncGodotMap</a> node. The idea behind this, is that when you build a map at runtime, you set the <code>map_file</code> field, and then call this method. When this is done, this builds all the entities in the normal way, calling <code>_func_godot_apply_properties(entity_properties: Dictionary)</code> on these entities.</p>
         <p>When the map builds, it will emit the signals <code>build_complete</code> or <code>build_failed</code>, which you can then connect to, to handle errors gracefully and to run any post-build code you need to run.</p>
