@@ -8,7 +8,13 @@
 <body>
     <div class="main">
         <h1>Runtime map building</h1>
-        <p>Recall that the FuncGodotMap node has signals for build completion, UV2 unwrapping, and a method for building a map. In order to do runtime map building, you assign a map, connect to the signals you want, run verify_and_build(), and then run unwrap_uv2() if you need UV2 information. The below script demonstrates this:</p>
+        <p>Runtime map building is where in the middle of a running game, you build a map. This can be used for a number or purposes such as procedural generation of maps, loading maps from the file instead of making scenes, and to support user-made mods and custom maps. Runtime map building can also be combined with map editors to provide a seamless experience making a map and seeing it in-game.</p>
+        <h2>Setting up Runtime map building in Godot</h2>
+        <p>Runtime map building involves using the method <code>verify_and_build()</code> available under the <a href="ref_func_godot_map.html" target="main">FuncGodotMap</a> node. The idea behind this, is that when you build a map at runtime, you set the <code>map_file</code> field, and then call this method. When this is done, this builds all the entities in the normal way, calling <code>_func_godot_apply_properties(entity_properties: Dictionary)</code> on these entities.</p>
+        <p>When the map builds, it will emit the signals <code>build_complete</code> or <code>build_failed</code>, which you can then connect to, to handle errors gracefully and to run any post-build code you need to run.</p>
+        <p>If you need the UV2 information for baking lightmaps, you can then call FuncGodotMap's <code>unwrap_uv2()</code> method. This generates the UV2 information, which emits the signal <code>unwrap_uv2_complete</code> when it is complete. It is at this point you may bake your Lightmaps.
+        <blockquote><i>As of Godot 4.2, runtime lightmap baking is not currently possible, so instead you should consider using a different lighting solution here.</i></blockquote>
+        An example of this is below:</p>
         <pre><code>extends Node
 
 @onready var func_godot_map := $FuncGodotMap as FuncGodotMap
@@ -37,5 +43,7 @@ func _unwrap_uv2_complete() -> void:
     <blockquote><i>NOTE: This approach has limitations. You will need to figure out solutions to anything that needs baking, or for any scene changes that need to be made after the map is built.</i></blockquote>
     <blockquote><i>NOTE: Runtime map building runs into issues where .map files are saved as a .tres in your exported game. To get around this, you can change your import type to Skip and add <code>*map</code> to your non-resource export filter. Since 4.3 you can change the import type to Keep.</i></blockquote>
     </p>
+    <h2>Using command lines to build from Map Editors</h2>
+    <p>Combined with <code>OS.get_cmdline_user_args();</code> and your map editor's build profile, you can open up a map you are editing and build it at runtime to test it. For Trenchbroom, this involves <a href="https://trenchbroom.github.io/manual/latest/#launching_game_engines">configuring launch options</a>.</p>
 </body>
 </html>
