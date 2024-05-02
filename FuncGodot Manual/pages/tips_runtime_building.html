@@ -9,32 +9,33 @@
     <div class="main">
         <h1>Runtime map building</h1>
         <p>Recall that the FuncGodotMap node has signals for build completion, UV2 unwrapping, and a method for building a map. In order to do runtime map building, you assign a map, connect to the signals you want, run verify_and_build(), and then run unwrap_uv2() if you need UV2 information. The below script demonstrates this:</p>
-        <pre><code>extends Node3D
-@onready var funcGodotMap: FuncGodotMap = $FuncGodotMap;
+        <pre><code>extends Node
 
-func _ready() -> void:
-    funcGodotMap.connect("build_complete", build_complete);
-    funcGodotMap.connect("build_failed", build_failed);
-    funcGodotMap.connect("unwrap_uv2_complete", unwrap_uv2_complete);
+@onready var func_godot_map := $FuncGodotMap as FuncGodotMap
 
-func build_map(local_map_file: String) -> void:
-    funcGodotMap.local_map_file = local_map_file
-    funcGodotMap.verify_and_build()
+# We can connect the various build signals of the FuncGodotMap 
+# in order to add more functionality after building.
+func _ready():
+    func_godot_map.connect("build_complete", _build_complete)
+    func_godot_map.connect("build_failed", _build_failed)
+    func_godot_map.connect("unwrap_uv2_complete", _unwrap_uv2_complete)
+    func_godot_map.verify_and_build()
 
-func build_complete() -> void:
-    # Should only unwrap UV2 if you need it for baking lightmaps
-    # or something like that. You would also do your post-build stuff here
-    funcGodotMap.unwrap_uv2();
+# We need to wait for the build to finish before unwrapping mesh UV2s for lightmap baking.
+# Currently lightmap baking cannot be performed at runtime, so it's not terribly useful yet.
+# Consider creating a procedural Voxel GI solid class entity that can be baked at runtime instead.
+func _build_complete() -> void:
+    print("Success! Unwrapping UV2...")
+    func_godot_map.unwrap_uv2()
 
-func build_failed() -> void:
-    push_error("Build failed");
+func _build_failed() -> void:
+    printerr("Failed to build the map file! :(")
 
-func unwrap_uv2_complete() -> void:
-    # Build lightmaps?
-    pass</code></pre>
-
-    <p>Note: This approach has limitations. You will need to figure out solutions to anything that needs baking, or for any scene changes that need to be made after the map is built.</p>
-    <p>Note: Runtime map building runs into issues where .map files are saved as a .tres in your exported game. To get around this, you can change your import type to Skip and add <code>*map</code> to your non-resource export filter. Since 4.3 you can change the import type to Keep.</p>
-    <p>Tip: Combined with <code>OS.get_cmdline_user_args();</code> and your map editor's build profile, you can open up a map you are editing and build it at runtime to test it. For Trenchbroom, this involves <a href="https://trenchbroom.github.io/manual/latest/#launching_game_engines">configuring launch options</a>.</p>
+func _unwrap_uv2_complete() -> void:
+    print("UV2 unwrapping completed!")</code></pre>
+    <p>An example of this can be found in <a href="https://github.com/func-godot/func_godot_runtime_building" target="_blank">func_godot_runtime_building repository</a>.
+    <blockquote><i>NOTE: This approach has limitations. You will need to figure out solutions to anything that needs baking, or for any scene changes that need to be made after the map is built.</i></blockquote>
+    <blockquote><i>NOTE: Runtime map building runs into issues where .map files are saved as a .tres in your exported game. To get around this, you can change your import type to Skip and add <code>*map</code> to your non-resource export filter. Since 4.3 you can change the import type to Keep.</i></blockquote>
+    </p>
 </body>
 </html>
