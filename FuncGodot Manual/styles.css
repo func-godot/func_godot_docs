@@ -1,12 +1,23 @@
 /* Constants */
 :root {
+    color-scheme: dark light;
+
     --header_height: 70px;
     --sidenav_width: 380px;
+    --sidenav_bg: light-dark(#e4e4e4, #0f0b07);
+    --main_bg: light-dark(#f3f3f3, #1f1f1f);
+    --text_color: light-dark(#171717, #dbc3bb);
+    --link_color: light-dark(#bb4e17, #cf632b);
+    --link_hover_color: light-dark(#bd8235, #e7ab5f);
+    --secondary_bg: light-dark(#dfdfdf, #0f0b07);
+    --header_bg: light-dark(#4e4e4e, #070700);
+    --faq-color: light-dark(#913e14, #b7876b);
+    --table-tr-header: light-dark(#eee, #070700);
 }
 
 /* Base Styles Start */
 body {
-    color: #dbc3bb;
+    color: var(--text_color);
     font-family: verdana, sans-serif;
 }
 
@@ -15,40 +26,40 @@ p {
 }
 
 a {
-    color: #cf632b;
+    color: var(--link_color);
     text-decoration: none;
 }
-  
+
 a:hover {
-    color: #e7ab5f;
+    color: var(--link_hover_color);
 }
-  
+
 a:active {
-    color: #e7ab5f;
+    color: var(--link_hover_color);
 }
 
 pre {
-    background-color: #0f0b07;
+    background-color: var(--secondary_bg);
     padding: 10px;
 }
 
 code {
     font-size: 16px;
-    color: #abe7ff;
+    color: var(--text_color);
 }
 
 code.highlight {
-    background-color: #0f0b07;
+    background-color: var(--sidenav_bg);
 }
 
 blockquote {
-    background-color: #0f0b07;
+    background-color: var(--secondary_bg);
     padding: 10px;
 }
 
 table {
     border-collapse: collapse;
-    background-color: #1f1f1f;
+    background-color: var(--sidenav_bg);
     max-width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -59,11 +70,11 @@ table.props {
 }
 
 tr {
-    background-color: #0f0b07;
+    background-color: var(--sidenav_bg);
 }
 
 tr.header {
-    background-color: #070700;
+    background-color: var(--table-tr-header);
 }
 
 td {
@@ -78,7 +89,7 @@ b.code {
 }
 
 b.faq {
-    color:#b7876b;
+    color: var(--faq-color);
     font-weight: 600;
     font-style: italic;
 }
@@ -92,13 +103,13 @@ iframe.header {
     top: 0;
     left: 0;
     padding-left: 10px;
-    background-color: #070700;
+    background-color: var(--header_bg);
     position: fixed;
     border: none;
 }
 
 div.head {
-    background-color: #070700;
+    background-color: var(--header_bg);
 }
 /* Header End */
 
@@ -113,13 +124,13 @@ iframe.sidenav {
     overflow-x: hidden;
     overflow-y: auto;
     border: none;
-    background-color: #0f0b07;
+    background-color: var(--sidenav_bg);
     padding-left: 10px;
     padding-bottom: 10px;
 }
 
 div.sidenav {
-    background-color: #0f0b07;
+    background-color: var(--sidenav_bg);
 }
 
 h3.sidenav {
@@ -156,9 +167,9 @@ iframe.main {
     position: fixed;
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: #1f1f1f;
+    background-color: var(--main_bg);
     border: none;
     padding-left: 10px;
-    padding-right: 10px;
+    margin-left: 10px;
 }
 /* Main Body End */
