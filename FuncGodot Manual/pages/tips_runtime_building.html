@@ -75,7 +75,7 @@ for cmd_line_arg in cmd_line_args:
         func_godot_map.local_map_file = map_override
         func_godot_map.verify_and_build()</code></pre>
     <h2>Setting Up Your Editor</h2>
-    <p>In the below guides, there will be references made to executables. This is up to the user, however you can use the Godot executable to run your game straight from the editor, or you could use exported binaries of your game. On Windows, your Godot Binary path is where you keep your Godot.exe file. On most Linux systems this is found under <code>/usr/bin/godot</code></p>
+    <p>In the below guides, there will be references made to executables. This is up to the user, however you can use the Godot executable to run your game straight from the editor, or you could use exported binaries of your game. On Windows, your Godot Binary path is where you keep your Godot.exe file. On most Linux systems this is found under <code>/usr/bin/godot</code>. An example executable path and parameters for running a game in the editor: <code class="highlight">C:/GAMEDEV/Godot.exe --path C:/func_godot_project_example/ -- launch_debug::${MAP_BASE_NAME}.map</code>. Note that <code class="highlight">--path</code> is to the directory where project.godot resides. See the full list of Godot engine <a href="https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html" target="_blank">Command Line Interface options</a>.</p>
     <h3>TrenchBroom</h3>
     <p>
         The TrenchBroom documenation <a href="https://trenchbroom.github.io/manual/latest/#launching_game_engines">covers this generally</a>.<br>
@@ -84,9 +84,9 @@ for cmd_line_arg in cmd_line_args:
         <p align="center"><img src="../images/tips_editorbuild_trenchbroom1.png"><br></p>
         Go to <code class="highlight">Configure engines...</code>, add a game engine profile, and provide a name and path to the executable for this.
         <p align="center"><img src="../images/tips_editorbuild_trenchbroom2.png"><br></p>
-        Once you're happy with your engine configuration, click close. You will now see this as an option you can select. Select it. For this example I have used the regular godot executable.
+        Once you're happy with your engine configuration, click close. You will now see this as an option you can select. Select it. For this example I have used an exported executable.
         <p align="center"><img src="../images/tips_editorbuild_trenchbroom3.png"><br></p>
-        We then define the path to our godot project as <code class="highlight">--path C:/GAMEDEV/FuncGodot/</code>. This is the folder where your project.godot resides. We then mark user-made options with <code class="highlight">--</code>. In here, we use our <code class="highlight">launch_debug::</code> parameter, using the built in TrenchBroom variable <code class="highlight">${MAP_BASE_NAME}</code>. We follow this with <code class="highlight">.map</code> as this name is without the file extension . See the full list of Godot engine <a href="https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html" target="_blank">Command Line Interface options</a>.
+        We then mark user-made options with <code class="highlight">--</code>. In here, we use our <code class="highlight">launch_debug::</code> parameter, using the built in TrenchBroom variables <code class="highlight">${GAME_DIR_PATH}</code> and <code class="highlight">${MAP_BASE_NAME}</code>. We follow this with <code class="highlight">.map</code> as this name is without the file extension.
     </p>
 
     <h3>NetRadiant Custom</h3>
@@ -120,12 +120,7 @@ for cmd_line_arg in cmd_line_args:
 &ltcommand>[game] -- launch_debug::"[MapFile]"&lt/command>
 &lt/build></code></pre>
 
-        Restart NetRadiant, and you should see a new option in the build menu.
-        <p align="center"><img src="../images/tips_editorbuild_radiant2.png"><br></p>
-
-        <p align="center"><img src="../images/tips_editorbuild_radiant3.png"><br></p>
-
-        Selecting your new option will run the executable you defined above!
+        Restart NetRadiant, and you should see a new option in the build menu. Selecting your new option will run the executable you defined above!
     </p>
 </div>
 <br><br><br>
