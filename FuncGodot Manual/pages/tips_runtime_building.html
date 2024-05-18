@@ -53,8 +53,7 @@ func _unwrap_uv2_complete() -> void:
     <p>To build and launch our maps from the editor, you'll need to employ the <a href="https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-get-cmdline-user-args" target="_blank">OS class' ability to retrieve command line arguments</a>. A basic example might look something like this:</p>
 
 
-    <code><pre>
-# This script should be autoloaded to handle command line arguments
+    <code><pre># This script should be autoloaded to handle command line arguments
 # Additionally, requires a valid reference to a FuncGodot map
 
 var func_godot_map: FuncGodotMap
@@ -64,7 +63,7 @@ var cmd_line_args := OS.get_cmdline_user_args()
 
 # Loop over all command line arguments, split on a delimiter for each command, and use this for the file path
 for cmd_line_arg in cmd_line_args:
-    if cmd_line_arg.contains("launch_debug::"):
+    if cmd_line_arg.contains("run_map::"):
         var arg_and_value := cmd_line_arg.split("::")
         # This should split into an array of size 2, containing the parameter name and its corresponding value
         if arg_and_value.size() != 2:
@@ -81,12 +80,10 @@ for cmd_line_arg in cmd_line_args:
         The TrenchBroom documenation <a href="https://trenchbroom.github.io/manual/latest/#launching_game_engines">covers this generally</a>.<br>
 
         To run your map from TrenchBroom, navigate to <code class="highlight">Run > Launch Engine</code>.
+        Go to <code class="highlight">Configure engines...</code>, add a game engine profile, and provide a name and path to the executable for this. For this example, we use the path to the Godot editor executable.
+        Once you're happy with your engine configuration, click close. You will now see this as an option you can select. Select it.
         <p align="center"><img src="../images/tips_editorbuild_trenchbroom1.png"><br></p>
-        Go to <code class="highlight">Configure engines...</code>, add a game engine profile, and provide a name and path to the executable for this.
-        <p align="center"><img src="../images/tips_editorbuild_trenchbroom2.png"><br></p>
-        Once you're happy with your engine configuration, click close. You will now see this as an option you can select. Select it. For this example I have used an exported executable.
-        <p align="center"><img src="../images/tips_editorbuild_trenchbroom3.png"><br></p>
-        We then mark user-made options with <code class="highlight">--</code>. In here, we use our <code class="highlight">launch_debug::</code> parameter, using the built in TrenchBroom variables <code class="highlight">${GAME_DIR_PATH}</code> and <code class="highlight">${MAP_BASE_NAME}</code>. We follow this with <code class="highlight">.map</code> as this name is without the file extension.
+        Since we're using the Godot editor, as a parameter need to provide a path to the Godot project. We then mark user-made options with <code class="highlight">--</code>. In here, we use our <code class="highlight">run_map::</code> parameter, using the built in TrenchBroom variable <code class="highlight">${MAP_BASE_NAME}</code>. We follow this with <code class="highlight">.map</code> as this name is without the file extension.
     </p>
 
     <h3>NetRadiant Custom</h3>
@@ -110,15 +107,15 @@ for cmd_line_arg in cmd_line_args:
         To create an entry, open up the default build profile (mentioned above). 
         You can issue a command to execute depending on the currently running platform like so:
 
-        <code><pre>
-&lt?xml version="1.0"?>
-&ltproject version="2.0">
-&ltvar name="game">"[EnginePath]sf.[ExecutableType]"&lt/var>
-&ltbuild name="Test map in engine">
-&ltcommand>[game] -- launch_debug::"[MapFile]"&lt/command>
-&lt/build></code></pre>
+        <code><pre>&lt;?xml version="1.0"?>
+&lt;project version="2.0">
+    &lt;var name="game">"[EnginePath]example_project.[ExecutableType]"&lt;/var>
+    &lt;build name="Run and build map in exported project">
+        &lt;command>[game] -- run_map::"[MapFile]"&lt;/command>
+    &lt;/build>
+&lt;/project></code></pre>
 
-        Restart NetRadiant, and you should see a new option in the build menu. Selecting your new option will run the executable you defined above!
+        Restart NetRadiant, and you should see a new option in the build menu. Selecting your new option will run the command you defined above!
     </p>
 </div>
 <br><br><br>
