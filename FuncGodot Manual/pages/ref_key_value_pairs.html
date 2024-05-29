@@ -130,9 +130,9 @@
             </tr>
             <tr>
                 <td><a href="https://docs.godotengine.org/en/stable/classes/class_color.html" target="_blank">Color</a></td>
-                <td>string</td>
+                <td>color255</td>
                 <td>
-                    Color key values are represented as string "R G B". In some Map Editors they may offer a color picker.<br> 
+                    Color key values are represented as "R G B", with each value being from 0 to 255. Some map editors may offer a color picker.<br> 
                     Alpha is always set to 1.0. If alpha requires specification, use an additional float property.
                 </td>
             </tr>
@@ -152,6 +152,52 @@
                     Returns an <a href="https://docs.godotengine.org/en/stable/classes/class_int.html" target="_blank">Int</a> on map build to be used as a bit mask.<br> 
                     Somewhat complicated to set up and only flexibly supported in TrenchBroom.<br> 
                     See the <a href="#BitFlags">Bit Flags</a> section for more information.
+                </td>
+            </tr>
+            <tr>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_nodepath.html" target="_blank">NodePath</a></td>
+                <td>target_destination</td>
+                <td>
+                    NodePath is intended as a targeting property type in map editors, similar to Quake's "target" property. 
+                    Some map editors may have additional editor display options showing links between entities. 
+                    Not utilized in every map editor. Returns a <i>String</i> on map build.
+                </td>
+            </tr>
+            <tr>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_material.html" target="_blank">Material</a></td>
+                <td>material / shader</td>
+                <td>
+                    Material is intended as a texture path property type in map editors. Some map editors may offer a texture picker. 
+                    J.A.C.K. utilizes the <i>shader</i> key word (make sure to set your 
+                    <a href="ref_fgd_resources.html#File" target="main">FuncGodotFGDFile's target_map_editor property</a> to <i>JACK</i>). 
+                    Returns a <i>String</i> on map build, using the assigned default Material's resource path as the property's value.
+                </td>
+            </tr>
+            <tr>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html" target="_blank">Texture2D</a></td>
+                <td>decal</td>
+                <td>
+                    Texture2D is intended as a decal texture path property type in map editors. Some map editors may offer a texture picker, 
+                    typically filtered to only access a <i>decals.wad</i>. In the map editor, the texture at the specified path will behave in a similar way to 
+                    <a href="https://docs.godotengine.org/en/stable/classes/class_decal.html" target="_blank">Godot's Decal node</a>. 
+                    Returns a <i>String</i> on map build, using the assigned default Texture2D's resource path as the property's value.
+                </td>
+            </tr>
+            <tr>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_audiostream.html" target="_blank">AudioStream</a></td>
+                <td>sound</td>
+                <td>
+                    AudioStream is intended as an audio file path property type in map editors. Some map editors may offer a sound picker.  
+                    Returns a <i>String</i> on map build, using the assigned default AudioStream's resource path as the property's value.
+                </td>
+            </tr>
+            <tr>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_object.html" target="_blank">Object</a></td>
+                <td>target_source</td>
+                <td>
+                    Object is intended as a target name property type in map editors, similar to Quake's "targetname" property. 
+                    Some map editors may have additional editor display options showing links between entities. 
+                    Not utilized in every map editor. Returns a <i>String</i> on map build.
                 </td>
             </tr>
         </table>

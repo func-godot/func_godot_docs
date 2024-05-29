@@ -31,12 +31,12 @@
 
             <tr class="header"><td>Map Editor</td><td></td><td></td></tr>
             <tr>
-                <td>Model Key Word Supported</td>
-                <td>Bool</td>
+                <td>Target Map Editor</td>
+                <td>FuncGodotTargetMapEditor</td>
                 <td>
-                    Some map editors do not support the "model" key word and require the "studio" key word instead. 
-                    If you get errors in your map editor, try changing this setting. 
-                    This setting is overridden when the FGD is built via the Game Config resource.
+                    Some map editors do not support the features found in others (ex: TrenchBroom supports the "model" key word while others require "studio", 
+                    J.A.C.K. uses the "shader" key word while others use "material", etc...). If you get errors in your map editor, try changing this setting and re-exporting. 
+                    This setting is overridden when the FGD is built via a game config resource.
                 </td>
             </tr>
             
