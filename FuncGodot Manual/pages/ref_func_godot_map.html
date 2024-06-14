@@ -41,6 +41,25 @@
                 <td>Emitted when the UV2 unwrapping is completed.</td>
             </tr>
         </table>
+        
+        <h3>Functions</h3>
+        <table class="props">
+            <tr class=""header>
+                <td>Function</td>
+                <td>Description</td>
+                <td>Return type</td>
+            </tr>
+            <tr>
+                <td>verify_and_build()</td>
+                <td>Verify that FuncGodot is functioning and that <code>map_file</code> exists. If so, build the map. If not, signal <code>build_failed</code></td>
+                <td>void</td>
+            </tr>
+            <tr>
+                <td>unwrap_uv2(node: Node = null)</td>
+                <td>Recursively unwrap UV2s for <code>node</code> and its children, in preparation for baked lighting.</td>
+                <td>void</td>
+            </tr>
+        </table>
 
         <h3>Properties</h3>
         <table class="props">
