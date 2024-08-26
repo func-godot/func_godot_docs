@@ -45,6 +45,15 @@
                     is the order TrenchBroom will list the available formats. The <i>initialmap</i> key value is optional.
                 </td>
             </tr>
+
+            <tr class="header"><td>Textures</td><td></td><td></td></tr>
+            <tr>
+                <td>Textures Root Folder</td>
+                <td>String</td>
+                <td>
+                    Path to top level textures folder relative to the game path.
+                </td>
+            </tr>
             <tr>
                 <td>Texture Exclusion Patterns</td>
                 <td>Array[String]</td>
@@ -53,6 +62,8 @@
                     Useful for hiding PBR maps and animation frames.
                 </td>
             </tr>
+
+            <tr class="header"><td>Entities</td><td></td><td></td></tr>
             <tr>
                 <td>Fgd File</td>
                 <td>FuncGodotFGDFile</td>
@@ -69,13 +80,8 @@
                     <a href="https://trenchbroom.github.io/manual/latest/#game_configuration_files_entities" target="_blank">TrenchBroom Documentation</a> for more information.
                 </td>
             </tr>
-            <tr>
-                <td>Default Uv Scale</td>
-                <td>Vector2</td>
-                <td>Scale of textures on new brushes and when UV scale is reset.</td>
-            </tr>
             
-            <tr class="header"><td>Editor Hint Tags</td><td></td><td></td></tr>
+            <tr class="header"><td>Tags</td><td></td><td></td></tr>
             <tr>
                 <td>Brush Tags</td>
                 <td>Array[Resource]</td>
@@ -85,6 +91,23 @@
                 <td>Brushface Tags</td>
                 <td>Array[Resource]</td>
                 <td>TrenchBroomTag resources that apply to brush faces.</td>
+            </tr>
+
+            <tr class="header"><td>Face Attributes</td><td></td><td></td></tr>
+            <tr>
+                <td>Default Uv Scale</td>
+                <td>Vector2</td>
+                <td>Default scale of textures on new brushes and when UV scale is reset.</td>
+            </tr>
+
+            <tr class="header"><td>Compatibility</td><td></td><td></td></tr>
+            <tr>
+                <td>Game Config Version</td>
+                <td>GameConfigVersion</td>
+                <td>
+                    Game configuration format compatible with the version of TrenchBroom being used. 
+                    Only change if you're using an older version of TrenchBroom.
+                </td>
             </tr>
         </table>
         
