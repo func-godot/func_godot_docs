@@ -41,11 +41,11 @@ func _build_failed() -> void:
 
 func _unwrap_uv2_complete() -> void:
     print("UV2 unwrapping completed!")</code></pre>
-    <p>An example of this can be found in <a href="https://github.com/func-godot/func_godot_runtime_building" target="_blank">func_godot_runtime_building repository</a>.</p>
+    <p>This example can be found in the <a href="https://github.com/func-godot/func_godot_runtime_building" target="_blank">func_godot_runtime_building repository</a>.</p>
 
     <h1>Building from Map Editors</h1>
     <p>
-        Much like idTech engine games, it's possible to build and launch directly into a map from some map editors.
+        Much like id Tech engine games, it's possible to build and launch directly into a map from some map editors.
         This can be quite a helpful tool for testing rapid iterations.
     </p>
 
@@ -72,22 +72,25 @@ func _ready():
             # Apply the argument value to our map node and build!
             func_godot_map.local_map_file = arg_arr[1]
             func_godot_map.verify_and_build()</code></pre>
+    <p>This example can be found in the <a href="https://github.com/func-godot/func_godot_runtime_building" target="_blank">func_godot_runtime_building repository</a>.</p>
     <blockquote><i>NOTE: You can extend this to have more commands like God mode or Debug mode as your game needs, and use them when launching in editor.<br></i></blockquote>
     <h2>Setting Up Your Editor</h2>
-    <p>In every map editor you'll need to specify both an <b>executable</b> and <b>parameters</b> in your launch or build options. The executable can be either the <b>exported binary of your game</b> or the <b>Godot Editor binary</b> if launching from a Godot project. To run from your game from the Godot project, be sure to use the <code>--path</code> parameter, as defined in <a href="https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html" target="_blank"><b>Godot's Command Line Interface options</b></a>.</p>
+    <p>In every map editor you'll need to specify both an <b>executable</b> and <b>parameters</b> in your build options. The executable can be either the <b>exported binary of your game</b>, or the <b>Godot Editor binary</b> if launching from a Godot project. To run your game from the Godot project, be sure to use the <code>--path</code> parameter, as defined in <a href="https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html" target="_blank"><b>Godot's Command line reference</b></a>.</p>
     <h3>TrenchBroom</h3>
-    <p><a href="https://trenchbroom.github.io/manual/latest/#compiling_maps"><b>The TrenchBroom Reference Manual</b></a> covers Compiling Maps quite thoroughly. If you chose to use the Godot Editor for your launch executable, make sure to start your parameters with the <code>--path</code> command. You'll then add the <code>-- run_map::</code> build command we defined earlier, using the built-in TrenchBroom variables <code>${MAP_BASE_NAME}</code> to get the name of the currently opened map file, and using <code>${MAP_DIR_PATH}</code> for the path to the currently opened map file, and using <code>${GAME_DIR_PATH}</code> for the path to the current game as defined in the game preferences.</a>.</p>
-    <p>An example of set of parameters to launch from the Godot Editor will look something like this: <code>--path ${GAME_DIR_PATH} -- run_map::${MAP_DIR_PATH}/${MAP_BASE_NAME}.map</code></p>
+    <p>The <a href="https://trenchbroom.github.io/manual/latest/#compiling_maps"><b>TrenchBroom Reference Manual</b></a> covers Compiling Maps quite thoroughly. If you chose to use the Godot Editor for your launch executable, make sure to start your parameters with the <code>--path</code> command. You'll then add the <code>-- run_map::</code> build command we defined earlier, using the built-in TrenchBroom variables: <code>${MAP_BASE_NAME}</code> to get the name of the currently opened map file, <code>${MAP_DIR_PATH}</code> for the path to the currently opened map file, and <code>${GAME_DIR_PATH}</code> for the path to the current game as defined in the game preferences.</p>
+    <p>An example of the parameters to launch from the Godot Editor will look something like this: <code>--path ${GAME_DIR_PATH} -- run_map::${MAP_DIR_PATH}/${MAP_BASE_NAME}.map</code></p>
     <ol>
         <li>To run your map from TrenchBroom, navigate to <code>Run > Compile Map</code>.</li>
-        <li>Select the godot executable for the tool path. For your parameters, you define the path to your game and then pass in the map we want to run. Here we use the example given above.</li>
+        <li>Select the godot executable for the tool path.</li>
+        <li>For the parameters, define the path to your game and then pass in the map we want to run. Here we use the example given above.</li>
         <li>Now when you press Compile your game should launch using the parameters you defined!</li>
     </ol>
     <p align="center"><img src="../images/tips_editorbuild_trenchbroom1.png"><br></p>
+    <blockquote><i>NOTE: <code>${GAME_DIR_PATH}</code> and <code>${MAP_DIR_PATH}</code> both fail if the file path has spaces. If this affects you, you can use the exact path with quotes around it.<br></i></blockquote>
 
     <h3>NetRadiant Custom</h3>
 
-    <p>To launch from NetRadiantCustom, you must define at least one or more build <b>commands</b> which are defined in your <code>default_build_menu.xml</code> file which is located in your game's gamepack folder for its build processes. These build <b>commands</b> may refer to build <b>variables</b> also defined here, or one of the default variables NetRadiant provides for you.  You may either write them directly in the file yourself, or define them in the NetRadiantCustom Game Config resource. To preview these defaults, or any of your defined commands and their current values, select <code>Build > Customize...</code> in the top menu bar and check the <code>build variables</code> option.</p>
+    <p>To launch from NetRadiant Custom, you must define at least one or more build <b>commands</b> which are defined in your <code>default_build_menu.xml</code> file located in your game's gamepack folder for its build processes. These build <b>commands</b> may refer to build <b>variables</b> also defined here, or one of the default variables NetRadiant provides for you.  You may either write them directly in the file yourself, or define them in the NetRadiant Custom GamePack Config resource. To preview these defaults, or any of your defined commands and their current values, select <code>Build > Customize...</code> in the top menu bar and check the <code>build variables</code> option.</p>
 
     <p>A build profile might look something like this:</p>
 
