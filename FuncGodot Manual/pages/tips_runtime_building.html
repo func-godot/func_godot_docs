@@ -52,39 +52,38 @@ func _unwrap_uv2_complete() -> void:
     <h2>Godot Project Setup Example</h2>
     <p>To build and launch our maps from the editor, you'll need to employ the <a href="https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-get-cmdline-user-args" target="_blank">OS class' ability to retrieve command line arguments</a>. A basic example might look something like this:</p>
 
-    <code><pre># This script should be autoloaded to handle command line arguments
-# Additionally, requires a valid reference to a FuncGodot map
+    <pre><code>extends Node
 
-var func_godot_map: FuncGodotMap
+@onready var func_godot_map := $FuncGodotMap as FuncGodotMap
 
-var map_override: String
-var cmd_line_args := OS.get_cmdline_user_args()
-
-# Loop over all command line arguments, split on a delimiter for each command, and use this for the file path
-for cmd_line_arg in cmd_line_args:
-    if cmd_line_arg.contains("run_map::"):
-        var arg_and_value := cmd_line_arg.split("::")
-        # This should split into an array of size 2, containing the parameter name and its corresponding value
-        if arg_and_value.size() != 2:
-            return
-
-        map_override = arg_and_value[1]
-
-        func_godot_map.local_map_file = map_override
-        func_godot_map.verify_and_build()</code></pre>
+func _ready():
+    # We want to loop through each command line argument until we find 
+    # our "run_map" argument. This argument will be split using :: as a delimiter,
+    # giving us a two element array with the second element being our map's path.
+    for cmdline_arg in OS.get_cmdline_user_args():
+        if cmdline_arg.contains("run_map::"):
+            var arg_arr := cmdline_arg.split("::")
+            
+            # Safety check to make sure we didn't mess up our command line arguments.
+            # We should have a String array with [argument command, argument value].
+            if arg_arr.size() != 2:
+                return
+            
+            # Apply the argument value to our map node and build!
+            func_godot_map.local_map_file = arg_arr[1]
+            func_godot_map.verify_and_build()</code></pre>
     <blockquote><i>NOTE: You can extend this to have more commands like God mode or Debug mode as your game needs, and use them when launching in editor.<br></i></blockquote>
     <h2>Setting Up Your Editor</h2>
     <p>In every map editor you'll need to specify both an <b>executable</b> and <b>parameters</b> in your launch or build options. The executable can be either the <b>exported binary of your game</b> or the <b>Godot Editor binary</b> if launching from a Godot project. To run from your game from the Godot project, be sure to use the <code>--path</code> parameter, as defined in <a href="https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html" target="_blank"><b>Godot's Command Line Interface options</b></a>.</p>
     <h3>TrenchBroom</h3>
-    <p><a href="https://trenchbroom.github.io/manual/latest/#launching_game_engines"><b>The TrenchBroom Reference Manual</b></a> covers launch option configurations quite thoroughly. If you chose to use the Godot Editor for your launch executable, make sure to start your parameters with the <code>--path</code> command. You'll then add the <code>--run_map::</code> build command we defined earlier, using the built-in TrenchBroom variable <code>${MAP_BASE_NAME}</code> to get the name of the currently opened map file.</a>.</p>
-    <p>An example of set of parameters to launch from the Godot Editor will look something like this: <code>--path "C:\GAME DEV\FuncGodot\test_project" -- run_map::${MAP_BASE_NAME}.map</code></p>
-    <p>
-        To run your map from TrenchBroom, navigate to <code>Run > Launch Engine</code>.
-        Go to <code>Configure engines...</code>, add a game engine profile, and provide a name and path to the executable for this. For this example, we use the path to the Godot editor executable.
-        Once you're happy with your engine configuration, click close. You will now see this as an option you can select. Select it.
-        <p align="center"><img src="../images/tips_editorbuild_trenchbroom1.png"><br></p>
-        <p>Now when you press Launch your game should launch using the parameters you defined!</p>
-    </p>
+    <p><a href="https://trenchbroom.github.io/manual/latest/#compiling_maps"><b>The TrenchBroom Reference Manual</b></a> covers Compiling Maps quite thoroughly. If you chose to use the Godot Editor for your launch executable, make sure to start your parameters with the <code>--path</code> command. You'll then add the <code>-- run_map::</code> build command we defined earlier, using the built-in TrenchBroom variables <code>${MAP_BASE_NAME}</code> to get the name of the currently opened map file, and using <code>${MAP_DIR_PATH}</code> for the path to the currently opened map file, and using <code>${GAME_DIR_PATH}</code> for the path to the current game as defined in the game preferences.</a>.</p>
+    <p>An example of set of parameters to launch from the Godot Editor will look something like this: <code>--path ${GAME_DIR_PATH} -- run_map::${MAP_DIR_PATH}/${MAP_BASE_NAME}.map</code></p>
+    <ol>
+        <li>To run your map from TrenchBroom, navigate to <code>Run > Compile Map</code>.</li>
+        <li>Select the godot executable for the tool path. For your parameters, you define the path to your game and then pass in the map we want to run. Here we use the example given above.</li>
+        <li>Now when you press Compile your game should launch using the parameters you defined!</li>
+    </ol>
+    <p align="center"><img src="../images/tips_editorbuild_trenchbroom1.png"><br></p>
 
     <h3>NetRadiant Custom</h3>
 
