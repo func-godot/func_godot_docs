@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="main">
+        <h1>Runtime Map Building</h1>
+        <p>There are times where you may want to build maps while in the middle of running your game, whether it's for loading levels from map files instead of scenes, procedural generation, or as a way to support user-made maps. Runtime map building can also be combined with map editor launch configurations to provide a largely seamless experience between making a map and seeing it in-game.</p>
+        <h2>Setting up Runtime Map Building</h2>
+        <p>To build a map at Runtime, start by either using a templated scene with an empty <i>FuncGodotMap</i> or instantiating one. Next you'll need to make sure to set either the <code>local_map_file</code> or <code>global_map_file</code> to your map's file path. Don't use <code>load()</code> here! That will be taken care of in the next step.</p>
+        <p>Once your map file path has been set, you can run the <code>verify_and_build()</code> method from the <a href="ref_func_godot_map.html" target="main">FuncGodotMap</a> node. When this is done, your map will be built just as it would have been by pressing the <i>Build</i> button in the Editor, along with all of the entity callbacks. Be aware that the <code>Engine.is_editor_hint()</code> conditional will return as false, in case you use it to control properties handling through the FuncGodot entity callbacks.</p>
+        <p>When the map builds, it will emit the signals <code>build_complete</code> or <code>build_failed</code>. You can use these signals to handle errors gracefully and to run any post-build code you need to run.</p>
+        <p>If using <a href="https://docs.godotengine.org/en/4.3/tutorials/3d/global_illumination/using_lightmap_gi.html" target="_blank">LightmapGI</a> for your global illumination solution, you can use the <i>FuncGodotMap</i> node's <code>unwrap_uv2()</code> method after receiving the <code>build_complete</code> signal. Once unwrapping has finished, the <i>FuncGodotMap</i> node will emit <code>unwrap_uv2_complete</code>.</p>
+        <blockquote><i>NOTE: Godot 4.3 does not currently support runtime lightmap baking or UV2 unwrapping in exported builds. For now, consider using a different lighting solution for runtime building.<br></i></blockquote>
+        An example of runtime map building is as follows:</p>
+        <pre><code>extends Node
+
+@onready var func_godot_map := $FuncGodotMap as FuncGodotMap
+
+# We can connect the various build signals of the FuncGodotMap 
+# in order to add more functionality after building.
+func _ready():
+    func_godot_map.connect("build_complete", _build_complete)
+    func_godot_map.connect("build_failed", _build_failed)
+    func_godot_map.connect("unwrap_uv2_complete", _unwrap_uv2_complete)
+    func_godot_map.local_map_file = "res://maps/example.map"
+    func_godot_map.verify_and_build()
+
+# We need to wait for the build to finish before unwrapping mesh UV2s for lightmap baking.
+# Currently lightmap baking cannot be performed at runtime, so it's not terribly useful yet.
+# Consider creating a procedural Voxel GI solid class entity that can be baked at runtime instead.
+func _build_complete() -> void:
+    print("Success! Unwrapping UV2...")
+    func_godot_map.unwrap_uv2()
+
+func _build_failed() -> void:
+    printerr("Failed to build the map file! :(")
+
+func _unwrap_uv2_complete() -> void:
+    print("UV2 unwrapping completed!")</code></pre>
+    <p>This example can be found in the <a href="https://github.com/func-godot/func_godot_runtime_building" target="_blank">func_godot_runtime_building repository</a>.</p>
+
+    <h1>Building from Map Editors</h1>
+    <p>
+        Much like id Tech engine games, it's possible to build and launch directly into a map from some map editors.
+        This can be quite a helpful tool for testing rapid iterations.
+    </p>
+
+    <h2>Godot Project Setup Example</h2>
+    <p>To build and launch our maps from the editor, you'll need to employ the <a href="https://docs.godotengine.org/en/stable/classes/class_os.html#class-os-method-get-cmdline-user-args" target="_blank">OS class' ability to retrieve command line arguments</a>. A basic example might look something like this:</p>
+
+    <pre><code>extends Node
+
+@onready var func_godot_map := $FuncGodotMap as FuncGodotMap
+
+func _ready():
+    # We want to loop through each command line argument until we find 
+    # our "run_map" argument. This argument will be split using :: as a delimiter,
+    # giving us a two element array with the second element being our map's path.
+    for cmdline_arg in OS.get_cmdline_user_args():
+        if cmdline_arg.contains("run_map::"):
+            var arg_arr := cmdline_arg.split("::")
+            
+            # Safety check to make sure we didn't mess up our command line arguments.
+            # We should have a String array with [argument command, argument value].
+            if arg_arr.size() != 2:
+                return
+            
+            # Apply the argument value to our map node and build!
+            func_godot_map.local_map_file = arg_arr[1]
+            func_godot_map.verify_and_build()</code></pre>
+    <p>This example can be found in the <a href="https://github.com/func-godot/func_godot_runtime_building" target="_blank">func_godot_runtime_building repository</a>.</p>
+    <blockquote><i>NOTE: You can extend this to have more commands like God mode or Debug mode as your game needs, and use them when launching in editor.<br></i></blockquote>
+    <h2>Setting Up Your Editor</h2>
+    <p>In every map editor you'll need to specify both an <b>executable</b> and <b>parameters</b> in your build options. The executable can be either the <b>exported binary of your game</b>, or the <b>Godot Editor binary</b> if launching from a Godot project. To run your game from the Godot project, be sure to use the <code>--path</code> parameter, as defined in <a href="https://docs.godotengine.org/en/stable/tutorials/editor/command_line_tutorial.html" target="_blank"><b>Godot's Command line reference</b></a>.</p>
+    <h3>TrenchBroom</h3>
+    <p>The <a href="https://trenchbroom.github.io/manual/latest/#compiling_maps"><b>TrenchBroom Reference Manual</b></a> covers Compiling Maps quite thoroughly. If you chose to use the Godot Editor for your launch executable, make sure to start your parameters with the <code>--path</code> command. You'll then add the <code>-- run_map::</code> build command we defined earlier, using the built-in TrenchBroom variables: <code>${MAP_BASE_NAME}</code> to get the name of the currently opened map file, <code>${MAP_DIR_PATH}</code> for the path to the currently opened map file, and <code>${GAME_DIR_PATH}</code> for the path to the current game as defined in the game preferences.</p>
+    <p>An example of the parameters to launch from the Godot Editor will look something like this: <code>--path ${GAME_DIR_PATH} -- run_map::${MAP_DIR_PATH}/${MAP_BASE_NAME}.map</code></p>
+    <ol>
+        <li>To run your map from TrenchBroom, navigate to <code>Run > Compile Map</code>.</li>
+        <li>Select the godot executable for the tool path.</li>
+        <li>For the parameters, define the path to your game and then pass in the map we want to run. Here we use the example given above.</li>
+        <li>Now when you press Compile your game should launch using the parameters you defined!</li>
+    </ol>
+    <p align="center"><img src="../images/tips_editorbuild_trenchbroom1.png"><br></p>
+    <blockquote><i>NOTE: <code>${GAME_DIR_PATH}</code> and <code>${MAP_DIR_PATH}</code> both fail if the file path has spaces. If this affects you, you can use the exact path with quotes around it.<br></i></blockquote>
+
+    <h3>NetRadiant Custom</h3>
+
+    <p>To launch from NetRadiant Custom, you must define at least one or more build <b>commands</b> which are defined in your <code>default_build_menu.xml</code> file located in your game's gamepack folder for its build processes. These build <b>commands</b> may refer to build <b>variables</b> also defined here, or one of the default variables NetRadiant provides for you.  You may either write them directly in the file yourself, or define them in the NetRadiant Custom GamePack Config resource. To preview these defaults, or any of your defined commands and their current values, select <code>Build > Customize...</code> in the top menu bar and check the <code>build variables</code> option.</p>
+
+    <p>A build profile might look something like this:</p>
+
+    <code><pre>&lt;?xml version="1.0"?>
+    &lt;project version="2.0">
+        &lt;var name="game">"[EnginePath]example_project.[ExecutableType]"&lt;/var>
+        &lt;build name="Run and build map in exported project">
+            &lt;command>[game] -- run_map::"[MapFile]"&lt;/command>
+        &lt;/build>
+    &lt;/project></code></pre>
+
+    <p>After making any changes to this file, restart NetRadiant Custom. The build menu will now show your new options; selecting one will run the command you defined above!</p>
+
+    <p align="center"><img src="../images/tips_editorbuild_radiant1.png"><br></p>
+
+</div>
+<br><br><br>
+</body>
+</html>
