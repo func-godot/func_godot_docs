@@ -172,6 +172,14 @@
                 </td>
             </tr>
             <tr>
+                <td>Origin Texture</td>
+                <td>String</td>
+                <td>
+                    Optional path for the origin texture, relative to <i>Base Texture Dir</i>. Brush faces textured with the origin texture will have those faces 
+                    removed from the generated <i>MeshInstance3D</i>. The bounds of these faces will be used to calculate the origin point of the entity.
+                </td>
+            </tr>
+            <tr>
                 <td>Texture Wads</td>
                 <td>Array[Resource]</td>
                 <td>
@@ -181,16 +189,11 @@
                 </td>
             </tr>
 
-            <tr><td>Materials</td><td></td><td></td></tr>
+            <tr class="header"><td>Materials</td><td></td><td></td></tr>
             <tr>
                 <td>Material File Extension</td>
                 <td>String</td>
                 <td>File extension to search for <i>Material</i> definitions.</td>
-            </tr>
-            <tr>
-                <td>Unshaded</td>
-                <td>Bool</td>
-                <td>If true, all materials will be unshaded, ignoring light. Also known as "fullbright".</td>
             </tr>
             <tr>
                 <td>Default Material</td>
@@ -246,7 +249,7 @@
                 </td>
             </tr>
 
-            <tr><td>UV Unwrap</td><td></td><td></td></tr>
+            <tr class="header"><td>UV Unwrap</td><td></td><td></td></tr>
             <tr>
                 <td>Uv Unwrap Texel Size</td>
                 <td>Float</td>
@@ -263,9 +266,8 @@
                 <td>Bool</td>
                 <td>
                     If true, will organize Scene Tree using Trenchbroom Layers and Groups. Layers and Groups will be generated as <i>Node3Ds</i>. 
-                    All structural brushes will be moved out of the Layers and Groups and merged into the Worldspawn entity. Additionally, 
-                    any Layers toggled to be omitted from export in TrenchBroom will be freed on map build before the Layers' children can apply 
-                    <code>func_godot_properties</code> or call <code>_func_godot_apply_properties()</code> and <code>_func_godot_build_complete()</code>.
+                    All structural brushes will be moved out of the Layers and Groups and merged into the Worldspawn entity. 
+                    Any Layers toggled to be omitted from export in TrenchBroom will not be built.
                 </td>
             </tr>
         </table>

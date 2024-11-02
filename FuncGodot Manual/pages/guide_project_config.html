@@ -45,7 +45,7 @@
         <h3>Local Config Properties</h3>
 
         <p>
-            Viewing this resource's properties in the inspector, you'll be greeted with some options. We'll ignore the <i>Export Func Godot Settings</i> property for now.
+            Viewing this resource's properties in the inspector, you'll be greeted with some options. We'll ignore the <i>Export Func Godot Settings</i> and <i>Reload Func Godot Settings</i> property for now.
         </p>
         <p align="center"><img src="../images/ref_local_config.png" alt="FuncGodotLocalConfig resource inspector."></p>
         <p>
@@ -79,7 +79,7 @@
             for <i>FuncGodotFGDModelPointClass</i> definitions in map editors other than TrenchBroom.
         </p>
 
-        <h3>Exporting the Project Config</h3>
+        <h3>Exporting the Local Config</h3>
         <p>
             Remember that <i>Export Func Godot Settings</i> property I told you to ignore earlier? Once you have your settings in place, go ahead and click it. 
             It will automatically generate a <i>MyGameFuncGodotConfig.json</i> file in your 
@@ -93,6 +93,9 @@
             This is how we keep local settings local. Upon opening your project, FuncGodot will automatically update <i>func_godot_local_config.tres</i> to load the data from 
             the generated JSON file found in your user data folder, and setting the resource's <i>Export</i> property to true will overwrite that file with the new settings. 
             These settings are not saved to source control, allowing teams to work together more easily and more flexibly.
+        </p>
+        <p>
+            If you make a change you didn't mean to commit and you haven't yet exported, you can use the <i>Reload</i> option to revert your unwanted changes.
         </p>
         
         <br><br><br>

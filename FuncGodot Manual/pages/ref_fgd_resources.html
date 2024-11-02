@@ -177,7 +177,7 @@
                 <td>Spawn Type</td>
                 <td>SpawnType</td>
                 <td>
-                    Determines how FuncGodot generates both the mesh and the collision in regards to vertice positioning and combining.<br>
+                    Controls whether this Solid Class is the worldspawn, is combined with the worldspawn, or is spawned as its own free-standing entity.<br>
                     <ul>
                         <li>
                             <b>WORLDSPAWN : </b>Builds the geometry of this entity without regard to its center position. Upon build completion all geometry will be 
@@ -199,16 +199,29 @@
                 <td>Origin Type</td>
                 <td>OriginType</td>
                 <td>
-                    Determines how this Solid Class utilizes the <code>"origin"</code> key value pair to find its position. Only valid if <i>Spawn Type</i> is set to ENTITY.<br>
+                    Controls how this Solid Class determines its center position. Only valid if <i>Spawn Type</i> is set to ENTITY.<br>
                     <ul>
                         <li>
-                            <b>IGNORE : </b>Ignore origin property and only use averaged brush vertices for positioning.
+                            <b>AVERAGED : </b>Use averaged brush vertices for center position. This is the old Qodot behavior.
                         </li>
                         <li>
-                            <b>ABSOLUTE : </b>Use origin property for position center, ignoring brush vertice positions.
+                            <b>ABSOLUTE : </b>Use <code>origin</code> class property in global coordinates as the center position.
                         </li>
                         <li>
-                            <b>RELATIVE : </b>Calculate position center using origin as an offset to averaged brush vertice positions.
+                            <b>RELATIVE : </b>Calculate center position using <code>origin</code> class property as an offset to the entity's bounding box center.
+                        </li>
+                        <li>
+                            <b>BRUSH : </b>Calculate center position based on the bounding box center of all brushes using the <a href="guide_textures.html#Origin" target="main">origin texture</a> specified in the 
+                            <a href="ref_func_godot_map.html#MapSettings" target="main">FuncGodotMapSettings</a>.
+                        </li>
+                        <li>
+                            <b>BOUNDS_CENTER : </b>Use the center of the entity's bounding box for center position. This is the default option and recommended for most entities.
+                        </li>
+                        <li>
+                            <b>BOUNDS_MINS : </b>Use the lowest bounding box coordinates for center position. This is standard Quake and Half-Life brush entity behavior.
+                        </li>
+                        <li>
+                            <b>BOUNDS_MAXS : </b>Use the highest bounding box coordinates for center position.
                         </li>
                     </ul>
                 </td>

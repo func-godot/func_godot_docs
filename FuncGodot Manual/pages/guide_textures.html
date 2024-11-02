@@ -9,7 +9,7 @@
     <div class="main">
         <h1>Textures</h1>
 
-        <h2>How Textures Work In FuncGodot</h2>
+        <h2 id="HowTexWork">How Textures Work In FuncGodot</h2>
         <p>
             If you take a look at a <i>.map</i> file, you'll see that it's just a text file describing the makeup of your map and doesn't actually store any other data, 
             including texture images. Let's look at this example of a <i>Solid Entity</i> in a map file:
@@ -135,6 +135,24 @@
         <p align=center><img src="../images/guide_tex_clip_example.png" height="512px"> <img src="../images/guide_tex_clip_example2.png" height="512px"></p>
         <p>... and if you want them to pass through, use Skip <sub>(with Concave collision)</sub>.</p>            
         <p align=center><img src="../images/guide_tex_skip_example.png" height="512px"> <img src="../images/guide_tex_skip_example2.png" height="512px"></p>
+
+        <h2 id="Origin">The Origin Texture</h2>
+        <p align="center"><img src="../images/origin.png" alt="Origin texture" height="200">
+        <p>
+            In Half-Life mapping, some entities like rotating doors require an <b>origin brush</b> to determine where the hinge should be. FuncGodot provides a means to emulate 
+            this behavior using a special origin texture. Just like Clip and Skip, the Origin texture is assigned by the FuncGodotMapSettings resource.
+        </p>
+        <p>
+            To use it, first you must set your Solid Entity class resource <b>origin type</b> to <i>BRUSH</i>. Then in your map editor, create your brush entity as you normally would. 
+            Once you've done that, add an additional brush to your entity, move it to where you want the entity's pivot point to be, and texture it with the Origin texture.
+        </p>
+        <p>
+            Once you build the map in Godot, your entity should now have its pivot point set to the center of where the Origin brush was in the map file, and the Origin brush is removed.
+        </p>
+        <p align=center><img src="../images/guide_tex_org1.png" height="512px"> <img src="../images/guide_tex_org2.png" height="512px"></p>
+        <p>
+            One last note: if you don't create an Origin brush on a Solid Entity with the <i>BRUSH</i> origin type, it will fall back to using the <a href="ref_fgd_resources.html#Solid" target="main">BOUNDS_CENTER origin type</a>.
+        </p>
 
         <h2 id="WADFiles">WAD Files</h2>
         <p>

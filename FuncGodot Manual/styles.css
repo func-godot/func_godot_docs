@@ -83,6 +83,10 @@ b.faq {
     font-style: italic;
 }
 
+li {
+    padding: 10px;
+}
+
 /* Base Styles End */
 
 /* Header Start */

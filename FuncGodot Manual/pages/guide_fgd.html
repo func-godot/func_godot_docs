@@ -29,7 +29,7 @@
         <p align="center"><img src="../images/guide_fgd_res_loc.png" alt="func_godot_fgd.tres location."></p>
         <p>
             This is the default FGD file set in the <a href="ref_func_godot_map.html#MapSettings"><b>FuncGodotMapSettings</b></a> resource. The basic entity definitions included with it are 
-            <i>Worldspawn</i>, <i>func_detail</i>, <i>func_detail_illusionary</i>, <i>func_illusionary</i>, and <i>Phong</i>. We'll go over what each of these entity types are a little farther below.
+            <i>Worldspawn</i>, <i>func_geo</i>, <i>func_detail</i>, <i>func_detail_illusionary</i>, <i>func_illusionary</i>, and <i>Phong</i>. We'll go over what each of these entity types are a little farther below.
         </p>
 
         <p>
@@ -47,11 +47,13 @@
             <a href="ref_local_config.html">FuncGodot Local Config</a>. Use this whenever you need to update your FGD.
         </p>
         <p>
-            The next property, <b>Model Key Word Supported</b>, is dependent upon which map editor you use. Point class entities in map editors can have display models assigned to them 
-            according to their FGD definitions. Most map editors seem to use the "studio" key word to define the model path, but TrenchBroom instead optionally allows the "model" key word 
-            while also including additional display options and expressions. When set to <i>false</i>, FuncGodot will omit entity definition meta properties using the "model" key word, in 
-            order to prevent errors in your chosen map editor. When exporting the FGD File through a <a href="ref_trenchbroom_resources.html#GameConfig">TrenchBroom Game Config</a> resource 
-            the setting will be overridden to <i>true</i>. See the <a href="https://developer.valvesoftware.com/wiki/FGD#Class_Types_and_Properties" target="_blank">Valve Developer Wiki</a> for more information.
+            The next property, <b>Target Map Editor</b>, is intended to help with specific key words that aren't shared across the different map editors. 
+            Point class entities in map editors can have display models assigned to them according to their FGD definitions. 
+            Most map editors seem to use the "studio" key word to define the model path, but TrenchBroom instead optionally allows the "model" key word while also including 
+            additional display options and expressions. When set to <i>false</i>, FuncGodot will omit entity definition meta properties using the "model" key word in order to 
+            prevent errors in your chosen map editor. When exporting the FGD File through a <a href="ref_trenchbroom_resources.html#GameConfig">TrenchBroom Game Config</a> 
+            resource the setting will be overridden to <i>true</i>. 
+            See the <a href="https://developer.valvesoftware.com/wiki/FGD#Class_Types_and_Properties" target="_blank">Valve Developer Wiki</a> for more information.
         </p>
         <p>
             <b>Fgd Name</b> should be self evident: this will be your exported FGD's filename, minus the file extension. Best practice would be to set this to either your game's name or its acronym.
