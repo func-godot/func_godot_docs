@@ -3,9 +3,9 @@
 <head>
     <title>FuncGodot Manual</title>
     <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="main">
     <div class="main">
         <h1>FuncGodot FGD Resources</h1>
 
@@ -76,6 +76,7 @@
                 <td>Type</td>
                 <td>Description</td>
             </tr>
+
             <tr class="header"><td>Entity Definition</td><td></td><td></td></tr>
             <tr>
                 <td>Classname</td>
@@ -129,7 +130,7 @@
                     and <a href="https://trenchbroom.github.io/manual/latest/#display-models-for-entities" target="_blank">TrenchBroom</a> documentation for more information.
                 </td>
             </tr>
-
+            
             <tr class="header"><td>Node Generation</td><td></td><td></td></tr>
             <tr>
                 <td>Node Class</td>
@@ -234,7 +235,7 @@
                     </ul>
                 </td>
             </tr>
-
+            
             <tr class="header"><td>Visual Build</td><td></td><td></td></tr>
             <tr>
                 <td>Build Visuals</td>
@@ -268,7 +269,7 @@
                 <td>Int, 3D Render Flags</td>
                 <td>This Solid Class' MeshInstance3D will only be visible for Camera3Ds whose cull mask includes any of these render layers.</td>
             </tr>
-
+            
             <tr class="header"><td>Collision Build</td><td></td><td></td></tr>
             <tr>
                 <td>Collision Shape Type</td>
@@ -315,6 +316,66 @@
                     The collision margin for the Solid Class' collision shapes. Not used in Godot Physics. 
                     See <a href="https://docs.godotengine.org/en/stable/classes/class_shape3d.html#class-shape3d-property-margin" target="_blank">Shape3D documentation</a> 
                     for details.
+                </td>
+            </tr>
+            
+            <tr class="header">
+                <td>Mesh Metadata</td>
+                <td></td>
+                <td>
+                    The following properties tell FuncGodot to add a <i>"func_godot_mesh_data"</i> Dictionary to the metadata of the generated node upon build. 
+                    This data is parallelized, so that each element of the array is ordered to reference the same face in the mesh.
+                </td>
+            </tr>
+            <tr>
+                <td>Add Textures Metadata</td>
+                <td>Bool</td>
+                <td>
+                    Add a texture lookup table to the generated node's metadata on build.<br><br> 
+                    The data is split between an Array of <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html" target="_blank">StringName</a> 
+                    called <i>"texture_names"</i> containing all currently used texture materials and a 
+                    <a href="https://docs.godotengine.org/en/stable/classes/class_packedint32array.html" target="_blank">PackedInt32Array</a> 
+                    called <i>"textures"</i> where each element is an index corresponding to the <i>"texture_names"</i> entries.
+                </td>
+            </tr>
+            <tr>
+                <td>Add Vertex Metadata</td>
+                <td>Bool</td>
+                <td>
+                    Add a <a href="https://docs.godotengine.org/en/stable/classes/class_packedvector3array.html" target="_blank">PackedVector3Array</a> 
+                    called <i>"vertices"</i> to the generated node's metadata on build.<br><br> 
+                    This is a list of every vertex in the generated node's <i>MeshInstance3D</i>. Every 3 vertices represent a single face.
+                </td>
+            </tr>
+            <tr>
+                <td>Add Face Position Metadata</td>
+                <td>Bool</td>
+                <td>
+                    Add a <i>PackedVector3Array</i> called <i>"positions"</i> to the generated node's metadata on build.<br><br> 
+                    This is a list of positions for each face, local to the generated node, calculated by averaging the face's vertices to find its center.
+                </td>
+            </tr>
+            <tr>
+                <td>Add Face Normal Metadata</td>
+                <td>Bool</td>
+                <td>
+                    Add a <i>PackedVector3Array</i> called <i>"normals"</i> in the generated node's metadata on build.<br><br> 
+                    Contains a list of each face's normal.
+                </td>
+            </tr>
+            <tr>
+                <td>Add Collision Shape Face Range Metadata</td>
+                <td>Bool</td>
+                <td>
+                    Add a <i>Dictionary</i> called <i>"collision_shape_to_face_range_map"</i> to the generated node's metadata on build.<br><br> 
+                    Contains keys of <i>Strings</i>, which are the names of child <i>CollisionShape3D</i> nodes, and values of 
+                    <a href="https://docs.godotengine.org/en/stable/classes/class_vector2i.html" target="_blank">Vector2i</a> 
+                    where the <i>X</i> represents the starting index of that child's faces and the <i>Y</i> represents the
+                    ending index.<br><br>
+                    For example, an element of<br>
+                    <code>{ "entity_1_brush_0_collision_shape" : Vector2i(0, 15) }</code><br>
+                    shows that this solid class has been generated with one child collision shape named <i>entity_1_brush_0_collision_shape</i>
+                    which handles the first 15 faces of the parts of the mesh with collision.
                 </td>
             </tr>
 

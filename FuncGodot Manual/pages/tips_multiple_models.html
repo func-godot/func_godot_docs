@@ -3,9 +3,9 @@
 <head>
     <title>FuncGodot Manual</title>
     <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="main">
     <div class="main">
         <h1>Conditional Models in TrenchBroom</h1>
         <p>
@@ -41,9 +41,9 @@
         </p>
         <pre><code>model(
     {{
-        model_id == 1 -> "path": "path/to/model1.glb",
-        model_id == 2 -> "path": "path/to/model2.glb",
-        model_id == 3 -> "path": "path/to/model3.glb",
+        model_id == 1 -> {"path": "path/to/model1.glb"},
+        model_id == 2 -> {"path": "path/to/model2.glb"},
+        model_id == 3 -> {"path": "path/to/model3.glb"},
         "path": "path/to/model0.glb"    // default value
     }}
 ) = point_entity : "Example point entity description"
