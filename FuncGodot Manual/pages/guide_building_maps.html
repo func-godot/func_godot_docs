@@ -54,6 +54,7 @@
             <a href="https://docs.godotengine.org/en/stable/tutorials/3d/global_illumination/using_lightmap_gi.html#setting-up" target="_blank">
                 consult the Godot documentation</a> for more information.
         </p>
+        
         <h2 id="InverseScaleFactor">Inverse Scale Factor</h2>
         <p>
             One of the most impactful properties is the <b>Inverse Scale Factor</b>. It tells FuncGodot how big or small your map should be built. 
@@ -79,6 +80,7 @@
                 into Godot Units using your Inverse Scale Factor.
             </i>
         </p>
+
         <h2 id="TrenchbroomHierarchy">Use Trenchbroom Groups Hierarchy</h2>
         <p>
             TrenchBroom has some unique features in the form of <i>Layers</i> and <i>Groups</i> (not to be confused with <i>func_group</i>, but also they're func_groups; 
@@ -94,6 +96,17 @@
         <p align="center"><img src="../images/guide_build_groups2.png" alt="Scene tree showing a flat entity hierarchy"></p>
         <p align="center">However, if you build your FuncGodotMap with <i>Use Trenchbroom Groups Hierarchy</i> enabled, you'll get this instead:</p>
         <p align="center"><img src="../images/guide_build_groups3.png" alt="Scene tree showing a multi level entity hierarchy based upon the map layers and groups"></p>
+
+        <h2 id="DefaultMapSettings">Default Map Settings</h2>
+        <p>
+            Every time you instantiate a new FuncGodotMap node the map settings applied default to the resource found in the addons folder. Instead of forcing 
+            you to set the map settings to your custom one each time, FuncGodot does have a Project Setting that allows you to choose a custom Map Settings resource 
+            as your default.
+        </p>
+        <p align="center"><img src="../images/guide_build_proj_settings.png" alt="FuncGodotMap buttons"></p>
+        <p>
+            Keep in mind that this only affects new FuncGodotMap nodes. Any already instantiated with the old settings will retain them unless manually changed.
+        </p>
 
         <h2 id="Building">Building</h2>
         <p>

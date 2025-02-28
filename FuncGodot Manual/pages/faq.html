@@ -15,6 +15,7 @@
             <a href="#SourceControl">How does FuncGodot handle source control?</a><br>
             <a href="#LocalConfigWontExport">Why am I getting an error trying to export my Local Configuration?</a><br>
             <a href="#EntitiesNotBuilding">Why are my new entities not building? Why can't I find them in my map editor?</a><br>
+            <a href="#EntitiesNotBuilding2">Why are all my entities being generated as scriptless <i>Node3Ds</i>?</a><br>
             <a href="#NodesDisappeared">Help! I manually added some nodes to my FuncGodotMap and when I hit build again they all disappeared!</a><br>
             <a href="#SplitMap">How do I split up my map? It only comes out as one big mesh</a><br>
             <a href="#Overdraw">I'm getting a lot of overdraw, why doesn't FuncGodot get rid of unseen faces?</a><br>
@@ -49,6 +50,14 @@
             <b class="faq">Why are my new entities not building? Why can't I find them in my map editor?</b><br>
             Double check to make sure you set a <a href="ref_fgd_resources.html#Entity" target="main">Classname</a> in the entity resource before you exported the FGD. 
             If this doesn't exist, FuncGodot will skip adding it to the FGD file and will only generate a <i>Node3D</i>.
+        </p>
+
+        <p id="EntitiesNotBuilding2">
+            <b class="faq">Why are all my entities being generated as scriptless <i>Node3Ds</i>?</b><br>
+            Make sure your <a href="ref_func_godot_map.html" target="main">FuncGodotMap node</a> is using the correct 
+            <a href="ref_func_godot_map.html#MapSettings" target="main">FuncGodotMapSettings resource</a>. 
+            The Map Settings resource determines the <a href="ref_fgd_resources.html#File" target="main">FGD File resource</a> used for the map generation, 
+            and any entities it does not recognize will generate as <i>Node3Ds</i>.
         </p>
 
         <p id="NodesDisappeared">
