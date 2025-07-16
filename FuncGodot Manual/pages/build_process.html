@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="main">
+    <div class="main">
+        <h1>Build Process</h1>
+        <h1 id="Map">FuncGodotMap</h1>
+
+        <p>
+            The build process begins and ends with the <a href="ref_func_godot_map.html" target="main">FuncGodot Map</a> node. 
+            Clicking the <b>Build</b> button calls the <code>build()</code> function. The first task it performs is to verify the 
+            selected <i>.map</i> or <i>.vmf</i> file. If the file is verified, the Map node will then run through the 3 main steps of 
+            the build process:
+            <br>
+                <li><a href="build_parser.html" target="main">Parsing</a></li>
+                <li><a href="build_geo_generator.html" target="main">Geometry generation</a><br></li>
+                <li><a href="build_ent_assembler.html" target="main">Entity Assembly</a></li>
+            <br>
+            Each of these steps has their own set of semi-isolated sub processes that take an input from the Map node and 
+            feed their output back to it for the Map node to perform the next step.
+
+            Once each main step has completed, the Map node will emit a final <code>build_complete</code> signal.
+        </p>
+    </div>
+</body>
+</html>

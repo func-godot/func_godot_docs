@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="main">
+    <div class="main">
+        <h1>FuncGodot Parser</h1>
+        <p>
+            Geometry generation class that is instantiated by a <a href="ref_func_godot_map.html" target="main">FuncGodot Map</a> node. 
+        </p>
+        <br>
+        <h3>Signals</h3>
+        <table class="props">
+            <tr class="header">
+                <td>Signal</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>declare_step</td>
+                <td>
+                    Emitted when a step in the parsing process is completed. It is connected to 
+                    <a href="ref_util.html">FuncGodotUtil</a>'s <code>print_profile_info()</code> method if 
+                    the FuncGodotMap's <i>Show Profiling Info</i> build flag is set.
+                </td>
+            </tr>
+        </table>
+        
+        <h3>Methods</h3>
+        <table class="props">
+            <tr class=""header>
+                <td>Method</td>
+                <td>Description</td>
+                <td>Return type</td>
+            </tr>
+            <tr>
+                <td>is_skip(face: FaceData)</td>
+                <td></td>
+                <td>Bool</td>
+            </tr>
+            <tr>
+                <td>is_clip(face: FaceData)</td>
+                <td></td>
+                <td>Bool</td>
+            </tr>
+            <tr>
+                <td>is_origin(face: FaceData)</td>
+                <td></td>
+                <td>Bool</td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br>
+</body>
+</html>
