@@ -41,12 +41,12 @@
             use different Map Settings resources on the same map file and get completely different results like referencing completely different textures or 
             completely different entities utilizing common relative texture paths or class names.
         </p>
-        <p>Lastly we have some <b>Build</b> options. You can generally leave these alone, but they can be helpful if you find yourself having unexpected problems.</p>
+        <p>Lastly we have some <b>Build Flag</b> options. You can generally leave these alone, but they can be helpful if you find yourself having unexpected problems.</p>
         <p>Let's take a quick peek at our <i>Map Settings</i>.</p>
         <p align="center"><img src="../images/guide_build_2.png" alt="Building the map 2"></p>
         <p>
             We went over most of these properties in the <a href="guide_textures.html">Textures Chapter</a>, so we'll just go over the 
-            the ones we didn't cover: <b>Inverse Scale Factor</b>, <b>Entity Fgd</b>, <b>UV Unwrap Texel Size</b>, and <b>Use Trenchbroom Groups Hierarchy</b>.
+            the ones we didn't cover: <b>Inverse Scale Factor</b>, <b>Entity Fgd</b>, <b>UV Unwrap Texel Size</b>, and <b>Use Groups Hierarchy</b>.
         </p>
         <p>
             The <b>Entity Fgd</b> property should be fairly obvious; like the map editor configurations, make sure this is the master FGD that contains all of your 
@@ -81,21 +81,28 @@
             </i>
         </p>
 
-        <h2 id="TrenchbroomHierarchy">Use Trenchbroom Groups Hierarchy</h2>
+        <h2 id="Hierarchy">Use Groups Hierarchy</h2>
         <p>
             TrenchBroom has some unique features in the form of <i>Layers</i> and <i>Groups</i> (not to be confused with <i>func_group</i>, but also they're func_groups; 
             they're weird). They add a convenient level of organization to the map making process.
         </p>
         <p>
-            In some cases mappers may want to design their maps in such a way as too create a hierarchy for their nodes using TrenchBroom Layers and Groups. 
-            FuncGodot offers this option using the <b>Use Trenchbroom Groups Hierarchy</b> property.
+            Hammer based editors also have a similar feature called <i>VisGroups</i> that can also provide a similar level of organization and a tree like hierarchy to your map.
+        </p>
+        <p>
+            In some cases mappers may want to design their maps in such a way as too create a hierarchy for their nodes using TrenchBroom Layers and Groups or VMF VisGroups. 
+            FuncGodot offers this option using the <b>Use Groups Hierarchy</b> property.
         </p>
         <p>Let's say you created two layers and two groups of brush entities, both groups on separate layers.</p>
         <p align="center"><img src="../images/guide_build_groups1.png" alt="TrenchBroom screenshot depicting 2 layers named Texas and Massachusetts and 2 groups of brush entities named Richardson and Arkham."></p>
         <p align="center">If <i>Use Trenchbroom Groups Hierarchy</i> is disabled, your built FuncGodotMap scene structure will look something like this:</p>
         <p align="center"><img src="../images/guide_build_groups2.png" alt="Scene tree showing a flat entity hierarchy"></p>
-        <p align="center">However, if you build your FuncGodotMap with <i>Use Trenchbroom Groups Hierarchy</i> enabled, you'll get this instead:</p>
+        <p align="center">However, if you build your FuncGodotMap with <i>Use Groups Hierarchy</i> enabled, you'll get this instead:</p>
         <p align="center"><img src="../images/guide_build_groups3.png" alt="Scene tree showing a multi level entity hierarchy based upon the map layers and groups"></p>
+        <p>
+            TrenchBroom Layers also have an extra omit feature that FuncGodot can take advantage of. Any TrenchBroom Layers with omit set will not be built, 
+            nor will their child groups or entities.
+        </p>
 
         <h2 id="DefaultMapSettings">Default Map Settings</h2>
         <p>
@@ -111,18 +118,10 @@
         <h2 id="Building">Building</h2>
         <p>
             You have your map file selected. You have your map settings ready. You've decided on an inverse scale factor and, if you're using TrenchBroom, 
-            you've decided whether you want a flat or multi-level scene tree hierarchy. It's time to build the map. With your <i>FuncGodotMap</i> node selected 
-            the toolbar at the top of the editor should change.
+            you've decided whether you want a flat or multi-level scene tree hierarchy. It's time to build the map.
         </p>
-        <p align="center"><img src="../images/ref_func_godot_map2.png" alt="FuncGodotMap buttons"></p>
-        <p>
-            The <b>Build</b> button will build the map scene and apply all the appropriate ownership and settings to the map scene.
-        </p>
-        <p>
-            <b>Unwrap UV2</b> can be used after the build process; it cycles through every Solid Entity with the <i>Use In Baked Light</i> property enabled in their definition 
-            and unwraps the UV2 of their MeshInstance3D children. If you're using baked lightmaps you'll need to press this button after every build but before every lightmap 
-            bake.
-        </p>
+        <p align="center"><img src="../images/ref_func_godot_map.png" alt="FuncGodotMap buttons"></p>
+        <p>The <b>Build</b> button will build the map scene and apply all the appropriate ownership and settings to the map scene.</p>
         <p>Go ahead and perform a <i>Build</i> and marvel in your master level craftsmanship.</p>
         <p align="center"><img src="../images/guide_build_3.png"></p>
         <p align="center">Congratulations! You've built your first FuncGodot Map!</p>

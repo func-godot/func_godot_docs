@@ -10,14 +10,10 @@
         <h1>FuncGodotMap</h1>
         <p><img src="../images/ref_func_godot_map.png"></p>
         <p>
-            A scene generator node that parses a Quake map file using a <a href="ref_fgd_resources.html#File" target="main">FuncGodotFGDFile</a>. 
+            A scene generator node that parses a Quake MAP or Hammer VMF file using a <a href="ref_fgd_resources.html#File" target="main">FuncGodotFGDFile</a>. 
             Uses a <a href="#MapSettings">FuncGodotMapSettings</a> resource to define map build settings. 
         </p>
-        <p><img src="../images/ref_func_godot_map2.png"></p>
-        <p>
-            To use this node, select an instance of the node in the Godot editor and select <b>Quick Build</b>, <b>Full Build</b>, or <b>Unwrap UV2</b> from the toolbar. 
-            Alternatively, call <b>manual_build()</b> from code.
-        </p><br>
+
         <h3>Signals</h3>
         <table class="props">
             <tr class="header">
@@ -25,38 +21,40 @@
                 <td>Description</td>
             </tr>
             <tr>
-                <td>build_complete</td>
-                <td>Emitted when the build process succesfully completes.</td>
-            </tr>
-            <tr>
-                <td>build_progress(step, progress)</td>
-                <td>Emitted when the build process finishes a step. Progress is a value between 0.0 and 1.0.</td>
-            </tr>
-            <tr>
                 <td>build_failed</td>
                 <td>Emitted when the build process fails.</td>
             </tr>
             <tr>
-                <td>unwrap_uv2_complete</td>
-                <td>Emitted when the UV2 unwrapping is completed.</td>
+                <td>build_complete</td>
+                <td>Emitted when the build process succesfully completes.</td>
             </tr>
         </table>
         
         <h3>Methods</h3>
         <table class="props">
-            <tr class=""header>
+            <tr class="header">
                 <td>Method</td>
                 <td>Description</td>
                 <td>Return type</td>
             </tr>
             <tr>
-                <td>verify_and_build()</td>
-                <td>Verify that FuncGodot is functioning and that <code>map_file</code> exists. If so, build the map. If not, signal <code>build_failed</code></td>
+                <td>fail_build(reason: String, notify: bool = false)</td>
+                <td>Map build failure handler. Displays error message and emits <i>build_failed<i> signal.</i></td>
                 <td>Void</td>
             </tr>
             <tr>
-                <td>unwrap_uv2(node: Node = null)</td>
-                <td>Recursively unwrap UV2s for <code>node</code> and its children, in preparation for baked lighting.</td>
+                <td>clear_children()</td>
+                <td>Frees all children of the map node. WARNING! Does not distinguish between generated and placed nodes!</td>
+                <td>Void</td>
+            </tr>
+            <tr>
+                <td>verify()</td>
+                <td>Validates the map file for the build process.</td>
+                <td>Bool</td>
+            </tr>
+            <tr>
+                <td>build()</td>
+                <td>Cleans the map node of any children, then initiates and oversees the build process.</td>
                 <td>Void</td>
             </tr>
         </table>
@@ -71,13 +69,13 @@
             <tr class="header"><td>Map</td><td></td><td></td></tr>
             <tr>
                 <td>Local Map File</td>
-                <td>String, Local File</td>
-                <td>Local path to Quake map file to build a scene from.</td>
+                <td>String, Local File, .map, .vmf</td>
+                <td>Local path to MAP or VMF file to build a scene from.</td>
             </tr>
             <tr>
                 <td>Global Map File</td>
-                <td>String, Global File</td>
-                <td>Global path to Quake map file to build a scene from. Overrides <i>Local Map File</i>.</td>
+                <td>String, Global File, .map, .vmf</td>
+                <td>Global path to MAP or VMF file to build a scene from. Overrides <i>Local Map File</i>.</td>
             </tr>
             <tr>
                 <td>Map Settings</td>
@@ -87,19 +85,15 @@
             
             <tr class="header"><td>Build</td><td></td><td></td></tr>
             <tr>
-                <td>Print Profiling Data</td>
-                <td>Bool</td>
-                <td>If true, print profiling data before and after each build step.</td>
-            </tr>
-            <tr>
-                <td>Block Until Complete</td>
-                <td>Bool</td>
-                <td>If true, stop the whole editor until build is complete.</td>
-            </tr>
-            <tr>
-                <td>Set Owner Batch Size</td>
+                <td>Build Flags</td>
                 <td>Int</td>
-                <td>How many nodes to set the owner of, or add children of, at once. Higher values may lead to quicker build times, but a less responsive editor.</td>
+                <td>
+                    Bitflag settings that control various aspects of the build process.<br>
+                    <ul>
+                        <li><b>Unwrap UV2 :</b> Unwrap UV2s during geometry generation for lightmap baking.</li>
+                        <li><b>Show Profiling Info :</b> Print build step information during build process.</li>
+                    </ul>
+                </td>
             </tr>
         </table>
 
@@ -114,6 +108,7 @@
                 <td>Type</td>
                 <td>Description</td>
             </tr>
+            <tr class="header"><td>Build Settings</td><td></td><td></td></tr>
             <tr>
                 <td>Inverse Scale Factor</td>
                 <td>Float</td>
@@ -139,6 +134,25 @@
                     <i>NOTE: Node names should be unique, otherwise you may run into unexpected behavior!</i>
                 </td>
             </tr>
+            <tr>
+                <td>Entity Smoothing Property</td>
+                <td>String</td>
+                <td>Class property that determines whether the Solid Entity performs mesh smoothing operations.</td>
+            </tr>
+            <tr>
+                <td>Entity Smoothing Angle Property</td>
+                <td>String</td>
+                <td>Class property that contains the angular threshold that determines when a Solid Entity's mesh vertices are smoothed.</td>
+            </tr>
+            <tr>
+                <td>Use Groups Hierarchy</td>
+                <td>Bool</td>
+                <td>
+                    If true, will organize Scene Tree using TrenchBroom Layers and Groups or Hammer Visgroups. Groups will be generated as [Node3D] nodes. 
+                    All non-entity structural brushes will be moved out of their groups and merged into the Worldspawn entity.
+                    Any Layers toggled to be omitted from export in TrenchBroom and their child entities and groups will not be built.
+                </td>
+            </tr>
 
             <tr class="header"><td>Textures</td><td></td><td></td></tr>
             <tr>
@@ -159,7 +173,7 @@
                 <td>String</td>
                 <td>
                     Optional path for the clip texture, relative to <i>Base Texture Dir</i>. Brush faces textured with the clip texture will have those faces 
-                    removed from the generated <i>MeshInstance3D</i> but not the generated <i>CollisionShape3D</i>.
+                    removed from the generated <i>Mesh</i> but not the generated <i>Shape3D</i>.
                 </td>
             </tr>
             <tr>
@@ -167,8 +181,8 @@
                 <td>String</td>
                 <td>
                     Optional path for the skip texture, relative to <i>Base Texture Dir</i>. Brush faces textured with the skip texture will have those faces 
-                    removed from the generated <i>MeshInstance3D</i>. If the <a href="ref_fgd_resources.html#Solid">FuncGodotFGDSolidClass</a> <i>collision_shape_type</i> 
-                    is set to concave then it will also remove collision from those faces in the generated <i>CollisionShape3D</i>.
+                    removed from the generated <i>Mesh</i>. If the <a href="ref_fgd_resources.html#Solid">FuncGodotFGDSolidClass</a> <i>collision_shape_type</i> 
+                    is set to concave then it will also remove collision from those faces in the generated <i>Shape3D</i>.
                 </td>
             </tr>
             <tr>
@@ -176,7 +190,7 @@
                 <td>String</td>
                 <td>
                     Optional path for the origin texture, relative to <i>Base Texture Dir</i>. Brush faces textured with the origin texture will have those faces 
-                    removed from the generated <i>MeshInstance3D</i>. The bounds of these faces will be used to calculate the origin point of the entity.
+                    removed from the generated <i>Mesh</i> and <i>Shape3D</i>. The bounds of these faces will be used to calculate the origin point of the entity.
                 </td>
             </tr>
             <tr>
@@ -196,6 +210,14 @@
                 <td>File extension to search for <i>Material</i> definitions.</td>
             </tr>
             <tr>
+                <td>Base Material Dir</td>
+                <td>String</td>
+                <td>
+                    Base directory for loading and saving materials. When building materials, FuncGodot will search this directory for material resources 
+                    with matching names to the textures assigned to map brush faces. If not found, will fall back to <i>Base Texture Dir</i>.
+                </td>
+            </tr>
+            <tr>
                 <td>Default Material</td>
                 <td>Material</td>
                 <td>Material used as a template when generating missing materials.</td>
@@ -209,7 +231,12 @@
                     is a <a href="https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html" target="_blank">ShaderMaterial</a>.
                 </td>
             </tr>
-
+            
+            <tr>
+                <td>Albedo Map Pattern</td>
+                <td>String</td>
+                <td>Automatic PBR material generation albedo map pattern.</td>
+            </tr>
             <tr>
                 <td>Normal Map Pattern</td>
                 <td>String</td>
@@ -241,6 +268,11 @@
                 <td>Automatic PBR material generation height map pattern.</td>
             </tr>
             <tr>
+                <td>Orm Map Pattern</td>
+                <td>String</td>
+                <td>Automatic PBR material generation ORM map pattern.</td>
+            </tr>
+            <tr>
                 <td>Save Generated Materials</td>
                 <td>Bool</td>
                 <td>
@@ -257,17 +289,6 @@
                     Texel size for UV2 unwrapping. Actual texel size is uv_unwrap_texel_size / inverse_scale_factor. 
                     A ratio of 1/16 is usually a good place to start with (if inverse_scale_factor is 32, start with a uv_unwrap_texel_size of 2). 
                     Larger values will produce less detailed lightmaps. To conserve memory and filesize, use the largest value that still looks good.
-                </td>
-            </tr>
-
-            <tr class="header"><td>TrenchBroom</td><td></td><td></td></tr>
-            <tr>
-                <td>Use Trenchbroom Groups Hierarchy</td>
-                <td>Bool</td>
-                <td>
-                    If true, will organize Scene Tree using Trenchbroom Layers and Groups. Layers and Groups will be generated as <i>Node3Ds</i>. 
-                    All structural brushes will be moved out of the Layers and Groups and merged into the Worldspawn entity. 
-                    Any Layers toggled to be omitted from export in TrenchBroom will not be built.
                 </td>
             </tr>
         </table>

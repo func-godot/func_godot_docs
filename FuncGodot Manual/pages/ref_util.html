@@ -7,15 +7,14 @@
 </head>
 <body class="main">
     <div class="main">
-        <h1>FuncGodot Util</h1>
+        <h1>FuncGodotUtil</h1>
         <p>
             Static class with a number of reuseable utility methods that can be called at Editor or Run Time.
         </p>
-        <br>
         
         <h3>Methods</h3>
         <table class="props">
-            <tr class=""header>
+            <tr class="header">
                 <td>Method</td>
                 <td>Description</td>
                 <td>Return type</td>
@@ -34,9 +33,9 @@
                 <td>String</td>
             </tr>
         </table>
-        <br>
-        <!-- MATH -->
+
         <table class="props">
+            <tr class="header"><td>Math</td><td></td><td></td></tr>
             <tr>
                 <td>op_vec3_sum(lhs: Vector3, rhs: Vector3)</td>
                 <td>Returns the sum of the two input vectors. Useful for lambda operations.</td>
@@ -64,10 +63,8 @@
                 </td>
                 <td>Bool</td>
             </tr>
-        </table>
-        <br>
-        <!-- PATCH DEF -->
-        <table class="props">
+        
+            <tr class="header"><td>Patch Def</td><td></td><td></td></tr>
             <tr>
                 <td>elevate_quadratic(p0: Vector3, p1: Vector3, p2: Vector3)</td>
                 <td>Returns the control points that defines a cubic curve for a equivalent input quadratic curve.</td>
@@ -83,10 +80,8 @@
                 <td>Update a Curve3D given quadratic inputs.</td>
                 <td>Void</td>
             </tr>
-        </table>
-        <br>
-        <!-- TEXTURES -->
-        <table class="props">
+        
+            <tr class="header"><td>Textures</td><td></td><td></td></tr>
             <tr>
                 <td>load_texture(texture_name: String, wad_resources: Array[QuakeWadFile], map_settings: FuncGodotMapSettings)</td>
                 <td>
@@ -129,10 +124,8 @@
                 </td>
                 <td>Array[Dictionary]</td>
             </tr>
-        </table>
-        <br>
-        <!-- UV MAPPING -->
-        <table class="props">
+        
+            <tr class="header"><td>UV Mapping</td><td></td><td></td></tr>
             <tr>
                 <td>get_valve_uv(vertex: Vector3, u_axis: Vector3, v_axis: Vector3, uv_basis := Transform2D.IDENTITY, texture_size := Vector2.ONE)</td>
                 <td>Returns UV coordinate calculated from the Valve 220 UV format.</td>
