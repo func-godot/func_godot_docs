@@ -9,17 +9,17 @@
     <div class="main">
         <h1>FuncGodotData</h1>
         <p>
-            FuncGodot utilizes multiple custom data structs to hold information parsed from the map file and read and modified by the 
+            FuncGodot utilizes multiple custom data structures (<b>structs</b>) to hold information parsed from the map file and read and modified by the 
             other core build classes.
         </p>
         <p>
-            All data structs extend from RefCounted, therefore all data is passed by reference.
+            Each data type extends from RefCounted; therefore all data is passed by reference.
         </p>
 
         <h2 id="face">FuncGodot FaceData</h2>
         <p>
-            Data struct representing both a single map plane and a mesh face. Generated during parsing by plane definitions in the map file, 
-            it is further modified and utilized during the geo generation stage to create the final entity meshes.
+            Data struct representing both a single map plane and a mesh face. Initially generated during parsing, reading plane definitions in the map file. 
+            Further modified and utilized during the geometry generation stage to populate face vertex, normal, and winding data.
         </p>
         <h3>Methods</h3>
         <table class="props">
@@ -30,22 +30,22 @@
             </tr>
             <tr>
                 <td>get_centroid()</td>
-                <td></td>
+                <td>Returns the centroid of all vertices in the face. Only valid when the face has at least one vertex.</td>
                 <td>Vector3</td>
             </tr>
             <tr>
                 <td>get_basis()</td>
-                <td></td>
+                <td>Returns an arbitrary coplanar direction to use for winding the face. Only valid when the face has at least two vertices.</td>
                 <td>Vector3</td>
             </tr>
             <tr>
                 <td>wind()</td>
-                <td></td>
+                <td>Prepares the face for OpenGL triangle winding order. Sorts the vertex array in-place by increasing clockwise angle from the face's centroid.</td>
                 <td>Void</td>
             </tr>
             <tr>
                 <td>index_vertices()</td>
-                <td></td>
+                <td>Repopulates the vertex indices array to create a triangle fan. The face must be properly wound for the resulting indices to be valid.</td>
                 <td>Void</td>
             </tr>
         </table>
@@ -60,22 +60,23 @@
             <tr>
                 <td>Vertices</td>
                 <td>PackedVector3Array</td>
-                <td></td>
+                <td>Vertex array for the given face. Only populated in combination with other faces, as a result of planar intersections.</td>
             </tr>
             <tr>
                 <td>Indices</td>
                 <td>PackedInt32Array</td>
-                <td></td>
+                <td>Index array for the given face. Used in ArrayMesh creation.</td>
             </tr>
             <tr>
                 <td>Normals</td>
                 <td>PackedVector3Array</td>
-                <td></td>
+                <td>Vertex normal array for the given face. 
+                    By default, set to the planar normal, which results in flat shading. May be modified to adjust shading.</td>
             </tr>
             <tr>
                 <td>Tangents</td>
                 <td>PackedFloat32Array</td>
-                <td></td>
+                <td>Tangent data for the given face.</td>
             </tr>
             <tr>
                 <td>Texture</td>
@@ -101,7 +102,8 @@
             <tr>
                 <td>Plane</td>
                 <td>Plane</td>
-                <td>Raw plane data parsed from the map file using the id Tech coordinate system.</td>
+                <td>The face's plane, defined from the map file using the id Tech coordinate system. 
+                    Used to calculate intersections of faces.</td>
             </tr>
         </table>
 
@@ -141,7 +143,7 @@
 
         <h2 id="patchdef">FuncGodotPatchData</h2>
         <p>
-            Data struct representing a patch def entity.
+            Data struct representing a patch mesh entity.
         </p>
         <h3>Properties</h3>
         <table class="props">
@@ -158,17 +160,17 @@
             <tr>
                 <td>Size</td>
                 <td>PackedInt32Array</td>
-                <td></td>
+                <td>Defines the M x N dimensions of the control point grid used to sample a quadratic Bezier surface.</td>
             </tr>
             <tr>
                 <td>Points</td>
                 <td>PackedVector3Array</td>
-                <td></td>
+                <td>Flat array of size M x N containing the control points defining quadratic Bezier curves.</td>
             </tr>
             <tr>
                 <td>UVs</td>
                 <td>PackedVector2Array</td>
-                <td></td>
+                <td>Flat array of size M x N containing the UV coordinates for each control point.</td>
             </tr>
         </table>
 

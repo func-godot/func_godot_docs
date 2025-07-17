@@ -39,34 +39,44 @@
             <tr class="header"><td>Tools</td><td></td><td></td></tr>
             <tr>
                 <td>is_skip(face: FaceData)</td>
-                <td></td>
+                <td>Returns whether a given face is skipped entirely for both collision shape and visual mesh generation.
+                    Local method bound to the supplied Map Settings. 
+                </td>
                 <td>Bool</td>
             </tr>
             <tr>
                 <td>is_clip(face: FaceData)</td>
-                <td></td>
+                <td>Returns whether a given face is considered only for collision shape generation only.
+                    Local method bound to the supplied Map Settings. 
+                </td>
                 <td>Bool</td>
             </tr>
             <tr>
                 <td>is_origin(face: FaceData)</td>
-                <td></td>
+                <td>Returns whether a given face is considered only for entity origin calculations only.
+                    Local method bound to the supplied Map Settings. 
+                </td>
                 <td>Bool</td>
             </tr>
             
             <tr class="header"><td>Patches</td><td></td><td></td></tr>
             <tr>
                 <td>sample_bezier_curve(controls: Array[Vector3], t: float)</td>
-                <td></td>
+                <td>Sample a Bezier curve defined by an array of control points at a given parametric value t. 
+                    While not limited to [0.0, 1.0], it is assumed to be normalized unless extrapolation is desired.
+                </td>
                 <td>Vector3</td>
             </tr>
             <tr>
                 <td>sample_bezier_surface(controls: Array[Vector3], width: int, height: int, u: float, v: float)</td>
-                <td></td>
+                <td>Sample a Bezier surface defined by a flat array of control points with a given width M and height N,
+                    along two parametric values U and V. Note: U and V here are not related to texture UV coordinates.
+                </td>
                 <td>Vector3</td>
             </tr>
             <tr>
                 <td>get_triangle_indices(width: int, height: int)</td>
-                <td></td>
+                <td>Returns an integer index array for triangulation of a vertex grid with a given size width x height.</td>
                 <td>Array[int]</td>
             </tr>
             <tr>
@@ -78,39 +88,45 @@
             <tr class="header"><td>Brushes</td><td></td><td></td></tr>
             <tr>
                 <td>generate_brush_vertices(entity_index: int, brush_index: int)</td>
-                <td></td>
+                <td>Performs planar intersection for each face plane a single brush.
+                    Populates the vertex, normal, UV and tangent arrays for each face.
+                </td>
                 <td>Void</td>
             </tr>
             <tr>
                 <td>generate_entity_vertices(entity_index: int)</td>
-                <td></td>
+                <td>Performs planar intersection for each brush in a Solid Class entity.</td>
                 <td>Void</td>
             </tr>
             <tr>
                 <td>determine_entity_origins(entity_index: int)</td>
-                <td></td>
+                <td>Populates entity origin information depending on its Solid Class Origin Type.</td>
                 <td>Void</td>
             </tr>
             <tr>
                 <td>wind_entity_faces(entity_index: int)</td>
-                <td></td>
+                <td>Winds and indexes each face vertex in each brush of a given Solid Class entity.</td>
                 <td>Void</td>
             </tr>
             <tr>
                 <td>generate_entity_surfaces(entity_index: int)</td>
-                <td></td>
+                <td>Generates visual and collision shapes for a given entity. 
+                    Optionally generates surface metadata, if defined by the entity's definition.</td>
                 <td>Void</td>
             </tr>
             <tr>
                 <td>unwrap_uv2s(entity_index: int, texel_size: float)</td>
-                <td></td>
+                <td>Performs UV2 unwrapping for a given entity.</td>
                 <td>Void</td>
             </tr>
 
             <tr class="header"><td>Main Build Process</td><td></td><td></td></tr>
             <tr>
                 <td>build(build_flags: int, entities: Array[EntityData])</td>
-                <td></td>
+                <td>Main entrypoint for generating geometry given entities retrieved from parsing a map file.
+                    Perform entity and brush vertex generation, determines entity origins, winds and indexes each face, 
+                    then generates output surfaces and collision shapes for each entity. 
+                </td>
                 <td>Error</td>
             </tr>
         </table>
