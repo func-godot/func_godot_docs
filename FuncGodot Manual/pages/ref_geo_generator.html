@@ -88,24 +88,22 @@
             <tr class="header"><td>Brushes</td><td></td><td></td></tr>
             <tr>
                 <td>generate_brush_vertices(entity_index: int, brush_index: int)</td>
-                <td>Performs planar intersection for each face plane a single brush.
-                    Populates the vertex, normal, UV and tangent arrays for each face.
-                </td>
+                <td>Performs planar intersections for each face in a single brush to populate the vertex, normal, UV and tangent arrays.</td>
                 <td>Void</td>
             </tr>
             <tr>
                 <td>generate_entity_vertices(entity_index: int)</td>
-                <td>Performs planar intersection for each brush in a Solid Class entity.</td>
+                <td>Generates vertex data for each brush in a given Solid Class entity.</td>
                 <td>Void</td>
             </tr>
             <tr>
                 <td>determine_entity_origins(entity_index: int)</td>
-                <td>Populates entity origin information depending on its Solid Class Origin Type.</td>
+                <td>Calculates entity origin information depending on its Solid Class Origin Type.</td>
                 <td>Void</td>
             </tr>
             <tr>
                 <td>wind_entity_faces(entity_index: int)</td>
-                <td>Winds and indexes each face vertex in each brush of a given Solid Class entity.</td>
+                <td>Winds and indexes each face's vertices in each brush of a given Solid Class entity.</td>
                 <td>Void</td>
             </tr>
             <tr>

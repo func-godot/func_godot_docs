@@ -19,7 +19,7 @@
         <h2 id="face">FuncGodot FaceData</h2>
         <p>
             Data struct representing both a single map plane and a mesh face. Initially generated during parsing, reading plane definitions in the map file. 
-            Further modified and utilized during the geometry generation stage to populate face vertex, normal, and winding data.
+            Further modified and utilized during the geometry generation stage to populate face vertex, normal, UV, tangent, and index data.
         </p>
         <h3>Methods</h3>
         <table class="props">
@@ -160,7 +160,7 @@
             <tr>
                 <td>Size</td>
                 <td>PackedInt32Array</td>
-                <td>Defines the M x N dimensions of the control point grid used to sample a quadratic Bezier surface.</td>
+				<td>Defines the width <b>M</b> and height <b>N</b> dimensions of the control point grid used to sample a quadratic Bezier surface.</td>
             </tr>
             <tr>
                 <td>Points</td>
