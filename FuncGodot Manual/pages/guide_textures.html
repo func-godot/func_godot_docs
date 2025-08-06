@@ -40,12 +40,13 @@
         
         <p><i>But if that's the case, how does FuncGodot know what file to use?</i></p>
         <p>
-            <a href="ref_func_godot_map.html#MapSettings">FuncGodot Map Settings</a> have several properties that help define and apply textures to your meshes on build:
+            <a href="ref_func_godot_map.html#MapSettings">FuncGodot Map Settings</a> has several properties that help define and apply textures to your meshes on build:
         </p>
         <ul>
             <li><b>Base Texture Dir :</b> Root folder where your Godot map textures are located</li><br>
             <li><b>Texture File Extensions :</b> The extensions to search for if no matching material is found</li><br>
             <li><b>Texture Wads :</b> Array of WAD resources to search through</li><br>
+            <li><b>Base Material Dir :</b> Root folder where your Godot map materials are located. If unspecified it falls back on <i>Base Texture Dir</i>.</li><br>
             <li><b>Material File Extension :</b> Format for custom texture materials, can be <i>.tres</i>, <i>.res</i> or <i>.material</i></li><br>
             <li><b>Default Material :</b> The default material that FuncGodot builds your map's materials from</li><br>
             <li>
@@ -63,8 +64,8 @@
         </ul>
         <p align="center"><img src="../images/ref_func_godot_map_settings.png" alt="FuncGodotMapSettings properties"></p>
         <p>
-            FuncGodot's first step is to search the <i>Base Texture Dir</i> for a prebuilt material as defined by the brush face's texture name in the format defined by 
-            <i>Material File Extension</i>. 
+            FuncGodot's first step is to search the <i>Base Material Dir</i> for a prebuilt material as defined by the brush face's texture name in the format defined by 
+            <i>Material File Extension</i>.
         </p>
         <p>
             If it does not find this prebuilt material, it will search the <i>Base Texture Dir</i> for the <i>Texture2D</i> resource 

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="main">
+    <div class="main">
+        <h1>FuncGodotEntityAssembler</h1>
+        <p>
+            Entity assembly class that is instantiated by a <a href="ref_func_godot_map.html" target="main">FuncGodotMap</a> node.
+        </p>
+        
+        <h3>Signals</h3>
+        <table class="props">
+            <tr class="header">
+                <td>Signal</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>declare_step</td>
+                <td>
+                    Emitted when a step in the entity assembly process is completed. It is connected to 
+                    <a href="ref_util.html">FuncGodotUtil</a>'s <code>print_profile_info()</code> method if 
+                    the FuncGodotMap's <i>Show Profiling Info</i> build flag is set.
+                </td>
+            </tr>
+        </table>
+        
+        <h3>Methods</h3>
+        <table class="props">
+            <tr class="header">
+                <td>Method</td>
+                <td>Description</td>
+                <td>Return type</td>
+            </tr>
+            <tr>
+                <td>get_script_by_class_name(name_of_class: String)</td>
+                <td>Attempts to retrieve a script via class name, to allow for GDScript class instantiation.</td>
+                <td>Script</td>
+            </tr>
+            <tr>
+                <td>generate_group_node(group_data: GroupData)</td>
+                <td>Generates a Node3D for a group's SceneTree representation and links the new Node3D to that group.</td>
+                <td>Node3D</td>
+            </tr>
+            <tr>
+                <td>generate_solid_entity_node(node: Node, node_name: String, data: EntityData, definition: FuncGodotFGDSolidClass)</td>
+                <td>
+                    Generates and assembles a new Node based upon processed entity data. Depending upon provided data, 
+                    additional MeshInstance3D, CollisionShape3D, and OccluderInstance3D nodes may also be generated.
+                </td>
+                <td>Node</td>
+            </tr>
+            <tr>
+                <td>generate_point_entity_node(node: Node, node_name: String, properties: Dictionary, definition: FuncGodotFGDPointClass)</td>
+                <td>Generates and assembles a new Node or PackedScene based upon processed entity data.</td>
+                <td>Node</td>
+            </tr>
+            <tr>
+                <td>apply_entity_properties(node: Node, data: EntityData)</td>
+                <td>
+                    Converts the String values of the entity data's <i>properties</i> Dictionary to various Variant formats 
+                    based upon the entity definition's class properties, then attempts to send those properties to a <i>func_godot_properties</i> Dictionary 
+                    and an <i>apply_func_godot_properties()</i> method on the node. A deferred call to <i>build_complete()</i> is also made.
+                </td>
+                <td>Void</td>
+            </tr>
+            <tr>
+                <td>generate_entity_node(entity_data: EntityData, entity_index: int)</td>
+                <td>Generate a node from entity data. The returned node value can be null, in the case of Solid Class entities with no brush data.</td>
+                <td>Error</td>
+            </tr>
+            <tr>
+                <td>build(map_node: FuncGodotMap, entities: Array[EntityData], groups: Array[GroupData])</td>
+                <td>
+                    Main entity assembly process called by the map node. Generates and sorts group nodes in the SceneTree first. 
+                    Then generates and assembles nodes based upon the provided entity data and adds them to the SceneTree.
+                </td>
+                <td>Error</td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br>
+</body>
+</html>

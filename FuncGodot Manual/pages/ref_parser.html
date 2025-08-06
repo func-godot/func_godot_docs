@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="main">
+    <div class="main">
+        <h1>FuncGodotParser</h1>
+        <p>
+            MAP and VMF parser class that is instantiated by a <a href="ref_func_godot_map.html" target="main">FuncGodotMap</a> node.
+        </p>
+
+        <h3>Signals</h3>
+        <table class="props">
+            <tr class="header">
+                <td>Signal</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>declare_step</td>
+                <td>
+                    Emitted when a step in the parsing process is completed. It is connected to 
+                    <a href="ref_util.html">FuncGodotUtil</a>'s <code>print_profile_info()</code> method if 
+                    the FuncGodotMap's <i>Show Profiling Info</i> build flag is set.
+                </td>
+            </tr>
+        </table>
+        
+        <h3>Methods</h3>
+        <table class="props">
+            <tr class=""header>
+                <td>Method</td>
+                <td>Description</td>
+                <td>Return type</td>
+            </tr>
+            <tr>
+                <td>parse_map_data(map_file: String, map_settings: FuncGodotMapSettings)</td>
+                <td>
+                    Parses the map file, generating entity and group data and sub-data, then returns the generated data as an array of arrays. 
+                    The first array is <i>Array[FuncGodotEntityData]</i>, while the second array is <i>Array[FuncGodotGroupData]</i>. 
+                </td>
+                <td>Array[Array]</td>
+            </tr>
+            <tr>
+                <td>_parse_quake_map(map_data: PackedStringArray, map_settings: FuncGodotMapSettings)</td>
+                <td>Parser subroutine called by <code>parse_map_data()</code>, specializing in the Quake MAP format.</td>
+                <td>Array[Array]</td>
+            </tr>
+            <tr>
+                <td>_parse_vmf(map_data: PackedStringArray, map_settings: FuncGodotMapSettings)</td>
+                <td>Parser subroutine called by <code>parse_map_data()</code>, specializing in the VMF format used by Hammer based editors.</td>
+                <td>Array[Array]</td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br>
+</body>
+</html>

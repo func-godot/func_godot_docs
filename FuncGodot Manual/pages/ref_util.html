@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="main">
+    <div class="main">
+        <h1>FuncGodotUtil</h1>
+        <p>
+            Static class with a number of reuseable utility methods that can be called at Editor or Run Time.
+        </p>
+        
+        <h3>Methods</h3>
+        <table class="props">
+            <tr class="header">
+                <td>Method</td>
+                <td>Description</td>
+                <td>Return type</td>
+            </tr>
+            <tr>
+                <td>print_profile_info(message: String, signature: String)</td>
+                <td>
+                    Connected by the <a href="ref_func_godot_map.html" target="main">FuncGodot Map</a> node to the build process' 
+                    sub components if the <i>Show Profiling Info</i> build flag is set. Also called by the Map node.
+                </td>
+                <td>Void</td>
+            </tr>
+            <tr>
+                <td>newline()</td>
+                <td>Return a string that corresponds to the current OS's newline control characters.</td>
+                <td>String</td>
+            </tr>
+        </table>
+
+        <table class="props">
+            <tr class="header"><td>Math</td><td></td><td></td></tr>
+            <tr>
+                <td>op_vec3_sum(lhs: Vector3, rhs: Vector3)</td>
+                <td>Returns the sum of the two input vectors. Useful for lambda operations.</td>
+                <td>Vector3</td>
+            </tr>
+            <tr>
+                <td>op_vec3_avg(array: Array[Vector3])</td>
+                <td>Returns the average vector of an array of vectors.</td>
+                <td>Vector3</td>
+            </tr>
+            <tr>
+                <td>op_swizzle_vec3_w(xyz: Vector3, w: float)</td>
+                <td></td>
+                <td>PackedFloat32Array</td>
+            </tr>
+            <tr>
+                <td>id_to_opengl(vec: Vector3)</td>
+                <td>Conversion from id tech coordinate system to Godot, from a top-down perspective.</td>
+                <td>Vector3</td>
+            </tr>
+            <tr>
+                <td>is_point_in_convex_hull(planes: Array[Plane], vertex: Vector3)</td>
+                <td>
+                    Check if a point is inside a convex hull defined by a series of planes by an epsilon constant.
+                </td>
+                <td>Bool</td>
+            </tr>
+        
+            <tr class="header"><td>Patch Def</td><td></td><td></td></tr>
+            <tr>
+                <td>elevate_quadratic(p0: Vector3, p1: Vector3, p2: Vector3)</td>
+                <td>Returns the control points that defines a cubic curve for a equivalent input quadratic curve.</td>
+                <td>Array[Vector3]</td>
+            </tr>
+            <tr>
+                <td>create_curve(start: Vector3, control: Vector3, end: Vector3, bake_interval: float = 0.05)</td>
+                <td>Create a Curve3D and bake points.</td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_curve3d.html">Curve3D</a></td>
+            </tr>
+            <tr>
+                <td>update_ref_curve(curve: Curve3D, p0: Vector3, p1: Vector3, p2: Vector3, bake_interval: float = 0.05)</td>
+                <td>Update a Curve3D given quadratic inputs.</td>
+                <td>Void</td>
+            </tr>
+        
+            <tr class="header"><td>Textures</td><td></td><td></td></tr>
+            <tr>
+                <td>load_texture(texture_name: String, wad_resources: Array[QuakeWadFile], map_settings: FuncGodotMapSettings)</td>
+                <td>
+                    earches for a Texture2D within the base texture directory or the WAD files added to map settings. 
+                    If not found, a default texture is returned.
+                </td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html">Texture2D</a></td>
+            </tr>
+            <tr>
+                <td>is_skip(texture: String, map_settings: FuncGodotMapSettings)</td>
+                <td>Filters faces textured with Skip during the geometry generation step of the build process.</td>
+                <td>Bool</td>
+            </tr>
+            <tr>
+                <td>is_clip(texture: String, map_settings: FuncGodotMapSettings)</td>
+                <td>Filters faces textured with Clip during the geometry generation step of the build process.</td>
+                <td>Bool</td>
+            </tr>
+            <tr>
+                <td>is_origin(texture: String, map_settings: FuncGodotMapSettings)</td>
+                <td>Filters faces textured with Origin during the parsing and geometry generation steps of the build process.</td>
+                <td>Bool</td>
+            </tr>
+            <tr>
+                <td>filter_face(texture: String, map_settings: FuncGodotMapSettings)</td>
+                <td>Filters faces textured with any of the tool textures during the geometry generation step of the build process.</td>
+                <td>Bool</td>
+            </tr>
+            <tr>
+                <td>build_base_material(map_settings: FuncGodotMapSettings, material: BaseMaterial3D, texture: String)</td>
+                <td>Adds PBR textures to an existing <a href="https://docs.godotengine.org/en/stable/classes/class_basematerial3d.html">BaseMaterial3D</a>.</td>
+                <td>Void</td>
+            </tr>
+            <tr>
+                <td>build_texture_map(entity_data: Array[EntityData], map_settings: FuncGodotMapSettings)</td>
+                <td>
+                    Builds both materials and sizes dictionaries for use in the geometry generation step of the build process. 
+                    Both dictionaries use texture names as keys. The materials dictionary uses [Material] as values, 
+                    while the sizes dictionary saves the albedo texture sizes to aid in UV mapping.
+                </td>
+                <td>Array[Dictionary]</td>
+            </tr>
+        
+            <tr class="header"><td>UV Mapping</td><td></td><td></td></tr>
+            <tr>
+                <td>get_valve_uv(vertex: Vector3, u_axis: Vector3, v_axis: Vector3, uv_basis := Transform2D.IDENTITY, texture_size := Vector2.ONE)</td>
+                <td>Returns UV coordinate calculated from the Valve 220 UV format.</td>
+                <td>Vector2</td>
+            </tr>
+            <tr>
+                <td>get_quake_uv(vertex: Vector3, normal: Vector3, uv_basis := Transform2D.IDENTITY, texture_size := Vector2.ONE)</td>
+                <td>Returns UV coordinate calculated from the original id Standard UV format.</td>
+                <td>Vector2</td>
+            </tr>
+            <tr>
+                <td>get_face_vertex_uv(vertex: Vector3, face: FaceData, texture_size: Vector2)</td>
+                <td>Determines which UV format is being used and returns the UV coordinate.</td>
+                <td>Vector2</td>
+            </tr>
+            <tr>
+                <td>get_valve_tangent(u: Vector3, v: Vector3, normal: Vector3)</td>
+                <td>Returns the tangent calculated from the Valve 220 UV format.</td>
+                <td>PackedFloat32Array</td>
+            </tr>
+            <tr>
+                <td>get_quake_tangent(normal: Vector3, uv_y_scale: float, uv_rotation: float)</td>
+                <td>Returns the tangent calculated from the original id Standard UV format.</td>
+                <td>PackedFloat32Array</td>
+            </tr>
+            <tr>
+                <td>get_face_tangent(face: FaceData)</td>
+                <td>Determines which UV format is being used and returns the tangent.</td>
+                <td>PackedFloat32Array</td>
+            </tr>
+        </table>
+    </div>
+    <br><br><br>
+</body>
+</html>
