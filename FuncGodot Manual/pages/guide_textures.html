@@ -80,19 +80,28 @@
             Once the material generation is completed, you can optionally have FuncGodot save generated materials so they can be reused by multiple FuncGodotMaps. 
             Otherwise each FuncGodotMap will have its own unique material for each texture used in the map.
         </p>
+        <p>
+            <blockquote><i>
+                NOTE: If a Solid Entity definition's </i><b>Build Visuals</b><i> property is set to </i><code>false</code><i>, no materials will be generated.
+            </i></blockquote>
+        </p>
 
-        <h2 id="AutomaticPBRGeneration">Automatic PBR Generation</h2>
+        <h2 id="AutomaticPBRGeneration">Automatic PBR / ORM Generation</h2>
         <p>
             You may have noticed that we skipped over a few settings before, all of them with the suffic "Map Pattern". FuncGodot has the ability to 
-            automatically generate PBR materials on build. Each of the "Map Pattern" properties tell FuncGodot's Texture Loader how to find each PBR map for our texture. 
+            automatically generate PBR and ORM materials on build. Each of the "Map Pattern" properties tell FuncGodot's Texture Loader how to find each texture map for our material. 
         </p>
         <p><i>What's with all the %s everywhere?</i></p>
         <p>
             It's a placeholder token that gets replaced during texture loading. Each pattern requires two <i>%s</i> tokens. The first token is for the texture's name as 
             it appears in the map file. The second token is for the file extension; this is replaced as the Texture Loader cycles through the Map Settings' Texture File Extensions 
-            searching for your texture. So if Texture Loader is looking for the normal map of a texture with the name "rock" and our Map Settings' Normal Map Pattern is "%s_normal.%s" 
+            searching for your texture. So if Texture Loader is looking for the normal map of a texture entry named "rock" and our Map Settings' Normal Map Pattern is "%s_normal.%s" 
             and it is currently checking for the "png" Texture File Extension, then it will be looking to see if the texture resource "rock_normal.png" exists, and if so it will 
             be applied to the Map Settings' Default Material if it is a StandardMaterial3D.
+        </p>
+        <p>
+            FuncGodot will look for PBR / ORM texture maps in both the same folder as the texture applied in the map file, or it will look in a subfolder with the same name. As an example: 
+            a brush is applied with the "textures/rock" texture in TrenchBroom, FuncGodot will first look for "textures/rock_normal.png" and then check "textures/rock/rock_normal.png".
         </p>
 
         <h2 id="ClipAndSkip">Clip and Skip Textures</h2>

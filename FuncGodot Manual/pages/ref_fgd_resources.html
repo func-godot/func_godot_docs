@@ -137,7 +137,8 @@
                 <td>Meta Properties</td>
                 <td>Dictionary</td>
                 <td>
-                    Appearance properties for the map editor. 
+                    Appearance properties for the map editor. Supports <i>String</i> entries literally. 
+                    Will <a href="https://docs.godotengine.org/en/stable/classes/class_json.html#class-json-method-stringify" target="_blank">JSON.stringify()</a> <i>Dictionary</i> entries.
                     See the <a href="https://developer.valvesoftware.com/wiki/FGD#Entity_Description" target="_blank">Valve Developer Wiki</a> 
                     and <a href="https://trenchbroom.github.io/manual/latest/#display-models-for-entities" target="_blank">TrenchBroom</a> documentation for more information.
                 </td>
@@ -394,21 +395,20 @@
                     Contains a list of each face's normal.
                 </td>
             </tr>
-            <!--<tr>
-                <td>Add Collision Shape Face Range Metadata</td>
+            <tr>
+                <td>Add Collision Shape Face Indices Metadata</td>
                 <td>Bool</td>
                 <td>
-                    Add a <i>Dictionary</i> called <i>"collision_shape_to_face_range_map"</i> to the generated node's metadata on build.<br><br> 
+                    Add a <i>Dictionary</i> called <i>"collision_shape_to_face_indices_map"</i> to the generated node's metadata on build.<br><br> 
                     Contains keys of <i>Strings</i>, which are the names of child <i>CollisionShape3D</i> nodes, and values of 
-                    <a href="https://docs.godotengine.org/en/stable/classes/class_vector2i.html" target="_blank">Vector2i</a> 
-                    where the <i>X</i> represents the starting index of that child's faces and the <i>Y</i> represents the
-                    ending index.<br><br>
+                    <a href="https://docs.godotengine.org/en/stable/classes/class_packedint32array.html" target="_blank">PackedInt32Array</a>, 
+                    , containing indices of that child's faces.<br><br>
                     For example, an element of<br>
-                    <code>{ "entity_1_brush_0_collision_shape" : Vector2i(0, 15) }</code><br>
-                    shows that this solid class has been generated with one child collision shape named <i>entity_1_brush_0_collision_shape</i>
-                    which handles the first 15 faces of the parts of the mesh with collision.
+                    <code>{ "entity_1_brush_0_collision_shape" : [0, 1, 3] }</code><br>
+                    shows that this solid class has been generated with one child collision shape named 
+                    <i>entity_1_brush_0_collision_shape</i> which handles 3 faces of the mesh with collision, at indices 0, 1, and 3.
                 </td>
-            </tr>-->
+            </tr>
 
             <tr class="header"><td>Scripting</td><td></td><td></td></tr>
             <tr>
