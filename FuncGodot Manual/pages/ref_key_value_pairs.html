@@ -260,6 +260,53 @@
             Just make sure each flags property applied to an entity has a unique bit value and expect FuncGodot to build it as a compiled <i>spawnflags</i> bitmask.
         </p>
         <p align="center"><img src="../images/ref_kvp_bitflags2.png"></p>
+
+        <h2 id="BuildStageProperties">Build Stage Properties</h2>
+        <p>
+            In <i>Quake</i> mapping there are a number of compiler only key value pairs that can alter the way the map is built, typically preceded by an underscore. 
+            These include properties like <i>_phong</i>, <i>_minlight</i>, and <i>_shadow</i>.
+        </p>
+        <p>
+            <i>FuncGodot</i> also has a few properties that can be used as part of the build process, all of which are customizable in the Map Settings resource. 
+            These properties are exposed by the FGD to be set in the map file and read by FuncGodot's core classes throughout the build stages. 
+            These build stage properties are:
+        </p>
+            <table class="props">
+            <tr class="header">
+                <td>Map Settings Property</td>
+                <td>Default Key</td>
+                <td>Variant Type</td>
+                <td>Notes</td>
+            </tr>
+            <tr>
+                <td>Entity Name Property</td>
+                <td></td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_string.html" target="_blank">String</a></td>
+                <td>Property used to rename nodes. The entity is renamed "entity_" + entity_name_property. This can be overridden by the entity definition.</td>
+            </tr>
+            <tr>
+                <td>Entity Smoothing Property</td>
+                <td>_phong</td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">Bool</a></td>
+                <td>Determines whether the <i>FuncGodotFGDSolidClass</i> entity performs mesh smoothing operations.</td>
+            </tr>
+            <tr>
+                <td>Entity Smoothing Angle Property</td>
+                <td>_phong_angle</td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html" target="_blank">Float</a></td>
+                <td>The angular threshold that determines when a <i>FuncGodotFGDSolidClass</i> entity's mesh vertices are smoothed.</td>
+            </tr>
+            <tr>
+                <td>Vertex Merge Distance Property</td>
+                <td>_vertex_merge_distance</td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html" target="_blank">Float</a></td>
+                <td>Provides a snapping epsilon for vertices in a <i>FuncGodotFGDSolidClass</i> entity's mesh. Adjusting this value can remove instances of gaps between polygon seams.</td>
+            </tr>
+        </table>
+        <br>
+        <p>
+            Some of these properties have built-in support through the use of the default <a href="ref_fgd_resources.html#Base" target="main">FuncGodotFGDBaseClass</a> resources 
+            <i>Phong</i> and <i>VertexMergeDistance</i>.
     </div>
     <br><br><br>
 </body>

@@ -149,9 +149,17 @@
                 <td>Use Groups Hierarchy</td>
                 <td>Bool</td>
                 <td>
-                    If true, will organize Scene Tree using TrenchBroom Layers and Groups or Hammer Visgroups. Groups will be generated as [Node3D] nodes. 
+                    If true, will organize Scene Tree using TrenchBroom Layers and Groups or Hammer Visgroups. Groups will be generated as <i>Node3D</i> nodes. 
                     All non-entity structural brushes will be moved out of their groups and merged into the Worldspawn entity.
                     Any Layers toggled to be omitted from export in TrenchBroom and their child entities and groups will not be built.
+                </td>
+            </tr>
+            <tr>
+                <td>Vertex Merge Distance Property</td>
+                <td>String</td>
+                <td>
+                    Class property that contains the snapping epsilon for generated vertices of <i>FuncGodotFGDSolidClass</i> entities. 
+                    Utilizing this property can help reduce instances of seams between polygons.
                 </td>
             </tr>
 

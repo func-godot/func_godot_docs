@@ -152,6 +152,11 @@
                 <b>Phong : </b> A FuncGodotFGDBaseClass that provides <i>_phong</i> and <i>_phong_angle</i> properties to most of the entities below. 
                 See the <a href="https://en.wikipedia.org/wiki/Phong_shading" target="_blank">Wikipedia article on Phong Shading</a> for quick primer.<br>
             </li>
+            <li>
+                <b>VertexMergeDistance : </b> A FuncGodotFGDBaseClass that provides a <i>_vertex_merge_distance</i> property to all of the entities below. 
+                This property is used in the build process to better ensure vertices between brushes get connected, to reduce instances of gaps between seams in 
+                polygons.
+            </li>
             <blockquote>
                 <i>
                     NOTE: Some map editors are strict about entity definition order! To stay safe, make sure that any entity classes that inherit from a base class come <b>after</b> that base class.
