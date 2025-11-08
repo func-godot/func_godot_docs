@@ -10,7 +10,7 @@
         <h1>FuncGodot FGD Resources</h1>
 
         <h2 id="File">FuncGodotFGDFile</h2>
-        <p><img src="../images/ref_fgd_file.png"></p>
+        <!--<p><img src="../images/ref_fgd_file.png"></p>-->
         <p>
             Resource file used to express a set of <i>FuncGodotFGDEntity</i> definitions. Can be exported as an FGD file for use with a Quake map editor. 
             Used in conjunction with a <a href="ref_func_godot_map.html#MapSettings" target="main">FuncGodotMapSettings</a> resource to generate nodes 
@@ -71,7 +71,7 @@
         <br><hr>
 
         <h2 id="Entity">FuncGodotFGDEntityClass</h2>
-        <p><img src="../images/ref_fgd_entity.png"></p>
+        <!--<p><img src="../images/ref_fgd_entity.png"></p>-->
         <p>
             Base entity definition class. Not to be used directly, use <i>FuncGodotFGDBaseClass</i>, <i>FuncGodotFGDSolidClass</i>, or <i>FuncGodotFGDPointClass</i> instead.
         </p>
@@ -166,6 +166,13 @@
                     An entity's name should be unique, otherwise you may run into unexpected behavior.
                 </td>
             </tr>
+            <tr>
+                <td>Node Groups</td>
+                <td>Array[String]</td>
+                <td>
+                    Optional array of node groups to add the generated node to.
+                </td>
+            </tr>
         </table>
         
         <br><hr>
@@ -184,7 +191,7 @@
         <br><hr>
 
         <h2 id="Solid">FuncGodotFGDSolidClass</h2>
-        <p><img src="../images/ref_fgd_solid.png"></p>
+        <!--<p><img src="../images/ref_fgd_solid.png"></p>-->
         <p>
             FGD SolidClass entity definition that generates a mesh from <a href="ref_data.html#brush" target="main">Brush Data</a><br>.<br><br>
 
@@ -421,7 +428,7 @@
         <br><hr>
 
         <h2 id="Point">FuncGodotFGDPointClass</h2>
-        <p><img src="../images/ref_fgd_point.png"></p>
+        <!--<p><img src="../images/ref_fgd_point.png"></p>-->
         <p>
             A resource used to define an FGD PointClass entity. PointClass entities can use either the <i>Node Class</i> or the 
             <i>Scene File</i> property to tell a <i>FuncGodotMap</i> what to generate on map build.
@@ -483,7 +490,7 @@
         <br><hr>
 
         <h2 id="ModelPoint">FuncGodotFGDModelPointClass</h2>
-        <p><img src="../images/ref_fgd_modelpoint.png"></p>
+        <!--<p><img src="../images/ref_fgd_modelpoint.png"></p>-->
         <p>
             A special type of <a href="ref_fgd_resources.html#Point" target="main">FuncGodotFGDPointClass</a> entity that automatically generates 
             a special simplified, scaled, and reoriented GLB model file for the map editor display. Only supported in map editors that support GLTF or GLB.

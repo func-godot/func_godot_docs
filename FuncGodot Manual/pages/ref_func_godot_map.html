@@ -8,7 +8,7 @@
 <body class="main">
     <div class="main">
         <h1>FuncGodotMap</h1>
-        <p><img src="../images/ref_func_godot_map.png"></p>
+        <!--<p><img src="../images/ref_func_godot_map.png"></p>-->
         <p>
             A scene generator node that parses a Quake MAP or Hammer VMF file using a <a href="ref_fgd_resources.html#File" target="main">FuncGodotFGDFile</a>. 
             Uses a <a href="#MapSettings">FuncGodotMapSettings</a> resource to define map build settings. 
@@ -101,7 +101,7 @@
         <br><hr>
 
         <h2 id="MapSettings">FuncGodotMapSettings</h2>
-        <p><img src="../images/ref_func_godot_map_settings.png"></p>
+        <!--<p><img src="../images/ref_func_godot_map_settings.png"></p>-->
         <p>Reusable map settings configuration for <i>FuncGodotMap</i> nodes.</p><br>
         <table class="props">
             <tr class="header">
@@ -125,6 +125,31 @@
                 <td>Resource file that translates map file classnames into Godot nodes and packed scenes.</td>
             </tr>
             <tr>
+                <td>Use Groups Hierarchy</td>
+                <td>Bool</td>
+                <td>
+                    If true, will organize Scene Tree using TrenchBroom Layers and Groups or Hammer Visgroups. Groups will be generated as <i>Node3D</i> nodes. 
+                    All non-entity structural brushes will be moved out of their groups and merged into the Worldspawn entity.
+                    Any Layers toggled to be omitted from export in TrenchBroom and their child entities and groups will not be built.
+                </td>
+            </tr>
+            <tr>
+                <td>Uv Unwrap Texel Size</td>
+                <td>Float</td>
+                <td>
+                    Texel size for UV2 unwrapping. Actual texel size is uv_unwrap_texel_size / inverse_scale_factor. 
+                    A ratio of 1/16 is usually a good place to start with (if inverse_scale_factor is 32, start with a uv_unwrap_texel_size of 2). 
+                    Larger values will produce less detailed lightmaps. To conserve memory and filesize, use the largest value that still looks good.
+                </td>
+            </tr>
+
+            <tr class="header"><td>Entity Settings</td><td></td><td></td></tr>
+            <tr>
+                <td>Entity Node Groups</td>
+                <td>Array[String]</td>
+                <td>Optional array of node groups to add all generated nodes to.</td>
+            </tr>
+            <tr>
                 <td>Entity Name Property</td>
                 <td>String</td>
                 <td>
@@ -144,15 +169,6 @@
                 <td>Entity Smoothing Angle Property</td>
                 <td>String</td>
                 <td>Class property that contains the angular threshold that determines when a Solid Entity's mesh vertices are smoothed.</td>
-            </tr>
-            <tr>
-                <td>Use Groups Hierarchy</td>
-                <td>Bool</td>
-                <td>
-                    If true, will organize Scene Tree using TrenchBroom Layers and Groups or Hammer Visgroups. Groups will be generated as <i>Node3D</i> nodes. 
-                    All non-entity structural brushes will be moved out of their groups and merged into the Worldspawn entity.
-                    Any Layers toggled to be omitted from export in TrenchBroom and their child entities and groups will not be built.
-                </td>
             </tr>
             <tr>
                 <td>Vertex Merge Distance Property</td>
@@ -240,6 +256,15 @@
                     is a <a href="https://docs.godotengine.org/en/stable/classes/class_shadermaterial.html" target="_blank">ShaderMaterial</a>.
                 </td>
             </tr>
+            <tr>
+                <td>Shader Material Uniform Map Patterns</td>
+                <td>Dictionary[String, String]</td>
+                <td>
+                    Automatic <i>ShaderMaterial</i> generation mapping patterns. Only used when <i>default_material</i> is a <i>ShaderMaterial</i>. 
+                    Keys should be the names of the shader uniforms while the values should be the suffixes for the texture maps. 
+                    Patterns only use one replacement String: the texture name, ex: <b>"%s_normal"</b>.
+                </td>
+            </tr>
             
             <tr>
                 <td>Albedo Map Pattern</td>
@@ -287,17 +312,6 @@
                 <td>
                     Save automatically generated materials to disk, allowing reuse across <i>FuncGodotMap</i> nodes.<br> 
                     <i>NOTE: Materials do not use the Default Material settings after saving.</i>
-                </td>
-            </tr>
-
-            <tr class="header"><td>UV Unwrap</td><td></td><td></td></tr>
-            <tr>
-                <td>Uv Unwrap Texel Size</td>
-                <td>Float</td>
-                <td>
-                    Texel size for UV2 unwrapping. Actual texel size is uv_unwrap_texel_size / inverse_scale_factor. 
-                    A ratio of 1/16 is usually a good place to start with (if inverse_scale_factor is 32, start with a uv_unwrap_texel_size of 2). 
-                    Larger values will produce less detailed lightmaps. To conserve memory and filesize, use the largest value that still looks good.
                 </td>
             </tr>
         </table>
