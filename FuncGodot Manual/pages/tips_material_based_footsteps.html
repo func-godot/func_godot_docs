@@ -28,7 +28,7 @@
         </p>
         <blockquote><i>NOTE: If you are using <b>Jolt Physics</b> as your Physics Engine, you must tick Enable Ray Cast
                 Face Index in your project settings! This can be found in Project Settings > Physics > Jolt Physics 3D >
-                Queries > Enable Ray Cast Face Index.</i></blockquote>
+                Queries > Enable Ray Cast Face Index. <a href="https://github.com/godot-jolt/godot-jolt/issues/702#issuecomment-2305670454" target="_blank">Enabling this has a non-trivial memory cost.</a></i></blockquote>
         <p>Putting this all together, as a script on our Raycast3D, the following function returns the Texture Name when
             we call it.</p>
         <pre><code>func do_check() -> String:
