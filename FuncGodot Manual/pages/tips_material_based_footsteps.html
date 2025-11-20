@@ -11,20 +11,20 @@
     <div class="main">
         <h1>Material Based Footsteps</h1>
         <p>
-            Let's say we want to do a raycast in order to check what texture a face is so we can play an appropriate
-            sound effect such as snow for snowy textures and stone for stone textures.
+            To do this we need to raycast in order to check what texture a face is so we can play an appropriate
+            sound effect such as snow sounds for snowy textures and stone sounds for stone textures.
         </p>
         <p>
-            Firstly, you will need a Raycast3D. Secondly, you will need a FuncGodotFGDSolidClass. In the Mesh metadata
-            you will need to tick "Add Textures Metadata". The collision mask for the Racyast3D must match a collision
+            Firstly, you will need a Raycast3D. Secondly, you will need a <a href="ref_fgd_resources.html#Solid" target="main">FuncGodotFGDSolidClass</a>. In the Mesh metadata
+            you will need to tick "Add Textures Metadata" found under Mesh Metadata. The collision mask for the Racyast3D must match a collision
             layer of the FuncGodotFGDSolidClass, otherwise it will not report a collision.
         </p>
         <p>
-            Ticking "Add Textures Metadata" adds two metadata properties to generated nodes. It adds "textures" which is
+            Ticking "Add Textures Metadata" adds two metadata properties to generated nodes of that Solid Class. It adds "textures" which is
             a PackedInt32Array, where the index in the array is the face index, and the value at any point is an
             integer. This integer is then used by the "texture_names", the 2nd metadata property which is added.
             Indexing that array with that integer gets us the texture name string. So how do I get the face index?
-            Raycast3D has a handy method called <code>get_collision_face_index()</code>
+            Raycast3D has a handy method called <code><a href="https://docs.godotengine.org/en/stable/classes/class_raycast3d.html#class-raycast3d-method-get-collision-face-index" target="_blank">get_collision_face_index()</a></code> which we use.
         </p>
         <blockquote><i>NOTE: If you are using <b>Jolt Physics</b> as your Physics Engine, you must tick Enable Ray Cast
                 Face Index in your project settings! This can be found in Project Settings > Physics > Jolt Physics 3D >
@@ -53,7 +53,8 @@
         <p>
             When we call <code>do_check();</code>, we now get the texture String for the face the Raycast3D collided
             with, if it collided with anything at all. The rest of the implementation of material based footsteps is
-            left as an exercise to the reader.
+            left as an exercise to the reader as it is project specific, but you will likely want some way to convert
+            from a texture name to a Stream and to then play that Stream with an AudioStreamPlayer.
         </p>
         <p>
             As a note you can also use this same approach for running code on specific textures. For example damage on
