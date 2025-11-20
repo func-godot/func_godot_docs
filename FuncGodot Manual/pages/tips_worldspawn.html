@@ -53,18 +53,6 @@
             In exchange for full automation, FuncGodot instead gives you full control.
         </p>
 
-        <h2 id="SurfaceMaterials">Surface "Materials"</h2>
-        <p>
-            A common question a lot of Godot devs have is <i>how do I get the texture of the surface my character is stepping on or shooting?</i> and the answer is... you don't! 
-            Well, the short answer anyway. Since Godot's CollisionObjects are completely separate from the MeshInstance3Ds, there's no real good performant way to actually 
-            do it surface by surface. Any possible solutions that involve getting the stage mesh's texture on a particular face are just not worth it. But why work against the 
-            engine when you can work <i>with</i> it?
-        </p>
-        <p>
-            If we can control how our stage geometry is split up, we can also provide that stage geometry with key value properties, including one that supplies a <i>Material Type</i> 
-            that can easily be passed to any character stepping on or shooting it. This is something that can't be done with a singular Worldspawn entity.
-        </p>
-
         <h2 id="LiveWithoutWorldspawn">How Do I Live Without Worldspawn?</h2>
         <p>
             You'll want to create a <a href="ref_fgd_resources.html#Solid" target="main">Solid Class entity</a> that matches the <i>Worldspawn</i> entity definition. 
