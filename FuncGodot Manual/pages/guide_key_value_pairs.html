@@ -265,11 +265,11 @@
         <h2 id="BuildStageProperties">Build Stage Properties</h2>
         <p>
             In <i>Quake</i> mapping there are a number of compiler only key value pairs that can alter the way the map is built, typically preceded by an underscore. 
-            These include properties like <i>_phong</i>, <i>_minlight</i>, and <i>_shadow</i>.
+            These include properties like <i>_phong</i>, <i>_minlight</i>, and <i>_shadow</i>. Since these are entity properties they can be set on a per entity basis as needed.
         </p>
         <p>
             <i>FuncGodot</i> also has a few properties that can be used as part of the build process, all of which are customizable in the Map Settings resource. 
-            These properties are exposed by the FGD to be set in the map file and read by FuncGodot's core classes throughout the build stages. 
+            These properties are exposed by the FGD to be set in the map file and read by FuncGodot's core classes throughout the build stages.  
             These build stage properties are:
         </p>
             <table class="props">
@@ -301,13 +301,28 @@
                 <td>Vertex Merge Distance Property</td>
                 <td>_vertex_merge_distance</td>
                 <td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html" target="_blank">Float</a></td>
-                <td>Provides a snapping epsilon for vertices in a <i>FuncGodotFGDSolidClass</i> entity's mesh. Adjusting this value can remove instances of gaps between polygon seams.</td>
+                <td>
+					Provides a snapping epsilon for vertices in a <i>FuncGodotFGDSolidClass</i> entity's mesh. Adjusting this value can remove instances of gaps between polygon seams.
+					<br><br> 
+					It is recommended that you set the default value to <code>1 / Inverse Scale Factor</code>, effectively snapping any vertices less than 1 Quake Unit away from each other together.
+				</td>
+            </tr>
+			<tr>
+                <td>Cull Interior Faces Property</td>
+                <td>_cull_interior_faces</td>
+                <td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html" target="_blank">Bool</a></td>
+                <td>
+					Culls faces that won't be seen in a <i>FuncGodotFGDSolidClass</i> entity's mesh if the faces have matching vertices or are flush within a larger face. Note that this has a performance impact that scales with how many brushes are in the entity.
+					<br><br> 
+					Current limitations ignore faces that span across two or more concealing faces and faces that extrude into another brush are also unaffected.
+				</td>
             </tr>
         </table>
         <br>
         <p>
             Some of these properties have built-in support through the use of the default <a href="ref_fgd_resources.html#Base" target="main">FuncGodotFGDBaseClass</a> resources 
-            <i>Phong</i> and <i>VertexMergeDistance</i>.
+            <i>Phong</i>, <i>VertexMergeDistance</i>, and <i>CullInteriorFaces</i>.
+		</p>
     </div>
     <br><br><br>
 </body>

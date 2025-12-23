@@ -28,8 +28,8 @@
                 <td>Description</td>
             </tr>
             <tr>
-                <td>Export File</td>
-                <td>Bool</td>
+                <td>Export FGD</td>
+                <td>Button</td>
                 <td>Used as a button to build and export the FGD file. Automatically sets to off after exporting.</td>
             </tr>
 
@@ -64,6 +64,13 @@
                 <td>
                     Array of resources that inherit from <i>FuncGodotFGDEntityClass</i>. This array defines the entities that will be added to the exported FGD file 
                     and the nodes that will be generated in a <i>FuncGodotMap</i>.
+                </td>
+            </tr>
+			<tr>
+                <td>Generate Model Point Class</td>
+                <td>Bool</td>
+                <td>
+                    Toggles whether <i>FuncGodotFGDModelPointClass</i> resources will generate models from their <i>PackedScene</i> files.
                 </td>
             </tr>
         </table>
@@ -116,7 +123,7 @@
                 <td>
                     Key value pair properties that will appear in the map editor. After building the <i>FuncGodotMap</i> in Godot, these properties will be 
                     added to a <i>func_godot_properties</i> Dictionary that gets applied to the generated node, as long as that node is a <i>@tool</i> script 
-                    with an exported <i>func_godot_properties</i> Dictionary. See <a href="ref_key_value_pairs.html" target="main">Entity Key Value Pairs</a> 
+                    with an exported <i>func_godot_properties</i> Dictionary. See <a href="guide_key_value_pairs.html" target="main">Entity Key Value Pairs</a> 
                     for more information.
                 </td>
             </tr>
@@ -483,6 +490,105 @@
                     Toggles whether entity will use `scale` to determine the generated node or scene's scale. 
                     This is performed on the top level node. The property can be a <i>float</i>, <i>Vector3</i>, or <i>Vector2</i>. 
                     Set to <i>false</i> if you would like to define how the generated node is scaled yourself.
+                </td>
+            </tr>
+			<tr>
+                <td>Display Descriptors</td>
+                <td>Array[FuncGodotFGDPointClassDisplayDescriptor]</td>
+                <td>
+                    An optional [Array] of <i>FuncGodotFGDPointClassDisplayDescriptor</i> that describes how this Point Entity should appear in the map editor. 
+					When using multiple display descriptors, only the first element found without a <i>FuncGodotFGDPointClassDisplayDescriptor.conditional</i> 
+					will be used as the default display asset. If no descriptor is found without a condition, the last descriptor will become the default.[br][br] 
+					Conditional display descriptors will be written to the FGD in the order set in the array.<br><br>
+					<b>WARNING:</b> Multiple descriptors are only supported by TrenchBroom! They will be omitted on export when 
+					<i>FuncGodotFGDFile.target_map_editor</i> is not set to <i>TRENCHBROOM</i>.
+                </td>
+            </tr>
+        </table>
+
+		<br><hr>
+
+        <h2 id="DisplayDescriptor">FuncGodotFGDPointClassDisplayDescriptor</h2>
+        <!--<p><img src="../images/ref_fgd_modelpoint.png"></p>-->
+        <p>
+            A resource for <i>FuncGodotFGDPointClass</i> that describes how to display a point entity in a map editor. 
+			Values entered into the different options are taken literally: paths should be enclosed within quotation marks, 
+			while class property keys and integer values should omit them.
+			<br><br>
+			Most editors only support the <i>display_asset</i> option. Exporting an FGD compatible with these editors will 
+			automatically omit the unsupported options introduced by TrenchBroom when exporting from their respective game configuration resources 
+			or setting <i>FuncGodotFGDFile.target_map_editor</i> away from <i>TRENCHBROOM</i>.
+			<br><br>
+			The extra options are considered advanced features and are unable to be evaluated by FuncGodot to ensure they were input correctly. 
+			Exercise caution, care, and patience when attempting to use these, especially the <i>conditional</i> option.
+        </p>
+        <p>
+            <a href="https://book.leveldesignbook.com/appendix/resources/formats/fgd#display-models-for-entities" target="_blank">Level Design Book: Display Models for Entities</a><br>
+            <a href="https://developer.valvesoftware.com/wiki/FGD#Entity_Description" target="_blank">Valve Developer Wiki FGD Article: Entity Description Section</a><br>
+            <a href="https://trenchbroom.github.io/manual/latest/#display-models-for-entities" target="_blank">TrenchBroom Manual: Display Models for Entities</a><br>
+            <a href="https://trenchbroom.github.io/manual/latest/#expression_language" target="_blank">TrenchBroom Manual: Expression Language</a><br>
+        </p>
+        <br>
+        <table class="props">
+            <tr class="header">
+                <td>Property</td>
+                <td>Type</td>
+                <td>Description</td>
+            </tr>
+            <tr>
+                <td>Display Asset Path</td>
+                <td>String</td>
+                <td>
+					Either a file path to the asset that will be displayed for this point entity, relative to the map editor's game path, 
+					or a class property key that can contain the path.
+					<br><br>
+					For paths, you must surround the path with quotes, e.g: <code>"models/marsfrog.glb"</code>. 
+					For properties, you must omit the quotes, e.g: <code>display_model_path</code>.
+					<br><br>
+					Different editors support different file types: common ones include MDL, GLB, SPR, and PNG. 
+				</td>
+            </tr>
+
+            <tr class="header"><td>TrenchBroom Options</td><td></td><td></td></tr>
+            <tr>
+                <td>Scale</td>
+                <td>String</td>
+                <td>
+                    Optional string that determines the scale of the display asset. This can be a number, a class property key, or 
+					a scale expression in accordance with TrenchBroom's Expression Language. Leave blank to use the game configuration's default scale expression.
+					<br><br>
+					<b>WARNING: </b> Only utilized by TrenchBroom!
+                </td>
+            </tr>
+			<tr>
+                <td>Skin</td>
+                <td>String</td>
+                <td>
+                    Optional string that determines which skin the display asset should use. This can be either a number or a class property key.
+					<br><br>
+					<b>WARNING: </b> Only utilized by TrenchBroom!
+                </td>
+            </tr>
+			<tr>
+                <td>Frame</td>
+                <td>String</td>
+                <td>
+                    Optional string that determines the appearance of a display asset based on its file type. This can be either a number or a class property key.
+					<br><br> 
+					Traditional Quake MDL files will set the display to that frame of its animations (all animations in a Quake MDL are compiled into a single animation). 
+					GLBs meanwhile seem to set themselves to the animation assigned to an index that matches the <code>frame</code> value.
+					<br><br>
+					<b>WARNING: </b> Only utilized by TrenchBroom!
+                </td>
+            </tr>
+			<tr>
+                <td>Conditional</td>
+                <td>String</td>
+                <td>
+                    Optional evaluation string that, when true, will force the Point Class to display the asset defined by <i>display_asset_path</i>.
+					Format should be <code>property == value</code> or some other valid expression in accordance with TrenchBroom's Expression Language.
+					<br><br>
+					<b>WARNING: </b> Only utilized by TrenchBroom!
                 </td>
             </tr>
         </table>

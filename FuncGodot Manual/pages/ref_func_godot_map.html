@@ -96,6 +96,16 @@
                     </ul>
                 </td>
             </tr>
+			<tr>
+                <td>Hyperplane Size</td>
+                <td>Float</td>
+                <td>
+					The hyperplane is an initial plane that all geometry faces are cut from, like a large sheet of marble before a sculptor begins chiseling. 
+					The hyperplane size would need to be able to cover your map's potential total area.
+					Smaller values can minimize floating point errors, reducing the effect of gaps between polygon seams.
+					Measured in Godot units, not Quake units.
+				</td>
+            </tr>
         </table>
 
         <br><hr>
@@ -163,19 +173,28 @@
             <tr>
                 <td>Entity Smoothing Property</td>
                 <td>String</td>
-                <td>Class property that determines whether the Solid Entity performs mesh smoothing operations.</td>
+                <td>Entity class property that determines whether the Solid Entity performs mesh smoothing operations.</td>
             </tr>
             <tr>
                 <td>Entity Smoothing Angle Property</td>
                 <td>String</td>
-                <td>Class property that contains the angular threshold that determines when a Solid Entity's mesh vertices are smoothed.</td>
+                <td>Entity class property that contains the angular threshold that determines when a Solid Entity's mesh vertices are smoothed.</td>
             </tr>
             <tr>
                 <td>Vertex Merge Distance Property</td>
                 <td>String</td>
                 <td>
-                    Class property that contains the snapping epsilon for generated vertices of <i>FuncGodotFGDSolidClass</i> entities. 
+                    Entity class property that contains the snapping epsilon for generated vertices of <i>FuncGodotFGDSolidClass</i> entities. 
                     Utilizing this property can help reduce instances of seams between polygons.
+                </td>
+            </tr>
+			<tr>
+                <td>Cull Interior Faces Property</td>
+                <td>String</td>
+                <td>
+                    Entity class property that tells whether interior faces should be culled for that brush entity. 
+					Interior faces are faces with matching vertices or are flush within a larger face. 
+					Note that this has a performance impact that scales with how many brushes are in the entity.
                 </td>
             </tr>
 

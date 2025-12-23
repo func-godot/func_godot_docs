@@ -10,7 +10,7 @@
         <h1>NetRadiant Custom Resources</h1>
         <p>
             FuncGodot has limited support for NetRadiant Custom. All standard entity types and shaders are supported. Patches are unsupported at this time, and 
-            <a href="ref_key_value_pairs.html#BitFlags" target="_blank">bit flag key values are restricted to a single <i>spawnflags</i> key</a>. 
+            <a href="guide_key_value_pairs.html#BitFlags" target="_blank">bit flag key values are restricted to a single <i>spawnflags</i> key</a>. 
             FuncGodot offers two resources to help configure NetRadiant Custom gamepacks.
         </p>
 
@@ -24,8 +24,8 @@
                 <td>Description</td>
             </tr>
             <tr>
-                <td>Export File</td>
-                <td>Bool</td>
+                <td>Export Gamepack</td>
+                <td>Button</td>
                 <td>Button to export / update this gamepack's configuration in the NetRadiant Custom Gamepacks Folder.</td>
             </tr>
             <tr>
@@ -48,15 +48,15 @@
                 <td>FuncGodotFGDFile</td>
                 <td>FGD resource to include with this gamepack. If using multiple FGD resources, this should be the master FGD that contains them in the <i>base_fgd_files</i> resource array.</td>
             </tr>
+			<tr>
+                <td>Generate Model Point Class</td>
+                <td>Bool</td>
+                <td>Toggles whether <i>FuncGodotFGDModelPointClass</i> resources will generate models from their <i>PackedScene</i> files.</td>
+            </tr>
             <tr>
                 <td>Netradiant Custom Shaders</td>
                 <td>Array[Resource]</td>
                 <td><i>NetRadiantCustomShader</i> resources for shader file generation.</td>
-            </tr>
-            <tr>
-                <td>Texture Types</td>
-                <td>PackedStringArray</td>
-                <td>Supported texture file types.</td>
             </tr>
             <tr>
                 <td>Model Types</td>
@@ -67,6 +67,23 @@
                 <td>Sound Types</td>
                 <td>PackedStringArray</td>
                 <td>Supported audio file types.</td>
+            </tr>
+			<tr>
+                <td>Map Type</td>
+                <td>NetRadiantCustomMapType</td>
+                <td>
+					Quake map type NetRadiant will filter the map for, determining whether PatchDef entries are saved. 
+					Options are <i>QUAKE_1</i> and <i>QUAKE_3</i>.
+					<br><br>
+					<b>WARNING!</b> Toggling this option may be destructive!
+				</td>
+            </tr>
+			
+			<tr class="header"><td>Textures</td><td></td><td></td></tr>
+            <tr>
+                <td>Texture Types</td>
+                <td>PackedStringArray</td>
+                <td>Supported texture file types.</td>
             </tr>
             <tr>
                 <td>Default Scale</td>
@@ -83,6 +100,8 @@
                 <td>String</td>
                 <td>Skip texture path that gets applied to caulk and nodrawnonsolid shaders.</td>
             </tr>
+
+			<tr class="header"><td>Build Menu</td><td></td><td></td></tr>
             <tr>
                 <td>Default Build Menu Variables</td>
                 <td>Dictionary</td>

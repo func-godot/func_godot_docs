@@ -11,7 +11,7 @@
         <h3>Directory Structure</h3>
         <p>
             Designing a directory structure for your game is its own art, and the layout of your project files can depend greatly on the kind of game you're making. 
-            That said, it is generally recommended you create an organization that splits off your <b>TrenchBroom resources</b> from the rest of your <b>Godot assets</b>.
+            That said, it is generally recommended you create an organization that splits off your <b>map editor resources</b> from the rest of your <b>Godot assets</b>.
         </p>
         <p>
             If you're using TrenchBroom, you may already be aware it has a handy backup feature where it creates an autosave folder to periodically save backups of your map file. 
@@ -32,7 +32,7 @@
 
         <h3>FuncGodot Local Config</h3>
         <p>
-            FuncGodot has the option of using a <a href="ref_local_config.html"><b>FuncGodotLocalConfig</b></a> resource to create local project wide 
+            FuncGodot has the option of using a <a href="ref_local_config.html#LocalConfig"><b>FuncGodotLocalConfig</b></a> resource to create local project wide 
             settings for your other FuncGodot resources. These settings are applied only to your machine, in order to better facilitate working with a team that 
             may not have the same drive or directory setup or even the same map editor as you yourself use.
         </p>
@@ -69,15 +69,6 @@
             or <i>C:/GameDev/MyGodotProject/trenchbroom/</i>. The intended use for this is to streamline certain FGD resource paths, like the 
             <a href="ref_fgd_resources.html#ModelPoint"><b>FuncGodotFGDModelPointClass</b></a>'s model export location.
         </p>
-        <p>
-            The <b>Game Path Models Folder</b> is the default folder path relative to your Map Editor Game Path that tells FuncGodot where to save generated model files to. For example, 
-            with a Map Editor Game Path value of <i>C:/GameDev/MyGodotProject/trenchbroom/</i> and a Game Path Models Folder value of <i>models</i>, the generated model file will 
-            be saved to <i>C:/GameDev/MyGodotProject/trenchbroom/models/</i>. Currently only used by <i>FuncGodotFGDModelPointClass</i>.
-        </p>
-        <p>
-            The <b>Default Inverse Scale Factor</b> setting doesn't affect <i>FuncGodotMapSettings</i> resources or how the map builds. It currently only affects scaling display models 
-            for <i>FuncGodotFGDModelPointClass</i> definitions in map editors other than TrenchBroom.
-        </p>
 
         <h3>Exporting the Local Config</h3>
         <p>
@@ -96,6 +87,21 @@
         </p>
         <p>
             If you make a change you didn't mean to commit and you haven't yet exported, you can use the <i>Reload</i> option to revert your unwanted changes.
+        </p>
+
+		<h3>Project Settings</h3>
+		<p>
+            The <b>Game Path Models Folder</b> is the default folder path relative to your Map Editor Game Path that tells FuncGodot where to save generated model files to. For example, 
+            with a Map Editor Game Path value of <i>C:/GameDev/MyGodotProject/trenchbroom/</i> and a Game Path Models Folder value of <i>models</i>, the generated model file will 
+            be saved to <i>C:/GameDev/MyGodotProject/trenchbroom/models/</i>. Currently only used by <i>FuncGodotFGDModelPointClass</i>.
+        </p>
+		<p>
+			The <b>Default Map Settings</b> setting is the <a href="ref_func_godot_map.html#MapSettings" target="main">FuncGodotMapSettings</a> resource that will be assigned 
+			to new <a href="ref_func_godot_map.html" target="main">FuncGodotMap</a> nodes upon instantiation.
+		</p>
+        <p>
+            The <b>Default Inverse Scale Factor</b> setting doesn't affect <i>FuncGodotMapSettings</i> resources or how the map builds. It currently only affects scaling display models 
+            for <i>FuncGodotFGDModelPointClass</i> definitions in map editors other than TrenchBroom.
         </p>
         
         <br><br><br>

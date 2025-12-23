@@ -29,7 +29,8 @@
         <p align="center"><img src="../images/guide_fgd_res_loc.png" alt="func_godot_fgd.tres location."></p>
         <p>
             This is the default FGD file set in the <a href="ref_func_godot_map.html#MapSettings"><b>FuncGodotMapSettings</b></a> resource. The basic entity definitions included with it are 
-            <i>Worldspawn</i>, <i>func_geo</i>, <i>func_detail</i>, <i>func_detail_illusionary</i>, <i>func_illusionary</i>, and <i>Phong</i>. We'll go over what each of these entity types are a little farther below.
+            <i>Worldspawn</i>, <i>func_geo</i>, <i>func_detail</i>, <i>func_detail_illusionary</i>, <i>func_illusionary</i>, <i>Phong</i>, <i>VertexMergeDistance</i>, and <i>CullInteriorFaces</i>. 
+			We'll go over what each of these entity types are a little farther below.
         </p>
 
         <p>
@@ -43,16 +44,16 @@
         </p>
         <p align="center"><img src="../images/ref_fgd_file.png" alt="FuncGodotFGDFile resource properties."></p>
         <p>
-            The <b>Export File</b> property does exactly what you might think: it generates and saves your FGD file to the <b>Map Editor Game Config Folder</b> set by the 
+            The <b>Export FGD</b> button does exactly what you might think: it generates and saves your FGD file to the <b>Map Editor Game Config Folder</b> set by the 
             <a href="ref_local_config.html">FuncGodot Local Config</a>. Use this whenever you need to update your FGD.
         </p>
         <p>
             The next property, <b>Target Map Editor</b>, is intended to help with specific key words that aren't shared across the different map editors. 
             Point class entities in map editors can have display models assigned to them according to their FGD definitions. 
             Most map editors seem to use the "studio" key word to define the model path, but TrenchBroom instead optionally allows the "model" key word while also including 
-            additional display options and expressions. When set to <i>false</i>, FuncGodot will omit entity definition meta properties using the "model" key word in order to 
+            additional display options and expressions. When set to a value other than <i>TRENCHBROOM</i>, FuncGodot will omit entity definition meta properties using the "model" key word in order to 
             prevent errors in your chosen map editor. When exporting the FGD File through a <a href="ref_trenchbroom_resources.html#GameConfig">TrenchBroom Game Config</a> 
-            resource the setting will be overridden to <i>true</i>. 
+            resource the setting will be temporarily overridden to <i>TRENCHBROOM</i>. 
             See the <a href="https://developer.valvesoftware.com/wiki/FGD#Class_Types_and_Properties" target="_blank">Valve Developer Wiki</a> for more information.
         </p>
         <p>
@@ -68,10 +69,15 @@
         </p>
         <p align="center"><img src="../images/guide_fgd_base_fgd.png" alt="FuncGodotFGDFile base FGD example."></p>
         <p>
-            The last property is <b>Entity Definitions</b>. This is where you'll drop all of your custom entity resources to be built or instanced by FuncGodot. Let's take a look at what a populated one looks like 
+            The next property is <b>Entity Definitions</b>. This is where you'll drop all of your custom entity resources to be built or instanced by FuncGodot. Let's take a look at what a populated one looks like 
             by viewing the default <i>func_godot_fgd.tres</i> in the inspector.
         </p>
         <p align="center"><img src="../images/guide_fgd_func_godot_fgd.png" alt="FuncGodotFGDFile default FGD."></p>
+
+		<p>
+			The last property is <b>Generate Model Point Class</b>. This toggles whether Model Point Class entities will generate their models upon FGD export. 
+			This property gets overridden when exporting from the map editor game configuration resources.
+		</p>
 
         <h2 id="EntityClass">Entity Class Definitions</h2>
         <p>
@@ -139,23 +145,34 @@
         </p>
         <p>
             See the chapters on <a href="ref_fgd_resources.html#Entity"><b>FuncGodotFGDEntityClass</b></a> resources and 
-            <a href="ref_key_value_pairs.html" target="main">Entity Key Value Pairs</a> for more information.
+            <a href="guide_key_value_pairs.html" target="main">Entity Key Value Pairs</a> for more information.
         </p>
 
         <h2 id="DefaultEntities">Default Entities</h2>
         <p>
-            All default FuncGodot entities, except for <i>Phong</i>, are FuncGodotFGDSolidClass entities. All of the SolidClass entities are very similar, 
-            mostly differing in occlusion and collision.
+            All default FuncGodot entities are either FuncGodotFGDBaseClass or FuncGodotFGDSolidClass entities. 
+			Each BaseClass covers a <a href="guide_key_value_pairs.html#BuildStageProperties" target="main">build stage property</a></br> that affects 
+			how an entity's brushes are translated into meshes.
+		</p>
+		<p>
+			All of the SolidClass entities are very similar, mostly differing in occlusion and collision.
         </p>
+		<p>
+			All of the provided default entities affect the basic geometry build processes in some way. Though none are required for your game, it may be useful to include them in it.
+		</p>
         <ul>
             <li>
                 <b>Phong : </b> A FuncGodotFGDBaseClass that provides <i>_phong</i> and <i>_phong_angle</i> properties to most of the entities below. 
-                See the <a href="https://en.wikipedia.org/wiki/Phong_shading" target="_blank">Wikipedia article on Phong Shading</a> for quick primer.<br>
+                See the <a href="https://en.wikipedia.org/wiki/Phong_shading" target="_blank">Wikipedia article on Phong Shading</a> for a quick primer.<br>
             </li>
             <li>
                 <b>VertexMergeDistance : </b> A FuncGodotFGDBaseClass that provides a <i>_vertex_merge_distance</i> property to all of the entities below. 
                 This property is used in the build process to better ensure vertices between brushes get connected, to reduce instances of gaps between seams in 
                 polygons.
+            </li>
+			<li>
+                <b>CullInteriorFaces : </b> A FuncGodotFGDBaseClass that provides a <i>_cull_interior_faces</i> property to all of the entities below. 
+                This property is used in the build process to remove some faces that would be unseen according to a particular set of rules.
             </li>
             <blockquote>
                 <i>
