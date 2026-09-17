@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <title>FuncGodot Manual</title>
+    <link rel="icon" type="image/x-icon" href="../images/godot_ranger.svg">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="main">
+    <div class="main">
+        <h1>Material Based Footsteps</h1>
+        <p>
+            To do this we need to raycast in order to check what texture a face is so we can play an appropriate
+            sound effect such as snow sounds for snowy textures and stone sounds for stone textures.
+        </p>
+        <p>
+            Firstly, you will need a Raycast3D. Secondly, you will need a <a href="ref_fgd_resources.html#Solid" target="main">FuncGodotFGDSolidClass</a>. In the Mesh metadata
+            you will need to tick "Add Textures Metadata" found under Mesh Metadata. The collision mask for the Racyast3D must match a collision
+            layer of the FuncGodotFGDSolidClass, otherwise it will not report a collision.
+        </p>
+        <p>
+            Ticking "Add Textures Metadata" adds two metadata properties to generated nodes of that Solid Class. It adds "textures" which is
+            a PackedInt32Array, where the index in the array is the face index, and the value at any point is an
+            integer. This integer is then used by the "texture_names", the 2nd metadata property which is added.
+            Indexing that array with that integer gets us the texture name string. So how do I get the face index?
+            Raycast3D has a handy method called <code><a href="https://docs.godotengine.org/en/stable/classes/class_raycast3d.html#class-raycast3d-method-get-collision-face-index" target="_blank">get_collision_face_index()</a></code> which we use.
+        </p>
+        <blockquote><i>NOTE: If you are using <b>Jolt Physics</b> as your Physics Engine, you must tick Enable Ray Cast
+                Face Index in your project settings! This can be found in Project Settings > Physics > Jolt Physics 3D >
+                Queries > Enable Ray Cast Face Index. <a href="https://github.com/godot-jolt/godot-jolt/issues/702#issuecomment-2305670454" target="_blank">Enabling this has a non-trivial memory cost.</a></i></blockquote>
+        <p>Putting this all together, as a script on our Raycast3D, the following function returns the Texture Name when
+            we call it.</p>
+        <pre><code>func do_check() -> String:
+	var col := get_collider()
+	if !col:
+		return "" # No collision, no texture
+	if !col.has_meta("func_godot_mesh_data"):
+		return "" # Metadata not added
+	var metadata: Dictionary = col.get_meta("func_godot_mesh_data")
+	if !("textures" in metadata):
+		return "" # Textures Metadata not added
+	if !("texture_names" in metadata):
+		return "" # Textures Metadata not added
+	var textures: PackedInt32Array = metadata["textures"]
+	var texture_names: Array = metadata["texture_names"]
+	var texture: String = texture_names.get(
+		textures.get(
+			get_collision_face_index()
+			)
+		)
+	return texture;</code></pre>
+        <p>
+            When we call <code>do_check();</code>, we now get the texture String for the face the Raycast3D collided
+            with, if it collided with anything at all. The rest of the implementation of material based footsteps is
+            left as an exercise to the reader as it is project specific, but you will likely want some way to convert
+            from a texture name to a Stream and to then play that Stream with an AudioStreamPlayer.
+        </p>
+        <p>
+            As a note you can also use this same approach for running code on specific textures. For example damage on
+            lava textures, slowness on cobweb textures, though these may be better accomplished with a
+            FuncGodotFGDSolidClass that creates an Area3D instead. You can also use this to get material-specific decal
+            textures.
+        </p>
+    </div>
+    <br><br><br>
+</body>
+
+</html>
